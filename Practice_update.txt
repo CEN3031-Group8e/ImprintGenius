@@ -1,9 +1,0 @@
-This text file will be used to practice pushing, pulling, and merging as a team.
-Each member will update this document by writing their name and stating their position.
-
-Without modifications this is the start of the document.
-
-{Pushed}
-
-Edited by Jennifer Bernal:
-1. Jennifer Bernal -- Scrum Master
