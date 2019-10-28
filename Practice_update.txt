@@ -7,3 +7,4 @@ Without modifications this is the start of the document.
 
 Edited by Jennifer Bernal:
 1. Jennifer Bernal -- Scrum Master
+2. Evan Bourque -- Programmer
