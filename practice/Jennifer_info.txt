@@ -1,0 +1,7 @@
+I have touched CSS, HTML, and javascript to create a basic website 
+that took in inputs (numbers) and outputted a calculated result
+onto the same page.
+
+I do not know front-end well.
+
+I worked on the react tutorial assignment we had to do.
