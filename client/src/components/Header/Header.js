@@ -4,8 +4,8 @@ import './Header.css';
 
 const Header = () => {
     return (
-        <div className='topnav'>
-            Hello, this is our header!
+        <div className='mainHeader'>
+            Packages
         </div>
     )
 }

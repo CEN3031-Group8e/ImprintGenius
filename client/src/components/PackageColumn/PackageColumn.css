@@ -1,0 +1,121 @@
+.packageCol {
+  width: 100%;
+  background: white;
+  text-align: center;
+  border-radius: 6px;
+  border-color: #F0F0F0;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 0px 10px 0 rgba(0,0,0,0.10);
+}
+.packageHeader {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  color: white;
+  background: #393939;
+  font-family: 'Gurajada';
+  padding-top: 22px;
+  padding-bottom: 22px;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 30px;
+}
+.packageCost {
+  margin-top: 20px;
+  color: black;
+  font-family: 'Gurajada';
+  font-size: 60px;
+  font-weight: normal;
+  line-height: 50px;
+}
+.packageSavings {
+  font-family: 'Gurajada';
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 26px;
+  color: #68c8a2;
+  margin-top: 4px;
+}
+.packageDescription {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 20px;
+  color: #b3b3b3;
+}
+.lightLine {
+  background: #e9e9e9;
+  margin: 30px 40px 0 40px;
+  height: 1px;
+}
+.boldText {
+  font-weight: bold;
+}
+ul {
+  margin: 0;
+  margin-top: 30px;
+  list-style-type: none;
+  padding: 0;
+}
+ul li {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #b3b3b3;
+}
+.button {
+  margin: 0 auto;
+  display: block;
+  font-family: 'Gurajada';
+  font-size: 28px;
+  font-weight: normal;
+  border-radius: 1000px;
+  padding: 0 30px 0 30px;
+  height: 46px;
+  line-height: 100%;
+  border: none;
+  transition: 0.3s;
+}
+.button:hover,
+.button:focus {
+  opacity: 0.9;
+}
+.m30Top {
+  margin-top: 30px;
+}
+.m15Top {
+  margin-top: 15px;
+}
+.overflowHalf {
+  margin-bottom: -23px;
+}
+.blueGradient {
+  background: rgb(103,129,233);
+  background: -moz-linear-gradient(20deg, rgba(103,129,233,1) 0%, rgba(49,79,202,1) 100%);
+  background: -webkit-linear-gradient(20deg, rgba(103,129,233,1) 0%, rgba(49,79,202,1) 100%);
+  background: linear-gradient(20deg, rgba(103,129,233,1) 0%, rgba(49,79,202,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6781e9",endColorstr="#314fca",GradientType=1);
+}
+.greenGradient {
+  background: rgb(153,233,205);
+  background: -moz-linear-gradient(20deg, rgba(153,233,205,1) 0%, rgba(117,216,178,1) 100%);
+  background: -webkit-linear-gradient(20deg, rgba(153,233,205,1) 0%, rgba(117,216,178,1) 100%);
+  background: linear-gradient(20deg, rgba(153,233,205,1) 0%, rgba(117,216,178,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#99e9cd",endColorstr="#75d8b2",GradientType=1);
+}
+
+/* SCREEN SIZES */
+
+@media (max-width: 768px) {
+  .m50TopSm {
+    margin-top: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .m50TopSm {
+    margin-top: 0px;
+  }
+}
