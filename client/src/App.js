@@ -9,12 +9,17 @@ import Header from "./components/Header/Header"
 const App = () => {
   return (
     <div>
-      <Header />
+      <h1>Button testing</h1>
       <Switch>
+        
+      <Route exact path="/Home" component={Home} />
+
         <Route exact path="/PageTwo" component={ColorPicker} />
         <Route exact path="/">
-          <Redirect to="/PageTwo" />
+          <Redirect to="/Home" />
+            
         </Route>
+
         <Route component={NotFound}/>
       </Switch>
     </div>
