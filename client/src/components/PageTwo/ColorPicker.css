@@ -1,43 +1,53 @@
-
-.btn-press{
-    float:left;
-    border: solid 0.35px #7B68EE;
-    box-shadow: 0 0px 7px 4px #7B68EE;
-    border-radius: 50%;
-
-    padding: 1.5rem 1.5rem;
-    margin: 0.8rem 0.8rem;
-}
-
 .btn{
     float:left;
-    border: solid .35px transparent;
+    border: solid 2px transparent;
     box-shadow: 0 5px 10px #050e0173;
-	border-radius: 50%;
+    border-radius: 50%;
+    border: solid 2px;
 
-    padding: 1.5rem 1.5rem;
-    margin: 0.8rem 0.8rem;
-
+    padding: .7rem .7rem;
+    margin: 0.5rem 0.5rem;
+}
+.btn-press{
+    border: solid 2px #ffffff;
+    box-shadow: 0 0px 4px 4px #7B68EE;
+}
+.btn-nopress{
+    border: solid 2px transparent;
+    box-shadow: 0 5px 10px #050e0173;	
+}
+.btn:hover{   
+    border: solid 2px #ffffff;
+    box-shadow: 0 0px 4px 4px #7B68EE;
 
 }
-
-
-
 button:focus,
 select:focus {
   outline: none;
 }
-.div-cnt{
-    float: left;
+
+.cnt{
+    float: right;
+    padding:0;
     margin: 1rem 1rem;
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
-    font-size: 16pt;
-    color: rgb(122, 28, 16);
+    font-size: 14pt;
+    color: red;
 }
-.div-colorBox{
-    border: solid 0.3px transparent;
-    padding: 5px;
-    width: 700px;
-    height: 150px;   
+.cntPckd{
+    color: black;
+ }
+.colorPicker-box{
+    border: solid 0.3px black;
+    padding: 10px;
+    width: 390px;
+    height: 250px;   
+}
+.palette-box{
+    border: solid 0.3px black;
+    
+    width: 390px;
+    height: 110px;  
+
 }

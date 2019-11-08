@@ -2,6 +2,7 @@ import React from 'react';
 
 import './ColorPicker.css';
 
+// https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
 
 const btnsList = [
     { id:0, name:"red", color: "#FF0000"},
@@ -20,13 +21,29 @@ const btnsList = [
     { id:12, name:"indigo", color: "#4B0082"},
     { id:13, name:"dark-violet", color: "#9400D3"},
     { id:14, name:"deep-pink", color: "#FF1493"},
-    { id:15, name:"pale-violet-red", color: "#DB7093"},
+    { id:15, name:"hot-pink", color: "#FF69B4"},
     { id:16, name:"midnight-blue", color: "#191970"},
-    { id:17, name:"dodger-blue", color: "#1E90FF"}
+    { id:17, name:"dodger-blue", color: "#1E90FF"},
+    { id:18, name:"gray", color: "gray"}
 ]
+function CntrText(count){
+
+    if(count == 3 )
+         return <div class="cnt">
+             Color Limit Reached
+         </div>
+    else{
+        return(
+            <div class="cnt cntPckd" >
+                    { count + "/3 Colors Picked  "}
+               </div>
+        )
+    }
+    
+
+}
 class ColorPicker extends React.Component 
 {
-
     constructor() {
         super();
         //this.handleButton = this.handleButton.bind(this);
@@ -68,9 +85,13 @@ class ColorPicker extends React.Component
             )
         }  
     } 
+    
     render() {
 		return(
-            <div className="div-colorBox">
+        <div class="colorPicker-box">
+            <h2> Tultex 202 Fine Jersey</h2>
+            <h4>Select 1-3 colors for your apparel</h4>
+            <div class="palette-box">
             { btnsList.map(btn => 
               (
                 <button
@@ -82,15 +103,15 @@ class ColorPicker extends React.Component
                         }
                     }
                     style={{background: btn.color}}
-                    className={ 
+                    class={ 
                         //if btn exists in list => use btn press class, else btn
-                        this.state.btnVals.includes(btn.id) ? "btn-press": "btn"
+                        this.state.btnVals.includes(btn.id) ? "btn btn-press": "btn btn-nopress"
                     }>
                 </button>
             ))}
-            <div className="div-cnt">{this.state.count}/3 Colors Picked</div>
-
             </div>
+            {CntrText(this.state.count)}
+        </div>
         );
     }    
 }
