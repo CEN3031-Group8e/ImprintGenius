@@ -1,5 +1,5 @@
 import React from 'react';
-
+import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 import './ColorPicker.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
@@ -27,20 +27,17 @@ const btnsList = [
     { id:18, name:"gray", color: "gray"}
 ]
 function CntrText(count){
-
-    if(count == 3 )
-         return <div class="cnt">
+    if(count === 3 )
+         return <div className="cnt">
              Color Limit Reached
          </div>
     else{
         return(
-            <div class="cnt cntPckd" >
+            <div className="cnt cntPckd" >
                     { count + "/3 Colors Picked  "}
-               </div>
+            </div>
         )
     }
-    
-
 }
 class ColorPicker extends React.Component 
 {
@@ -49,7 +46,8 @@ class ColorPicker extends React.Component
         //this.handleButton = this.handleButton.bind(this);
         this.state = { 
             count: 0,
-            btnVals: [] } //returns array of buttons currently pressed
+            btnVals: [] 
+        } //returns array of buttons currently pressed
     }
     
     handleButton = (button) => {
@@ -88,31 +86,38 @@ class ColorPicker extends React.Component
     
     render() {
 		return(
-        <div class="colorPicker-box">
-            <h2> Tultex 202 Fine Jersey</h2>
-            <h4>Select 1-3 colors for your apparel</h4>
-            <div class="palette-box">
-            { btnsList.map(btn => 
-              (
-                <button
-                    key={ btn.id }
-                    onClick={ () => {
-                        this.handleButton(btn.id) ; 
-                        
-                        //console.log(btn.name + " clicked")
+        <div>
+            <div className="colorPicker-box">
+                <h2> Tultex 202 Fine Jersey</h2>
+                <h4>Select 1-3 colors for your apparel</h4>
+                <div className="palette-box">
+                { btnsList.map(btn => 
+                (
+                    <button
+                        key={ btn.id }
+                        onClick={ () => {
+                            this.handleButton(btn.id) ; 
+                            
+                            //console.log(btn.name + " clicked")
+                            }
                         }
-                    }
-                    style={{background: btn.color}}
-                    class={ 
-                        //if btn exists in list => use btn press class, else btn
-                        this.state.btnVals.includes(btn.id) ? "btn btn-press": "btn btn-nopress"
-                    }>
-                </button>
-            ))}
+                        style={{background: btn.color}}
+                        className={ 
+                            //if btn exists in list => use btn press class, else btn
+                            this.state.btnVals.includes(btn.id) ? "btn btn-press": "btn btn-nopress"
+                        }>
+                    </button>
+                ))}
+                </div>
+                {CntrText(this.state.count)}
             </div>
-            {CntrText(this.state.count)}
+            {//***have quantitySelect appear on click***
+            }
+            <div>
+                <QuantitySelect colorsArr= {this.state.btnVals}/>
+            </div>
         </div>
-        );
+        );  
     }    
 }
 

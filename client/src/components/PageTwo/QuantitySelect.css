@@ -8,11 +8,11 @@
     padding: .7rem .7rem;
     margin: 0.5rem 0.5rem;
 }
-.btn.btn-press{
+.btn-press{
     border: solid 2px #ffffff;
     box-shadow: 0 0px 4px 4px #7B68EE;
 }
-.btn.btn-nopress{
+.btn-nopress{
     border: solid 2px transparent;
     box-shadow: 0 5px 10px #050e0173;	
 }
@@ -35,7 +35,7 @@ select:focus {
     font-size: 14pt;
     color: red;
 }
-.cnt.cntPckd{
+.cntPckd{
     color: black;
  }
 .colorPicker-box{

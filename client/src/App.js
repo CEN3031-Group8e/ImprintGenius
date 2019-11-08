@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
-import ColorPicker from "./components/PageTwo/ColorPicker"
+import page2 from "./views/page2Test/page2"
 import NotFound from "./views/NotFound"
-import Header from "./components/Header/Header"
+//import Header from "./components/Header/Header"
 
 class App extends React.Component
 {
@@ -21,7 +21,7 @@ class App extends React.Component
        <div>
        <Switch>
          <Route exact path="/Home" component={Home} />
-         <Route exact path="/PageTwo" component={ColorPicker} />
+         <Route exact path="/PageTwo" component={page2} />
          <Route exact path="/">
            <Redirect to="/Home" />
          </Route>
