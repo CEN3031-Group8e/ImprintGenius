@@ -5,25 +5,30 @@ import ColorPicker from "./components/PageTwo/ColorPicker"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 
+class App extends React.Component
+{
+ constructor(props) {
+   super(props);
+     this.state = {
+       //add any states you need
+       selectedFile: null     
 
-const App = () => {
-  return (
-    <div>
-      <h1>Button testing</h1>
-      <Switch>
-        
-      <Route exact path="/Home" component={Home} />
-
-        <Route exact path="/PageTwo" component={ColorPicker} />
-        <Route exact path="/">
-          <Redirect to="/Home" />
-            
-        </Route>
-
-        <Route component={NotFound}/>
-      </Switch>
-    </div>
-  );
+     }
+ }
+   render()
+   {
+     return(
+       <div>
+       <Switch>
+         <Route exact path="/Home" component={Home} />
+         <Route exact path="/PageTwo" component={ColorPicker} />
+         <Route exact path="/">
+           <Redirect to="/Home" />
+         </Route>
+         <Route component={NotFound}/>
+       </Switch>
+     </div>
+     );
+   }
 }
-
-export default App;
+export default App; 
