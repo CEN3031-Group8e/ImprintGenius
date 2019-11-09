@@ -1,5 +1,4 @@
 import React from 'react';
-import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 import './ColorPicker.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
@@ -87,6 +86,7 @@ class ColorPicker extends React.Component
     render() {
 		return(
         <div>
+            <h1>ColorPicker Componenent</h1>
             <div className="colorPicker-box">
                 <h2> Tultex 202 Fine Jersey</h2>
                 <h4>Select 1-3 colors for your apparel</h4>
@@ -97,7 +97,7 @@ class ColorPicker extends React.Component
                         key={ btn.id }
                         onClick={ () => {
                             this.handleButton(btn.id) ; 
-                            
+                            this.props.updatePicker(this.state.btnVals); //update page2 (parent)
                             //console.log(btn.name + " clicked")
                             }
                         }
@@ -111,11 +111,7 @@ class ColorPicker extends React.Component
                 </div>
                 {CntrText(this.state.count)}
             </div>
-            {//***have quantitySelect appear on click***
-            }
-            <div>
-                <QuantitySelect colorsArr= {this.state.btnVals}/>
-            </div>
+            
         </div>
         );  
     }    
