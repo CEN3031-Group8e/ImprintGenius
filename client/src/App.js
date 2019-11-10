@@ -11,7 +11,8 @@ class App extends React.Component
   constructor(props) {
     super(props);
       this.state = {
-        size: 'one'
+        imageType: 'tshirt',
+        apparelMode: true
       }
   }
 

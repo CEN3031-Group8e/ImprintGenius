@@ -6,57 +6,83 @@ import img3 from './images/test3.png';
 import lrg1 from './images/large1.png';
 import lrg2 from './images/large2.png';
 import lrg3 from './images/large3.png';
+import apparel1 from './images/apparel1.png';
+import pop1 from './images/pop1.png';
+import pop2 from './images/pop2.png';
+import powerbank1 from './images/powerbank1.png';
+import powerbank2 from './images/powerbank2.png';
 
 
 const largePath = {
-one: lrg1,
-two: lrg2,
-three: lrg3
+tshirt: lrg1,
+longsleeve: lrg2,
+hoodie: lrg3,
+pop: pop2,
+power: powerbank2
 }
+
 
 
 class DisplayItem extends React.Component {
 
     state = {
-    size: 'one'
+    imageType: 'tshirt',
+    apparelMode: true
+    }
+
+    swapImage = (imgNum) => {
+        this.setState(state => ({ imageType: imgNum }))
+        if (imgNum == 'pop' || imgNum == 'power'){
+          this.setState(state => ({ apparelMode: false }))
+        }
+        else {
+          this.setState(state => ({ apparelMode: true }))
+        }
+
     }
 
 
-    swapImage = (imgnum) => {
+    getImageNum = () => this.state.imageType
 
-        this.setState(state => ({ size: imgnum }))
-
-    }
-
-    getImageNum = () => this.state.size
 
     render() {
         const imageNum = this.getImageNum();
+        const modeType = this.state.apparelMode;
+
+        let display1, display2, display3;
+        if (modeType) {
+          display1 = <img style = {{maxWidth: '100px'}} src = {img1} onClick={() => this.swapImage('tshirt')} />;
+          display2 = <img style = {{maxWidth: '100px'}} src = {img2} onClick={() => this.swapImage('longsleeve')} />;
+          display3 = <img style = {{maxWidth: '100px'}} src = {img3} onClick={() => this.swapImage('hoodie')} />;
+            }
 
         return (
+
                 <div className='tempStyling'>
 
+                <div className='leftBar'>
+                  <img style = {{maxWidth: '75px'}} src = {apparel1} onClick={() => this.swapImage('tshirt')} />
+                  <img style = {{maxWidth: '75px'}} src = {pop1} onClick={() => this.swapImage('pop')}  />
+                  <img style = {{maxWidth: '75px'}} src = {powerbank1} onClick={() => this.swapImage('power')}/>
+                </div>
 
-                <div>
+                <div className='centerImage'>
                 <img style = {{maxWidth: '200px'}} src = {largePath[imageNum]} />
-
                 </div>
 
 
-                <div>
-                <img style = {{maxWidth: '100px'}} src = {img1} onClick={() => this.swapImage('one')} />
-                <img style = {{maxWidth: '100px'}} src = {img2} onClick={() => this.swapImage('two')} />
-                <img style = {{maxWidth: '100px'}} src = {img3} onClick={() => this.swapImage('three')} />
+
+                <div className='bottomBar'>
+                {display1}
+                {display2}
+                {display3}
+                </div>
 
                 </div>
-                </div>
-
 
 
                 );
     }
 }
-
-//const rootElement = document.getElementById("root");
 
 export default DisplayItem;
