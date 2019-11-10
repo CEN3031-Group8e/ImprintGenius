@@ -7,12 +7,13 @@ import './QuantitySelect.css';
 
 class QuantitySelect extends React.Component 
 {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
-            colorsArr: [] ,
-            totalItems: 0,
-            sizeArr: [] //XS-XXL, so length=6
+            colors: this.props.colorsArr, //received from PageTwo (which pg2 received from ColorPicker)
+            totalItems: 0, //will update from child Form ON CHANGE
+            sizeArr: [], //XS-XXL, so length=6 , will update from child QuantityForm ON SUBMIT
+            capacity: 100 //fixed atm (will be passed in from parent App.js to know which package was chosen)
         }
         this.updateSizes = this.updateSizes.bind(this);
     }    
@@ -26,24 +27,37 @@ class QuantitySelect extends React.Component
             sizeArr: sizelist
         }),
         () => {
-            //data seems to be passing correctly 
-            //need to run more tests
-            //from form to select to app
-            //clean up logger
             console.log("post set, sizerArr");
             console.log( this.state.sizeArr);
         }) 
     }
-
+    updateTotal(tot){
+        console.log("tot in updateSum");
+        console.log(tot);
+        
+        this.setState(
+        ({
+            totalItems: tot
+        }),
+        () => {
+            console.log("post set, totalItems");
+            console.log( this.state.totalItems);
+        }) 
+    }
     render() {
 		return(
         <div>
             <h2> Quantity Select Componenent</h2>
-            {console.log("colorsArr is:")}
-            {console.log(this.props.colorsArr)}
+            { //testing the array received from parent, PageTwo
+             console.log("(in quantity select)colorsArr is:")}
+            { console.log(this.state.colors) //get arr from parent, PageTwo
+            } 
+
             {"(in QuantitySelect) the color count is "+ this.props.colorsArr.length}
             
-            <QuantityForm updateSelect={this.updateSizes}/>
+            <QuantityForm currMissing={this.state.capacity} //send to child, Form
+                          updateSum={this.updateTotal} updateArr={this.updateSizes}//update parent 
+            /> 
         </div>
         );
     }    

@@ -5,40 +5,76 @@ import './QuantityForm.css';
 
 class QuantityForm extends React.Component 
 {  
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
-            sumItems:0,
+            current: this.props.currMissing,
+            sizes: [],
             sizeXS: '',
             sizeS: '',
             sizeM: '',
             sizeL: '',
             sizeXL: '',
-            sizeXXL: ''                
+            sizeXXL: ''   
+            
         }
     }    
 
     handleChange(e){
+        
         let change = {}
-        change[e.target.name] = e.target.value;
-        this.setState(change);
+        //old=change[e.target.name] 
+        //current += old;
+        //current -= e.target.value;
+        
+        //change[e.target.id] = e.target.value; //index using id assigned
+        
+        let newSizes = [...this.state.sizes];
+        console.log("(old)newSizes:");
+        console.log(newSizes);
+        let newCurrent = this.state.current;
+        newCurrent = (newCurrent) + (this.state.sizes[e.target.id]); //curr + oldVal
+        console.log("current1:",newCurrent);
+        newCurrent = newCurrent - e.target.value; //curr - newVal
+        
+        
+
+
+        newSizes[e.target.id] = e.target.value;
+        this.setState(
+            (prevState)=>({
+                //change
+                sizes: newSizes,
+                current:newCurrent
+
+            }),
+            ()=>{
+            console.log("sizes:");
+            console.log(this.state.sizes);
+            console.log("current:");
+            console.log(this.state.current);
+        });
         console.log("handleChange:");
         console.log(change);
+        
 
+        //5
+        //20
+        //missing initialized to 20 (already there) missing = packageTotal
+        //missing -=input (5)
+        //
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        //console.log(this.state.codeVal);
-        //console.log(this.state.nameVal);
         //on submit, capture the form data and return
         var st = this.state;
-        var arr = [st.sizeXS,st.sizeS,st.sizeM,st.sizeL,st.sizeXL,st.sizeXXL];
-        
-        console.log("arr:");
+        //var arr = [st.sizeXS,st.sizeS,st.sizeM,st.sizeL,st.sizeXL,st.sizeXXL];
+        var arr = this.state.sizes;
+        console.log("arr in handleSubmit:");
         console.log(arr);
 
-        this.props.updateSelect(arr);
+        this.props.updateArr(arr); //send to parent the arr submitted
         
         //clear texts
         this.setState({ 
@@ -55,54 +91,67 @@ class QuantityForm extends React.Component
 		return(
         <div>
             <h2> Quantity Form Componenent</h2>
-          
+            {"Current is: " + this.state.current}
             <form id="sizeForm" onSubmit={this.handleSubmit}>
-                <div>XS <input 
+                <div>XS 
+                <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeXS"
+                    id='0'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeXS} 
+                    value={this.state.sizes[0]} 
                     placeholder="#" 
                 />
                 </div>
                 
                 <div>S <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeS"
+                    id='1'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeS} 
+                    value={this.state.sizes[1]} 
                     placeholder="#" 
                 /> </div>
                 
                 <div>M <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeM"
+                    id='2'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeM} 
+                    value={this.state.sizes[2]} 
                     placeholder="#" 
                 /></div> 
                 
                 <div>L <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeL"
+                    id='3'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeL} 
+                    value={this.state.sizes[3]} 
                     placeholder="#" 
                 />  </div>
                 
                 <div>XL <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeXL"
+                    id='4'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeXL} 
+                    value={this.state.sizes[4]} 
                     placeholder="#" 
                 /></div> 
                 
                 <div>XXL <input 
                     type="text" //text box
+                    pattern="[0-9]*"
                     name="sizeXXL"
+                    id='5'
                     onChange={this.handleChange.bind(this)} 
-                    value={this.state.sizeXXL} 
+                    value={this.state.sizes[5]} 
                     placeholder="#" 
                 /> </div>
                      
