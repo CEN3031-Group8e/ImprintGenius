@@ -18,45 +18,41 @@ three: lrg3
 class DisplayItem extends React.Component {
 
     state = {
-    open: true,
-    size: 'one',
+    size: 'one'
     }
-    
 
-    toggleImage = () => {
-        this.setState(state => ({ open: !state.open }))
-    }
+
     swapImage = (imgnum) => {
-        
+
         this.setState(state => ({ size: imgnum }))
 
     }
-    
+
     getImageNum = () => this.state.size
-    
+
     render() {
         const imageNum = this.getImageNum();
-        
+
         return (
                 <div className='tempStyling'>
-                
+
 
                 <div>
                 <img style = {{maxWidth: '200px'}} src = {largePath[imageNum]} />
-                
+
                 </div>
-                
-                
+
+
                 <div>
                 <img style = {{maxWidth: '100px'}} src = {img1} onClick={() => this.swapImage('one')} />
                 <img style = {{maxWidth: '100px'}} src = {img2} onClick={() => this.swapImage('two')} />
                 <img style = {{maxWidth: '100px'}} src = {img3} onClick={() => this.swapImage('three')} />
-                
-                </div>
-                </div>
-                
 
-                
+                </div>
+                </div>
+
+
+
                 );
     }
 }
