@@ -1,6 +1,7 @@
 import React from 'react';
+import { Switch, Route, Redirect } from "react-router-dom";
 import './Home.css';
-import HomeModal from '../../components/HomeModal.js'
+import HomeModal from '../../components/HomeModal.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -13,7 +14,6 @@ function Home() {
     return (
       <div>
         <Container className='packagesContainer' fluid={true}>
-
           <Row>
             {packageData.map((item) =>
               <Col lg>
@@ -21,7 +21,6 @@ function Home() {
               </Col>
             )}
           </Row>
-
         </Container>
       </div>
     );

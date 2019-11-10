@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './PackageColumn.css';
+import { Switch, Route, Redirect } from "react-router-dom";
 
 class PackageColumn extends React.Component {
 
@@ -29,7 +30,12 @@ class PackageColumn extends React.Component {
 							)}
 						</ul>
 						<Button className='button blueGradient m30Top'>See More</Button>
-						<Button className='button greenGradient m15Top overflowHalf'>Build Pack</Button>
+						<Button className='button greenGradient m15Top overflowHalf'>
+							<Link className='buttonLink' to={{
+								pathname: "/Customizer",
+						    data: data}}> Build Packs
+							</Link>
+						</Button>
         </div>
     );
 	}
