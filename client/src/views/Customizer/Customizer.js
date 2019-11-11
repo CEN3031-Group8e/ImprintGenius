@@ -9,17 +9,18 @@ import Col from 'react-bootstrap/Col';
 import UpArrow from '../../assets/upArrow.png' // relative path to image
 import DownArrow from '../../assets/downArrow.png' // relative path to image
 import Shirt from '../../assets/shirt.png' // relative path to image
+import { withRouter } from "react-router-dom";
 
 class Customizer extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        selectedPackage: this.props.location
+        selectedPackage: this.props.location.state
       }
     }
 
     render() {
-      const { data } = this.props.location;
+      const { data } = this.props.location.state;
 
       return (
         <div>
@@ -46,6 +47,7 @@ class Customizer extends Component {
               </Col>
               <Col md={5}>
                 <div className='itemControls'>
+
                   <h3 className='blackText customizeTitle'>T-Shirt</h3>
                   <div className='buttonContainer'>
                     <div className='itemControlButton'>
@@ -70,4 +72,4 @@ class Customizer extends Component {
     }
 }
 
-export default Customizer;
+export default withRouter(Customizer);

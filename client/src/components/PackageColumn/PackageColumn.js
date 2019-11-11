@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './PackageColumn.css';
 import { Switch, Route, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class PackageColumn extends React.Component {
+
+	didTapPackage() {
+		this.props.didSelectPackage(this.props.data);
+		this.props.history.push('/Customizer', {data: this.props.data});
+	}
 
 	render() {
 		const { data } = this.props;
@@ -30,15 +36,12 @@ class PackageColumn extends React.Component {
 							)}
 						</ul>
 						<Button className='button blueGradient m30Top'>See More</Button>
-						<Button className='button greenGradient m15Top overflowHalf'>
-							<Link className='buttonLink' to={{
-								pathname: "/Customizer",
-						    data: data}}> Build Packs
-							</Link>
+						<Button className='button greenGradient m15Top overflowHalf' onClick={this.didTapPackage.bind(this)}>
+							Build Pack
 						</Button>
         </div>
     );
 	}
 }
 
-export default PackageColumn;
+export default withRouter(PackageColumn);
