@@ -3,7 +3,8 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
-import DisplayItem from "./components/DisplayItem/DisplayItem"
+import DisplayItem from "./components/PageTwo/DisplayItem"
+import PageTwo from "./views/PageTwo/PageTwo"
 
 
 class App extends React.Component
@@ -16,12 +17,15 @@ class App extends React.Component
       }
   }
 
+
     render()
     {
       return(
         <div>
-        <DisplayItem></DisplayItem>
-        </div>
+               <Switch>
+                 <Route exact path="/PageTwo" component={PageTwo} />
+               </Switch>
+             </div>
       );
     }
 }
