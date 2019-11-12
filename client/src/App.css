@@ -1,1 +1,25 @@
-
+h3 {
+  color: white;
+  font-size: 40px;
+  line-height: 30px;
+  font-family: 'Gurajada';
+}
+p {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  line-height: 10px;
+  color: #b3b3b3;
+}
+.m30Top {
+  margin-top: 30px;
+}
+.m15Top {
+  margin-top: 15px;
+}
+.blackText {
+  color: black;
+}
+.greenLink {
+  color: rgb(153,233,205);
+  text-decoration: underline;
+}
