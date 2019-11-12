@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import './Home.css';
-import HomeModal from '../../components/HomeModal.js';
+import HomeModal from '../../components/HomeModal/HomeModal.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
