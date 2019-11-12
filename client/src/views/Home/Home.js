@@ -1,6 +1,5 @@
 import React from 'react';
 import './Home.css';
-import HomeModal from '../../components/HomeModal.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';

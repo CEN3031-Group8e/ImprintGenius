@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeModal from '../../components/HomeModal/HomeModal.js'
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './PackageColumn.css';
@@ -7,7 +8,7 @@ class PackageColumn extends React.Component {
 
 	render() {
 		const { data } = this.props;
-
+		console.log(this.props);
     return (
         <div className='packageCol m50TopSm'>
             <div className='packageHeader'>
@@ -28,7 +29,7 @@ class PackageColumn extends React.Component {
 								<li><span className='boldText'>{item.quantity}</span> {item.name}</li>
 							)}
 						</ul>
-						<Button className='button blueGradient m30Top'>See More</Button>
+						<HomeModal id={data.packID}></HomeModal>
 						<Button className='button greenGradient m15Top overflowHalf'>Build Pack</Button>
         </div>
     );
