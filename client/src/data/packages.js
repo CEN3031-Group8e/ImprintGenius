@@ -1,23 +1,3 @@
-const packageItemDesc = [
-
-    {
-      name: "T-Shirts",
-      description: "Desc of T-Shirts"
-    }, {
-      name: "Long Sleeves",
-      description: "Description of long sleeves"
-    }, {
-      name: "Cotton Hoodies",
-      description: "Description of cotton hoodies"
-    }, {
-      name: "Popsockets",
-      description: "Description of pop sockets"
-    }, {
-      name: "Powerbanks",
-      description: "Description ofpowerbanks"
-    }
-]
-
 const packageItem1 = [
   {
     name: "T-Shirts",
@@ -77,7 +57,7 @@ const packageItem3 = [
 
 const packageItem4 = [
   {
-    name: "T-Shirts",
+    name: "T-Shirts", 
     quantity: 500
   }, {
     name: "Sweaters",

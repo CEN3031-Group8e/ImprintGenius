@@ -37,7 +37,6 @@ class PackageColumn extends React.Component {
 							)}
 						</ul>
 						<HomeModal id={data.packID}></HomeModal>
-						<Button className='button blueGradient m30Top'>See More</Button>
 						<Button className='button greenGradient m15Top overflowHalf' onClick={this.didTapPackage.bind(this)}>
 							Build Pack
 						</Button>

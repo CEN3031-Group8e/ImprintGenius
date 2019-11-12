@@ -24,8 +24,6 @@ export default class HomeModal extends React.Component {
       });
   }
   render() {
-    console.log(this.props)
-    console.log(this.props.id)
     return (
       <div>
 
@@ -44,7 +42,7 @@ export default class HomeModal extends React.Component {
             <Row>
               {packageData[this.props.id - 1].items.map((item) =>
                 <Col lg>
-                  <CardObject data={item} />
+                  <CardObject data={item}/>
                 </Col>
               )}
             </Row>

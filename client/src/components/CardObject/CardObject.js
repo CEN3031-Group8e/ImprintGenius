@@ -6,18 +6,19 @@ import {
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './CardObject.css';
+import itemdescription from '../../data/itemdescription';
+import Container from 'react-bootstrap/Container';
 
 export default class CardObject extends React.Component {
 
   render() {
     const { data } = this.props;
     const name = data.name;
-    console.log(this.props)
     return (
       <div>
             <Card style={{ width: '14rem' }}>
-            <div className='cardbody'>
             <CardText>
+            <Container>
             <Row>
               <Col sm={6}>{data.name}
               <div className="image">
@@ -26,10 +27,12 @@ export default class CardObject extends React.Component {
               </img>
               </div>
               </Col>
-              <Col sm={6}>Details</Col>
+              <Col sm={6}>
+              {itemdescription[itemdescription.findIndex(x => x.name === name)].description}
+              </Col>
             </Row>
+            </Container>
             </CardText>
-            </div>
             </Card>
       </div>
     )
