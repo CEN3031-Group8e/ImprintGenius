@@ -9,9 +9,6 @@ class PageTwo extends React.Component {
             itemSum: 0,
             openColors: false,
             openSizes: false
-            
-
-
         };
         this.updateColors = this.updateColors.bind(this);
     }
@@ -46,7 +43,9 @@ class PageTwo extends React.Component {
     render(){
         return (
             <div className="App">
-                <h1>PageTwo Component</h1>
+                {//<h1>PageTwo Component</h1>
+                }
+                <h1> </h1>
                 <button className="btn-menu menu-colors" 
                     onClick={() => {
                         this.setState({
@@ -63,7 +62,11 @@ class PageTwo extends React.Component {
                         })}}>
                     Edit Sizes
                 </button>
-                {this.checkBtns() }
+
+                <div btn-component>
+                     {this.checkBtns() }
+                </div>
+               
                 
            </div>
         );

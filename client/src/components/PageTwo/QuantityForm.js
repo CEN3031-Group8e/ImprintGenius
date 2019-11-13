@@ -33,12 +33,10 @@ class QuantityForm extends React.Component
         console.log("(old)newSizes:");
         console.log(newSizes);
         let newCurrent = this.state.current;
-        newCurrent = (newCurrent) + (this.state.sizes[e.target.id]); //curr + oldVal
-        console.log("current1:",newCurrent);
+        newCurrent = (newCurrent) + Number(this.state.sizes[e.target.id]); //curr + oldVal
+        
+        console.log("current1:", parseInt(this.state.sizes[e.target.id]));
         newCurrent = newCurrent - e.target.value; //curr - newVal
-        
-        
-
 
         newSizes[e.target.id] = e.target.value;
         this.setState(
@@ -51,8 +49,8 @@ class QuantityForm extends React.Component
             ()=>{
             console.log("sizes:");
             console.log(this.state.sizes);
-            console.log("current:");
-            console.log(this.state.current);
+            // console.log("current:");
+            // console.log(this.state.current);
         });
         console.log("handleChange:");
         console.log(change);
@@ -90,7 +88,8 @@ class QuantityForm extends React.Component
     render() {
 		return(
         <div>
-            <h2> Quantity Form Componenent</h2>
+            {//<h2> Quantity Form Componenent</h2>
+            }
             {"Current is: " + this.state.current}
             <form id="sizeForm" onSubmit={this.handleSubmit}>
                 <div>XS 
@@ -155,7 +154,6 @@ class QuantityForm extends React.Component
                     placeholder="#" 
                 /> </div>
                      
-                <input className= "btn-submit" type ="submit" value ="Submit" />
             </form>
 
         </div>

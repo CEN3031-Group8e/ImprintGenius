@@ -1,53 +1,28 @@
-.btn{
-    float:left;
-    border: solid 2px transparent;
+.btn-display{
+    float:center;
+    border: solid 0.2px black;
     box-shadow: 0 5px 10px #050e0173;
     border-radius: 50%;
-    border: solid 2px;
+    
 
     padding: .7rem .7rem;
     margin: 0.5rem 0.5rem;
 }
-.btn-press{
-    border: solid 2px #ffffff;
-    box-shadow: 0 0px 4px 4px #7B68EE;
+.btn-submit{
+    float:center;
+    border: solid 0.4px rgba(0, 0, 0, 0.37);
+    box-shadow: 0 5px 10px #050e0173;
+    border-radius: 50%;
+
+    padding: .7rem .7rem;
+    margin: 0.5rem 0.5rem;
 }
-.btn-nopress{
-    border: solid 2px transparent;
-    box-shadow: 0 5px 10px #050e0173;	
-}
-.btn:hover{   
-    border: solid 2px #ffffff;
+.btn-submit:hover{   
+    border: solid 0.4px #ffffff;
     box-shadow: 0 0px 4px 4px #7B68EE;
 
 }
-button:focus,
+input:focus,
 select:focus {
   outline: none;
-}
-
-.cnt{
-    float: right;
-    padding:0;
-    margin: 1rem 1rem;
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-    font-size: 14pt;
-    color: red;
-}
-.cntPckd{
-    color: black;
- }
-.colorPicker-box{
-    border: solid 0.3px black;
-    padding: 10px;
-    width: 390px;
-    height: 250px;   
-}
-.palette-box{
-    border: solid 0.3px black;
-    
-    width: 390px;
-    height: 110px;  
-
 }

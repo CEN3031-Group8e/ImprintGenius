@@ -86,14 +86,15 @@ class ColorPicker extends React.Component
     render() {
 		return(
         <div>
-            <h1>ColorPicker Componenent</h1>
+            {//<h1>ColorPicker Componenent</h1>
+            }
             <div className="colorPicker-box">
                 <h2> Tultex 202 Fine Jersey</h2>
                 <h4>Select 1-3 colors for your apparel</h4>
                 <div className="palette-box">
                 { btnsList.map(btn => 
                 (
-                    <button
+                    <button className="btn-menu"
                         key={ btn.id }
                         onClick={ () => {
                             this.handleButton(btn.id) ; 

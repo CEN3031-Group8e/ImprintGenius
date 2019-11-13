@@ -3,7 +3,7 @@
     border: solid 2px transparent;
     box-shadow: 0 5px 10px #050e0173;
     border-radius: 50%;
-    border: solid 2px;
+    
 
     padding: .7rem .7rem;
     margin: 0.5rem 0.5rem;
@@ -20,6 +20,23 @@
     border: solid 2px #ffffff;
     box-shadow: 0 0px 4px 4px #7B68EE;
 
+}
+.btn-menu{
+    float:center;
+    border: solid 0.8px rgba(0, 0, 0, 0.342);
+    box-shadow: 0 5px 10px #050e0173;
+    border-radius: 12%;
+    padding: .7rem .7rem;
+    margin: 0.5rem 0.5rem;
+}
+.btn-menu:hover{   
+    border: solid 0.8px #ffffff;
+    box-shadow: 0 0px 4px 4px #7B68EE;
+
+}
+.btn-component{
+    float:center;
+    
 }
 button:focus,
 select:focus {
@@ -39,13 +56,15 @@ select:focus {
     color: black;
  }
 .colorPicker-box{
-    border: solid 0.3px black;
+    float: center;
+    border: solid 0.3px transparent;
     padding: 10px;
     width: 390px;
     height: 250px;   
 }
 .palette-box{
-    border: solid 0.3px black;
+    float: center;
+    border: solid 0.3px transparent;
     
     width: 390px;
     height: 110px;  

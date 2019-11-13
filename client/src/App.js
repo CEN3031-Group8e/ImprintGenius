@@ -10,10 +10,6 @@ class App extends React.Component
  constructor(props) {
    super(props);
      this.state = {
-       //add any states you need
-       selectedFile: null,
-       selectedImage: null     
-
      }
  }
    render()
