@@ -5,14 +5,23 @@ import './QuantitySelect.css';
 import './ColorPicker.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
-function displayMissing(capacity, arr){
-        
+function displayMissing(capacity, arr){ 
+    //takes in an array of XS-XXL  
     var sum = 0;
     arr.map(e => {
         sum += e.count;
 
     });
-    return <h3>Missing items: {capacity - sum}</h3>    
+    var missing = capacity - sum;
+    if (missing < 0)
+    {
+        return (
+        <h3>Items over: {0 - missing}</h3>)
+    }
+    else{
+        return <h3>Missing items: {missing}</h3>
+    }
+        
 }
 class QuantitySelect extends React.Component 
 {
@@ -22,13 +31,10 @@ class QuantitySelect extends React.Component
             colors: this.props.colorsArr, //received from PageTwo (which pg2 received from ColorPicker)
             allSizes: this.initAllSizes(this.props.colorsArr), //XS-XXL, so length=6 , will update from child QuantityForm ON SUBMIT
             countArr: [], //elements: {colorId, count}
-            capacity: 100, //fixed atm (will be passed in from parent App.js to know which package was chosen)
-            totalCount: 0
-            
+            capacity: this.props.capacity, //fixed atm (will be passed in from parent App.js to know which package was chosen)           
         }
         this.updateSizes = this.updateSizes.bind(this);
         this.updateCounter = this.updateCounter.bind(this);
-
     }    
     initAllSizes(colors){   //initialize the array to have x elements, each element will contain array[6]
         var tempAllSizes = []
@@ -81,28 +87,26 @@ class QuantitySelect extends React.Component
             countArr: newArr
         })
     }
-    handleChange(){
+   
+    handleSubmit = (event) => {
+        event.preventDefault();
         var sum = 0;
-        /*newSizes.map(size => {
-            size = parseInt(size,10);
-            if(!isNaN(size))
-                sum += size;
-        }*/
-    }   
+        this.state.countArr.map(e => {
+            sum += e.count;
+        });
+        this.props.updateTotalSizes(sum); //sending ALL sizes to page 2      
+    }
+  
     render() {
 		return(
         <div> 
                 { this.state.colors.map(btn => (
-                    <div key={btn.id} onChange={this.handleChange.bind(this)} >
+                    <div key={btn.id}  >
                         {console.log("btn is",btn)}
                         <button className="btn-display"
                             key={btn.id}
                             style={{background: btn.color}} 
-                            onClick={ () => {
-                                //this.handleButton(btn.id) ; 
-                                //this.props.updatePicker(this.state.btnVals); //update page2 (parent)
-                                }
-                            } 
+                            
                         >
                         </button>
                         <div>
@@ -112,7 +116,7 @@ class QuantitySelect extends React.Component
                        </div>
                     </div>
                 ))}
-            {displayMissing(this.state.capacity,this.state.countArr)}    
+               <h3>{displayMissing(this.state.capacity, this.state.countArr)}</h3>
             {/*<input className= "btn-submit" type ="submit" 
                 value ="Submit" /> */}
         </div>

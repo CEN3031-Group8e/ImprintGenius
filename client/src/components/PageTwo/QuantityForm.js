@@ -17,6 +17,8 @@ class QuantityForm extends React.Component
     }    
 
     handleChange(e){
+        if(isNaN(e.target.value))
+            return;
         let change = {}
        
         let newSizes = [...this.state.sizes];
@@ -44,18 +46,6 @@ class QuantityForm extends React.Component
         //Goal: find original value from sizes[i], add it back to total
         //Then subtract new value from sum
     }
-
-    handleSubmit = (event) => {
-        //on submit, capture the form data and return
-        event.preventDefault();
-        //send to parent the arr submitted
-        this.props.updateSizes(this.state.colorBtn,this.state.sizes); 
-        //clear inputted text in form boxes (visual)
-        this.setState({ 
-           sizes: ''              
-        });
-    }
-
     render() {
 		return(
         <div>

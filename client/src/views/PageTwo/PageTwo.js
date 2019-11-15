@@ -6,11 +6,14 @@ class PageTwo extends React.Component {
         super(props);
         this.state = {
             colorsChosen: [], //updated from ColorPicker (child)
-            itemSum: 0,
+            totalSizes: [],
             openColors: false,
-            openSizes: false
+            openSizes: false,
+            capacity:100
         };
         this.updateColors = this.updateColors.bind(this);
+        this.updateTotalSizes = this.updateTotalSizes.bind(this);
+
     }
     
     updateColors(clrs){ //from child to parent
@@ -18,7 +21,7 @@ class PageTwo extends React.Component {
             colorsChosen: clrs
         })
     }
-    updateSum(total){
+    updateTotalSizes(total){
         this.setState({
             itemSum: total
         })
@@ -30,8 +33,9 @@ class PageTwo extends React.Component {
         else if(this.state.openSizes){
             if(this.state.colorsChosen.length !== 0){
                 return (
-                    <QuantitySelect colorsArr={this.state.colorsChosen} //send to child
-                                    updateSelect={this.updateSum}/>); //update parent
+                    <QuantitySelect capacity={this.state.capacity }
+                        colorsArr={this.state.colorsChosen} //send to child
+                        updateTotalSizes={this.updateTotalSizes}/>); //update parent
             }
             else{
                 return <div>Must choose colors first!</div>;
