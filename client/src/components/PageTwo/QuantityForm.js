@@ -8,65 +8,49 @@ class QuantityForm extends React.Component
     constructor(props) {
         super(props);
         this.state = { 
-            current: this.props.currMissing,
+            missing: this.props.missing, //"missing"
             colorBtn: this.props.color,
-            sizes: []            
+            sizes: [], 
+            singleTotal: 0,   //total sizes for that color  
+            formID: this.props.id     
         }
     }    
 
     handleChange(e){
-        
         let change = {}
-        //old=change[e.target.name] 
-        //current += old;
-        //current -= e.target.value;
-        
-        //change[e.target.id] = e.target.value; //index using id assigned
-        
+       
         let newSizes = [...this.state.sizes];
-        console.log("(old)newSizes:");
-        console.log(newSizes);
-        let newCurrent = this.state.current;
-        newCurrent = (newCurrent) + Number(this.state.sizes[e.target.id]); //curr + oldVal
-        
-        console.log("current1:", parseInt(this.state.sizes[e.target.id]));
-        newCurrent = newCurrent - e.target.value; //curr - newVal
+        //console.log("typeof",typeof newSizes[e.target.id] );
+        //console.log("newSizes[e.target.id]", newSizes[e.target.id])
+        var oldValue = newSizes[e.target.id];
+        newSizes[e.target.id] = e.target.value; 
+        var sum = 0;
+        newSizes.map(size => {
+            size = parseInt(size,10);
+            if(!isNaN(size))
+                sum += size;
+        });
 
-        newSizes[e.target.id] = e.target.value;
+        this.props.updateCounter(this.state.formID, sum); 
+        console.log("total from map: ",sum)
         this.setState(
             (prevState)=>({
                 //change
                 sizes: newSizes,
-                current:newCurrent
-
+                singleTotal: sum 
             }),
             ()=>{
-            console.log("sizes:");
-            console.log(this.state.sizes);
-            // console.log("current:");
-            // console.log(this.state.current);
         });
-        console.log("handleChange:");
-        console.log(change);
-        
-
-        //5
-        //20
-        //missing initialized to 20 (already there) missing = packageTotal
-        //missing -=input (5)
-        //
+        //Goal: find original value from sizes[i], add it back to total
+        //Then subtract new value from sum
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
         //on submit, capture the form data and return
-        var arr = this.state.sizes;
-        console.log("arr in handleSubmit:");
-        console.log(arr);
-
-        this.props.updateSizes(this.state.sizes, this.state.colorBtn); //send to parent the arr submitted
-        
-        //clear texts
+        event.preventDefault();
+        //send to parent the arr submitted
+        this.props.updateSizes(this.state.colorBtn,this.state.sizes); 
+        //clear inputted text in form boxes (visual)
         this.setState({ 
            sizes: ''              
         });
@@ -75,9 +59,6 @@ class QuantityForm extends React.Component
     render() {
 		return(
         <div>
-            {//<h2> Quantity Form Componenent</h2>
-            }
-            {"Current is: " + this.state.current}
             <form id="sizeForm" onSubmit={this.handleSubmit}>
                 <div>XS 
                 <input 
@@ -85,7 +66,8 @@ class QuantityForm extends React.Component
                     pattern="[0-9]*"
                     name="sizeXS"
                     id='0'
-                    onChange={this.handleChange.bind(this)} 
+                    onChange={this.handleChange.bind(this)}
+                    
                     value={this.state.sizes[0]} 
                     placeholder="#" 
                 />

@@ -52,39 +52,30 @@ class ColorPicker extends React.Component
         let tempBtns = this.state.btnVals;
         
         if(tempBtns.includes(btn)){ //if button already in list => remove
-            console.log("Removing button from list")
             this.setState((prevState) =>({
                     //keep all buttons that are not equal to btn just pressed
                     btnVals: tempBtns.filter(e => e !== btn) 
-                }),
-                
-                () => {
-                    //callback, to check the updated state:
-                }
+            }),
+            () => {
+                 }
             )
         }
         else if(this.state.btnVals.length !== maxBtnCap)
         {
-            console.log("Adding button to list")
             tempBtns.push(btn); //add to list ==> this button is pressed
             this.setState(
                 ({ 
                     btnVals: tempBtns 
                 }),
                 () => {
-                    //callback, to check the updated state:
-                    //console.log("current length: " + this.state.count)
                 } 
             )
-        }  
-        
+        } 
     } 
     
     render() {
 		return(
         <div>
-            {//<h1>ColorPicker Componenent</h1>
-            }
             <div className="colorPicker-box">
                 <h2> Tultex 202 Fine Jersey</h2>
                 <h4>Select 1-3 colors for your apparel</h4>
@@ -94,19 +85,13 @@ class ColorPicker extends React.Component
                     <button className="btn-menu"
                         key={ btn.id }
                         onClick={ () => {
-                            {console.log("btn: ", btn)}
-                        {console.log("btn.id: ", btn.id)}
-                        {console.log("included btnVal: ", this.state.btnVals.includes(btn))}
-                        
                             this.handleButton(btn) ; 
                             this.props.updatePicker(this.state.btnVals); //update pageTwo (parent)
-                            //console.log(btn.name + " clicked")
                             }
                         }
                         style={{background: btn.color}}
                         className={ 
                             //if btn exists in list => use btn press class, else btn
-
                             this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
                         }>
                     </button>
