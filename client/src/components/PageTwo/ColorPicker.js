@@ -44,7 +44,6 @@ class ColorPicker extends React.Component
         super();
         //this.handleButton = this.handleButton.bind(this);
         this.state = { 
-            count: 0,
             btnVals: [] 
         } //returns array of buttons currently pressed
     }
@@ -56,23 +55,20 @@ class ColorPicker extends React.Component
             console.log("Removing button from list")
             this.setState((prevState) =>({
                     //keep all buttons that are not equal to btn just pressed
-                    count: this.state.count - 1,
                     btnVals: tempBtns.filter(e => e !== btn) 
                 }),
                 
                 () => {
                     //callback, to check the updated state:
-                    console.log("current length: " + this.state.count)
                 }
             )
         }
-        else if(this.state.count !== maxBtnCap)
+        else if(this.state.btnVals.length !== maxBtnCap)
         {
             console.log("Adding button to list")
             tempBtns.push(btn); //add to list ==> this button is pressed
             this.setState(
                 ({ 
-                    count: this.state.count + 1,
                     btnVals: tempBtns 
                 }),
                 () => {

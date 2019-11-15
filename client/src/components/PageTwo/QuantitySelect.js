@@ -12,21 +12,46 @@ class QuantitySelect extends React.Component
         super(props);
         this.state = { 
             colors: this.props.colorsArr, //received from PageTwo (which pg2 received from ColorPicker)
-            totalItems: 0, //will update from child Form ON CHANGE
-            sizeArr: [], //XS-XXL, so length=6 , will update from child QuantityForm ON SUBMIT
+            //allSizes: 0, //will update from child Form ON CHANGE
+            allSizes: this.initAllSizes(this.props.colorsArr), //XS-XXL, so length=6 , will update from child QuantityForm ON SUBMIT
             capacity: 100 //fixed atm (will be passed in from parent App.js to know which package was chosen)
         }
         this.updateSizes = this.updateSizes.bind(this);
     }    
+    initAllSizes(colors){   //initialize the array to have x elements, each element will contain array[6]
+        var tempAllSizes = []
+        colors.map(btn => {
+            tempAllSizes.push(
+            {
+                color: btn,
+                sizes: []
+            })
+        });
+        return tempAllSizes;
+            
+    }
+    updateSizes(sizeArr, btnColor){ //find the index that needs to be updated
+        //sizeArr: array of XS-XXL
+        //btn: has color information to remove array and replace
+        
+        //each e in allSizes has {colorBtn details + sizes XS-XXL}
+        //want to find and remove previous button element details
+        var newArr = this.state.allSizes.filter(function (e) {
+            return e.color === btnColor;
+        });
+        //now add new/updated {sizeArr, color}
+        newArr.push(
+        {
+            color: btnColor,
+            sizes: sizeArr
+        })
 
-    updateSizes(sizelist){
-        console.log("sizeList", sizelist);        
         this.setState(
         ({
-            sizeArr: sizelist
+            allSizes: newArr
         }),
         () => {
-            console.log("post set, sizerArr", this.state.sizeArr);
+            console.log("post set, allSize", newArr);
         }) 
     }
     updateTotal(total){
@@ -50,22 +75,7 @@ class QuantitySelect extends React.Component
              console.log("(in quantity select)colorsArr is:",this.state.colors)}           
             
             {//"(in QuantitySelect) the color count is "+ this.props.colorsArr.length
-            }
-            {/*<div>
-                <div >
-                    <button   
-                        style={{background: btnsList[this.state.colors[0]].color}}
-                        className={ "btn-display" }>
-                    </button>
-                </div>
-                <div>
-                    <QuantityForm id='0' currMissing={this.state.capacity} //send to child, Form
-                            updateSum={this.updateTotal} updateArr={this.updateSizes}//update parent 
-                    />
-                </div>
-            </div>
-            */}
-            
+            }        
             
                 { this.state.colors.map(btn => 
                     (
@@ -85,8 +95,8 @@ class QuantitySelect extends React.Component
                         >
                         </button>
                         <div>
-                            <QuantityForm id={ btn.id } currMissing={this.state.capacity} //send to child, Form
-                                    updateSum={this.updateTotal} updateArr={this.updateSizes}//update parent 
+                            <QuantityForm id={ btn.id } currMissing={this.state.capacity} color={btn} //send to child, Form
+                                    updateSum={this.updateTotal} updateSizes={this.updateSizes}//update parent 
                             />
                        </div>
                     </div>

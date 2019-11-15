@@ -9,14 +9,8 @@ class QuantityForm extends React.Component
         super(props);
         this.state = { 
             current: this.props.currMissing,
-            sizes: [],
-            sizeXS: '',
-            sizeS: '',
-            sizeM: '',
-            sizeL: '',
-            sizeXL: '',
-            sizeXXL: ''   
-            
+            colorBtn: this.props.color,
+            sizes: []            
         }
     }    
 
@@ -66,22 +60,15 @@ class QuantityForm extends React.Component
     handleSubmit = (event) => {
         event.preventDefault();
         //on submit, capture the form data and return
-        var st = this.state;
-        //var arr = [st.sizeXS,st.sizeS,st.sizeM,st.sizeL,st.sizeXL,st.sizeXXL];
         var arr = this.state.sizes;
         console.log("arr in handleSubmit:");
         console.log(arr);
 
-        this.props.updateArr(arr); //send to parent the arr submitted
+        this.props.updateSizes(this.state.sizes, this.state.colorBtn); //send to parent the arr submitted
         
         //clear texts
         this.setState({ 
-            sizeXS: '',
-            sizeS: '',
-            sizeM: '',
-            sizeL: '',
-            sizeXL: '',
-            sizeXXL: ''                
+           sizes: ''              
         });
     }
 
