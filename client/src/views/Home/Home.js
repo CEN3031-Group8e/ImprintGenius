@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import './Home.css';
+import { Link } from "react-router-dom";
 import HomeModal from '../../components/HomeModal/HomeModal.js';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -10,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import PackageColumn from "../../components/PackageColumn/PackageColumn"
 import packageData from '../../data/packages';
 import { withRouter } from "react-router-dom";
-
+ 
 class Home extends Component {
     constructor(props) {
       super(props)

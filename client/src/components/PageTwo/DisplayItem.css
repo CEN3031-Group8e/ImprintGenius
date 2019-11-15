@@ -1,0 +1,22 @@
+.tempStyling {
+
+}
+
+.centerImage {
+  width: 100%;
+  vertical-align: text-top;
+  text-align: center;
+}
+
+.leftBar {
+  vertical-align: text-top;
+  text-align: left;
+  float: left;
+  width: 75px;
+  box-shadow: 0 0px 10px 0 rgba(0,0,0,0.50);
+}
+
+.bottomBar {
+  text-align: center;
+
+}
