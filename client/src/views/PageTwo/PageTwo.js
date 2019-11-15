@@ -1,6 +1,7 @@
 import React from 'react';
 import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
+
 class PageTwo extends React.Component {
     constructor(props) {
         super(props);
@@ -44,10 +45,7 @@ class PageTwo extends React.Component {
     }
     render(){
         return (
-            <div className="App">
-                {//<h1>PageTwo Component</h1>
-                }
-                <h1> </h1>
+            <div className="ColorQuantity">
                 <button className="btn-menu menu-colors" 
                     onClick={() => {
                         this.setState({
@@ -65,12 +63,9 @@ class PageTwo extends React.Component {
                         })}}>
                     Edit Sizes
                 </button>
-
                 <div className="btn-component">
                      {this.checkBtns() }
-                </div>
-               
-                
+                </div>     
            </div>
         );
     }
