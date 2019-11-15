@@ -13,7 +13,7 @@ class PageTwo extends React.Component {
             apparelMode: true,
             clicked: true,
 			selectedFile: null,
-            selectedImage: null //selected image data URL (base64)
+            selectedImage: null, //selected image data URL (base64)
 
 			colorsChosen: [], //updated from ColorPicker (child)
             totalSizes: [],
@@ -94,10 +94,14 @@ class PageTwo extends React.Component {
     render(){
         return (
             <div>
-            {this.displayFunc()}
-			<UploadFile updateFile={this.updateFile} updateImage = {this.updateSelectedImgDataURL}/>
-	            //passing functions to update the parent state, to the child
+                
+            {//Menu/sidebar displayer
+            this.displayFunc()}
 
+            <UploadFile updateFile={this.updateFile} 
+                //passing functions to update the parent state, to the child
+                updateImage = {this.updateSelectedImgDataURL}/>
+	            
 			 <div className="ColorQuantity">
                 <button className="btn-menu menu-colors" 
                     onClick={() => {
