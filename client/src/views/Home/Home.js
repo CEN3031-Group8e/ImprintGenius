@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -18,9 +18,7 @@ function Home() {
                     rel="noopener noreferrer"
                 >
                 </a>
-
                 <Link to={"/pagetwo"}>go to page2</Link>
-               
             </header>
         </div>
     );
