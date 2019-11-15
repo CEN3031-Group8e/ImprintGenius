@@ -9,23 +9,22 @@ import PageTwo from "./views/PageTwo/PageTwo"
 
 class App extends React.Component
 {
-  constructor(props) {
-    super(props);
-      this.state = {
-        imageType: 'tshirt',
-        apparelMode: true
-      }
-  }
+
 
 
     render()
     {
       return(
         <div>
-               <Switch>
-                 <Route exact path="/PageTwo" component={PageTwo} />
-               </Switch>
-             </div>
+        <Switch>
+          <Route exact path="/Home" component={Home} />
+          <Route exact path="/">
+            <Redirect to="/Home" />
+          </Route>
+          <Route path = "/PageTwo" component = {PageTwo} />
+          <Route component={NotFound}/>
+        </Switch>
+      </div>
       );
     }
 }
