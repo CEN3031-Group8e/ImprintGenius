@@ -6,12 +6,17 @@ import 'bootstrap/dist/css/bootstrap.css';
 class UploadFile extends React.Component
 {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+       selectedFile :null }
+    };
+ 
     onChangeHandler=event=>
     {
         //setting state in app.js
         this.setState({
             selectedFile: event.target.files[0]
-
           })
           //new
           this.props.updateFile( event.target.files[0])
@@ -25,6 +30,10 @@ class UploadFile extends React.Component
 
     onClickHandler = () => {
 
+          if(this.state.selectedFile == null)
+          {console.log('no file')}
+
+          else{
             var input = this.state.selectedFile
             var reader = new FileReader();
 
@@ -41,7 +50,7 @@ class UploadFile extends React.Component
                   })
                   this.props.updateImage( dataURL) //pass dataURL to page2 parent
 
-                  console.log('selectedImage ', this.state.selectedImage)
+                  console.log('selectedImage ', this.state.selectedImage);
 
                  // console.log('data URL ' ,dataURL)
                  // base64Img.img(dataURL, '', '1',function(err) {if (err, 'C:/Users/sneha/softwareEng/ImprintGenius') console.log(err)});
@@ -52,6 +61,13 @@ class UploadFile extends React.Component
             //read file. Once it is read, onload function will be called
             reader.readAsDataURL(input);
 
+
+          }
+            
+
+          
+
+            
      }
 
     render()
@@ -76,10 +92,10 @@ class UploadFile extends React.Component
 
             </div>
             <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
-            <img id = 'output'></img>
+          <img id = 'output'></img>
         </div>
 
-        )
+        );
     }
   }
 
