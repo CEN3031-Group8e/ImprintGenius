@@ -6,7 +6,7 @@ import Header from "./components/Header/Header"
 import DisplayItem from "./components/PageTwo/DisplayItem"
 import PageTwo from "./views/PageTwo/PageTwo"
 
-
+ 
 class App extends React.Component
 {
   constructor(props) {
@@ -33,5 +33,4 @@ class App extends React.Component
       );
     }
 }
-
 export default App;
