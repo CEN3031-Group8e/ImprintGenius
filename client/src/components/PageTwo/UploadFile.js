@@ -1,18 +1,17 @@
 import React from 'react';
 import './UploadFile.css';
 import 'bootstrap/dist/css/bootstrap.css';
-var base64Img = require('base64-img');
 
 
-class UploadFile extends React.Component 
+class UploadFile extends React.Component
 {
-    
+
     onChangeHandler=event=>
     {
         //setting state in app.js
         this.setState({
             selectedFile: event.target.files[0]
-            
+
           })
           //new
           this.props.updateFile( event.target.files[0])
@@ -20,13 +19,13 @@ class UploadFile extends React.Component
         console.log(event.target.files[0])
         window.URL.createObjectURL(event.target.files[0])
         //console.log(this.state.selectedFile)
-        
+
     }
 
-    
+
     onClickHandler = () => {
 
-            var input = this.state.selectedFile     
+            var input = this.state.selectedFile
             var reader = new FileReader();
 
             //define onload function
@@ -38,7 +37,7 @@ class UploadFile extends React.Component
                 output.src = dataURL; //set that image's src as the file's dataURL
                 this.setState({
                     selectedImage: dataURL
-                    
+
                   })
                   this.props.updateImage( dataURL) //pass dataURL to page2 parent
 
@@ -52,34 +51,34 @@ class UploadFile extends React.Component
 
             //read file. Once it is read, onload function will be called
             reader.readAsDataURL(input);
-           
+
      }
 
-    render() 
+    render()
     {
         return(
             <div className="container">
             <div className="row">
               <div className="col-md-6">
-                  <form method="post" action="#" id="#">            
-                      
+                  <form method="post" action="#" id="#">
+
                       <div className="form-group files">
                         <label>Upload Your File </label>
                         <input type="file"  className="form-control" accept = "image/*" onChange={this.onChangeHandler}  />
-    
-                       
-                      </div>                 
-                    
+
+
+                      </div>
+
                   </form>
-                  
-                  
+
+
               </div>
-              
+
             </div>
             <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
             <img id = 'output'></img>
         </div>
-    
+
         )
     }
   }
