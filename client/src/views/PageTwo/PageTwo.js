@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorPicker from '../../components/PageTwo/ColorPicker.js';
+import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 class PageTwo extends React.Component {
     constructor(props) {
@@ -25,20 +25,18 @@ class PageTwo extends React.Component {
     }
     checkBtns(){
         if(this.state.openColors){
-            return <ColorPicker updatePicker={this.updateColors}/> //child to Parent
+            return (<ColorPicker updatePicker={this.updateColors}/>); //child to Parent
         }
         else if(this.state.openSizes){
             if(this.state.colorsChosen.length !== 0){
-                return <QuantitySelect colorsArr={this.state.colorsChosen} //send to child
-                updateSelect={this.updateSum}/> //update parent
+                return (
+                    <QuantitySelect colorsArr={this.state.colorsChosen} //send to child
+                                    updateSelect={this.updateSum}/>); //update parent
             }
             else{
                 return <div>Must choose colors first!</div>;
             }
-        }
-
-        
-       
+        }       
     }
     render(){
         return (
@@ -50,7 +48,8 @@ class PageTwo extends React.Component {
                     onClick={() => {
                         this.setState({
                             openColors: true,
-                            openSizes: false
+                            openSizes: false,
+                            colorsChosen: [] //reset array (start-over)
                         })}}>
                     Edit Colors
                 </button>
@@ -63,7 +62,7 @@ class PageTwo extends React.Component {
                     Edit Sizes
                 </button>
 
-                <div btn-component>
+                <div className="btn-component">
                      {this.checkBtns() }
                 </div>
                

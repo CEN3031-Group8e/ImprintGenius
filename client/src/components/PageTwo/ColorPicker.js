@@ -2,7 +2,7 @@ import React from 'react';
 import './ColorPicker.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
-
+const maxBtnCap = 3;
 const btnsList = [
     { id:0, name:"red", color: "#FF0000"},
     { id:1, name:"light-coral", color: "#F08080"},
@@ -26,14 +26,14 @@ const btnsList = [
     { id:18, name:"gray", color: "gray"}
 ]
 function CntrText(count){
-    if(count === 3 )
+    if(count === maxBtnCap )
          return <div className="cnt">
              Color Limit Reached
          </div>
     else{
         return(
             <div className="cnt cntPckd" >
-                    { count + "/3 Colors Picked  "}
+                    { count + "/" + maxBtnCap + " Colors Picked  "}
             </div>
         )
     }
@@ -49,15 +49,15 @@ class ColorPicker extends React.Component
         } //returns array of buttons currently pressed
     }
     
-    handleButton = (button) => {
+    handleButton = (btn) => {
         let tempBtns = this.state.btnVals;
         
-        if(tempBtns.includes(button)){ //if button already in list => remove
-           //console.log("button #" + button + " ON -> OFF")
+        if(tempBtns.includes(btn)){ //if button already in list => remove
+            console.log("Removing button from list")
             this.setState((prevState) =>({
                     //keep all buttons that are not equal to btn just pressed
                     count: this.state.count - 1,
-                    btnVals: tempBtns.filter(e => e !== button) 
+                    btnVals: tempBtns.filter(e => e !== btn) 
                 }),
                 
                 () => {
@@ -66,10 +66,10 @@ class ColorPicker extends React.Component
                 }
             )
         }
-        else if(this.state.count !== 3)
+        else if(this.state.count !== maxBtnCap)
         {
-            //console.log("button #" + button + " pressed! -> ON")
-            tempBtns.push(button); //add to list ==> this button is pressed
+            console.log("Adding button to list")
+            tempBtns.push(btn); //add to list ==> this button is pressed
             this.setState(
                 ({ 
                     count: this.state.count + 1,
@@ -77,10 +77,11 @@ class ColorPicker extends React.Component
                 }),
                 () => {
                     //callback, to check the updated state:
-                    console.log("current length: " + this.state.count)
+                    //console.log("current length: " + this.state.count)
                 } 
             )
         }  
+        
     } 
     
     render() {
@@ -97,20 +98,25 @@ class ColorPicker extends React.Component
                     <button className="btn-menu"
                         key={ btn.id }
                         onClick={ () => {
-                            this.handleButton(btn.id) ; 
-                            this.props.updatePicker(this.state.btnVals); //update page2 (parent)
+                            {console.log("btn: ", btn)}
+                        {console.log("btn.id: ", btn.id)}
+                        {console.log("included btnVal: ", this.state.btnVals.includes(btn))}
+                        
+                            this.handleButton(btn) ; 
+                            this.props.updatePicker(this.state.btnVals); //update pageTwo (parent)
                             //console.log(btn.name + " clicked")
                             }
                         }
                         style={{background: btn.color}}
                         className={ 
                             //if btn exists in list => use btn press class, else btn
-                            this.state.btnVals.includes(btn.id) ? "btn btn-press": "btn btn-nopress"
+
+                            this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
                         }>
                     </button>
                 ))}
                 </div>
-                {CntrText(this.state.count)}
+                {CntrText(this.state.btnVals.length)}
             </div>
             
         </div>
@@ -118,4 +124,4 @@ class ColorPicker extends React.Component
     }    
 }
 
-export default ColorPicker;
+export {ColorPicker, btnsList};
