@@ -21,7 +21,7 @@ class UploadFile extends React.Component
           window.URL.createObjectURL(event.target.files[0])
     }
     onClickHandler = () => {
-      
+      console.log("clicked")
       var input = this.state.selectedFile
       var reader = new FileReader();
 
@@ -40,16 +40,21 @@ class UploadFile extends React.Component
       }
       //read file. Once it is read, onload function will be called
       reader.readAsDataURL(input);
+      
      }
     allowUpload()
     {
       if(this.state.selectedFile === null){
         return;
       }
-      return (<button type="button" className="btn btn-success btn-block" 
-                    onClick={this.onClickHandler}>
-                    Upload
-              </button>)
+      return (
+      <div>
+        <button type="button" className="btn btn-success btn-block" 
+                onClick={this.onClickHandler}>
+                Upload
+        </button>
+        
+      </div>)
     }
     render()
     {
@@ -69,6 +74,7 @@ class UploadFile extends React.Component
             </div>
             {this.allowUpload()}
             <img id = 'output'></img>
+            
         </div>
         )
     }

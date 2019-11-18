@@ -20,9 +20,7 @@ class PageTwo extends React.Component {
             totalSizes: [],
             capacity:100,
 
-            openSideBarOption: false, //based on button id
-
-            checkBtnId: null
+            sideBarOption: null
             
         };
 
@@ -100,7 +98,7 @@ class PageTwo extends React.Component {
              <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
-                            checkBtnId: "upload",
+                            sideBarOption: "upload",
                             
                             colorsChosen: [] //reset array (start-over)
                         })}}>
@@ -109,7 +107,7 @@ class PageTwo extends React.Component {
                 <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
-                            checkBtnId: "colors",
+                            sideBarOption: "colors",
                             
                             colorsChosen: [] //reset array (start-over)
                         })}}>
@@ -118,7 +116,7 @@ class PageTwo extends React.Component {
                 <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
-                            checkBtnId: "quantity",
+                            sideBarOption: "quantity",
                             
                         })}}>
                     Quantity
