@@ -50,8 +50,8 @@
     height: 15%;
     background-size: 50%;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 50;
+    bottom: 50;
     left: 5;
     right:10;
     margin: auto;
