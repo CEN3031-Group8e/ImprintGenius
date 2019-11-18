@@ -1,5 +1,6 @@
-import UploadFile from "../../components/PageTwo/UploadFile";
+
 import React from 'react';
+import UploadFile from "../../components/PageTwo/UploadFile";
 import DisplayItem from '../../components/PageTwo/DisplayItem.js';
 import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
@@ -19,9 +20,9 @@ class PageTwo extends React.Component {
             totalSizes: [],
             capacity:100,
 
-            openColors: false,  //to display menu
-            openSizes: false,
-            openFileUpload: false
+            openSideBarOption: false, //based on button id
+
+            checkBtnId: null
             
         };
 
@@ -65,15 +66,15 @@ class PageTwo extends React.Component {
         });
     }
     checkBtns(){
-        if(this.state.openFileUpload){
+        if(this.state.sideBarOption == "upload"){
             return(
                 <UploadFile updateFile={this.updateFile} 
                             updateImage = {this.updateSelectedImgDataURL}/>)
         }
-        else if(this.state.openColors){
+        else if(this.state.sideBarOption == "colors"){
             return (<ColorPicker updatePicker={this.updateColors}/>); //child to Parent
         }
-        else if(this.state.openSizes){
+        else if(this.state.sideBarOption == "quantity"){
             if(this.state.colorsChosen.length !== 0){
                 return (
                     <QuantitySelect capacity={this.state.capacity }
@@ -104,6 +105,7 @@ class PageTwo extends React.Component {
              <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
+                            checkBtnId: "upload",
                             openFileUpload: true,
                             openColors: false,
                             openSizes: false,
@@ -114,6 +116,7 @@ class PageTwo extends React.Component {
                 <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
+                            checkBtnId: "colors",
                             openFileUpload: false,
                             openColors: true,
                             openSizes: false,
@@ -124,6 +127,7 @@ class PageTwo extends React.Component {
                 <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
+                            checkBtnId: "quantity",
                             openColors: false,
                             openSizes: true
                         })}}>
