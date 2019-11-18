@@ -3,7 +3,7 @@ import React from 'react';
 import DisplayItem from '../../components/PageTwo/DisplayItem.js';
 import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
-
+import './PageTwo.css';
 
 class PageTwo extends React.Component {
     constructor(props) {
@@ -17,9 +17,12 @@ class PageTwo extends React.Component {
 
 			colorsChosen: [], //updated from ColorPicker (child)
             totalSizes: [],
-            openColors: false,
+            capacity:100,
+
+            openColors: false,  //to display menu
             openSizes: false,
-            capacity:100
+            openFileUpload: false
+            
         };
 
         this.updateType = this.updateType.bind(this);
@@ -30,37 +33,44 @@ class PageTwo extends React.Component {
         this.updateTotalSizes = this.updateTotalSizes.bind(this);
 
     }
-
-    updateType(imgType){ //from child to parent
+//all update functions below are from child component to parent (page2)
+    updateType(imgType){
         this.setState({
             imageType: imgType
-        })
+        });
     }
-    updateMode(mdType){ //from child to parent
+    updateMode(mdType){ 
         this.setState({
             apparelMode: mdType
-        })
+        });
     }
-	updateFile(selectedFileNew)
-    { //from child to parent
+	updateFile(selectedFileNew){ 
         this.setState({
             selectedFile: selectedFileNew
-        }
-
-        );
+        });
     }
-	updateColors(clrs){ //from child to parent
+    updateSelectedImgDataURL(selectedImageNew){
+	    this.setState({
+	            selectedImage: selectedImageNew
+	        });
+    }
+	updateColors(clrs){ 
         this.setState({
             colorsChosen: clrs
-        })
+        });
     }
     updateTotalSizes(total){
         this.setState({
             itemSum: total
-        })
+        });
     }
     checkBtns(){
-        if(this.state.openColors){
+        if(this.state.openFileUpload){
+            return(
+                <UploadFile updateFile={this.updateFile} 
+                            updateImage = {this.updateSelectedImgDataURL}/>)
+        }
+        else if(this.state.openColors){
             return (<ColorPicker updatePicker={this.updateColors}/>); //child to Parent
         }
         else if(this.state.openSizes){
@@ -68,28 +78,18 @@ class PageTwo extends React.Component {
                 return (
                     <QuantitySelect capacity={this.state.capacity }
                         colorsArr={this.state.colorsChosen} //send to child
-                        updateTotalSizes={this.updateTotalSizes}/>); //update parent
-            }
+                        updateTotalSizes={this.updateTotalSizes}/> //update parent
+                )}
             else{
                 return <div>Must choose colors first!</div>;
             }
         }       
     }
 
-    updateSelectedImgDataURL(selectedImageNew)
-    {
-	    { //from child to parent
-	        this.setState({
-	            selectedImage: selectedImageNew
-	        }
-
-	        );
-	    }
-    }
+  
     displayFunc() {
       return <DisplayItem updateDisplay={this.updateType}/>;
     }
-
 
     render(){
         return (
@@ -98,27 +98,36 @@ class PageTwo extends React.Component {
             {//Menu/sidebar displayer
             this.displayFunc()}
 
-            <UploadFile updateFile={this.updateFile} 
-                //passing functions to update the parent state, to the child
-                updateImage = {this.updateSelectedImgDataURL}/>
-	            
-			 <div className="ColorQuantity">
-                <button className="btn-menu menu-colors" 
+           
+
+			 <div className="SideBar">
+             <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
+                            openFileUpload: true,
+                            openColors: false,
+                            openSizes: false,
+                            colorsChosen: [] //reset array (start-over)
+                        })}}>
+                    Upload File
+                </button>
+                <button className="btn-sidebar" 
+                    onClick={() => {
+                        this.setState({
+                            openFileUpload: false,
                             openColors: true,
                             openSizes: false,
                             colorsChosen: [] //reset array (start-over)
                         })}}>
-                    Edit Colors
+                    Colors
                 </button>
-                <button className="btn-menu menu-sizes" 
+                <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
                             openColors: false,
                             openSizes: true
                         })}}>
-                    Edit Sizes
+                    Quantity
                 </button>
                 <div className="btn-component">
                      {this.checkBtns() }

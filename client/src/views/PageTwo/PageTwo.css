@@ -1,22 +1,13 @@
-.App {
-    text-align: center;
+.btn-sidebar{
+    float:center;
+    border: solid 0.8px rgba(0, 0, 0, 0.342);
+    box-shadow: 0 5px 10px #050e0173;
+    border-radius: 12%;
+    padding: .7rem .7rem;
+    margin: 0.5rem 0.5rem;
 }
+.btn-sidebar:hover{   
+    border: solid 0.8px #ffffff;
+    box-shadow: 0 0px 4px 4px #7B68EE;
 
-.App-logo {
-    height: 40vmin;
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #09d3ac;
 }
