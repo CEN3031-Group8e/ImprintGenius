@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 //sidebar and item display components
 import UploadFile from "../../components/PageTwo/UploadFile";
 import DisplayItem from '../../components/PageTwo/DisplayItem.js';
-import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
+import {ColorPicker} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 
 
@@ -106,7 +106,7 @@ class Customizer extends Component {
                   <div className='itemContainer'>
                     {data.items.map((item) =>
                       <div className='packItem'>
-
+                          
                       </div>
                     )}
                   </div>
