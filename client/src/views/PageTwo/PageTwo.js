@@ -88,27 +88,20 @@ class PageTwo extends React.Component {
     }
 
   
-    displayFunc() {
-      return <DisplayItem updateDisplay={this.updateType}/>;
-    }
 
     render(){
         return (
             <div>
-                
-            {//Menu/sidebar displayer
-            this.displayFunc()}
+         
 
-           
+           <DisplayItem updateDisplay={this.updateType}></DisplayItem>
 
 			 <div className="SideBar">
              <button className="btn-sidebar" 
                     onClick={() => {
                         this.setState({
                             checkBtnId: "upload",
-                            openFileUpload: true,
-                            openColors: false,
-                            openSizes: false,
+                            
                             colorsChosen: [] //reset array (start-over)
                         })}}>
                     Upload File
@@ -117,9 +110,7 @@ class PageTwo extends React.Component {
                     onClick={() => {
                         this.setState({
                             checkBtnId: "colors",
-                            openFileUpload: false,
-                            openColors: true,
-                            openSizes: false,
+                            
                             colorsChosen: [] //reset array (start-over)
                         })}}>
                     Colors
@@ -128,8 +119,7 @@ class PageTwo extends React.Component {
                     onClick={() => {
                         this.setState({
                             checkBtnId: "quantity",
-                            openColors: false,
-                            openSizes: true
+                            
                         })}}>
                     Quantity
                 </button>

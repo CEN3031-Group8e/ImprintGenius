@@ -5,7 +5,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class UploadFile extends React.Component
 {
-
+  constructor(props) {
+    super(props);
+    this.state = { 
+        selectedFile: null
+    } 
+    console.log("constructor");
+}
     onChangeHandler=event=>
     {
         //setting state in app.js
@@ -24,27 +30,29 @@ class UploadFile extends React.Component
 
 
     onClickHandler = () => {
+      /*if(this.state.selectedFile === null){
+        return;
+      }*/
+      var input = this.state.selectedFile
+      var reader = new FileReader();
 
-            var input = this.state.selectedFile
-            var reader = new FileReader();
+      //define onload function
+      //onload event is fired when the filereader has finished reading the file
+      reader.onload = () =>
+      {
+          var dataURL = reader.result; //render.result contains resultant contents of the file
+          var output = document.getElementById('output') //get the area where you want the image to be displayed
+          output.src = dataURL; //set that image's src as the file's dataURL
+          this.setState({
+              selectedImage: dataURL
 
-            //define onload function
-            //onload event is fired when the filereader has finished reading the file
-            reader.onload = () =>
-            {
-                var dataURL = reader.result; //render.result contains resultant contents of the file
-                var output = document.getElementById('output') //get the area where you want the image to be displayed
-                output.src = dataURL; //set that image's src as the file's dataURL
-                this.setState({
-                    selectedImage: dataURL
+            })
+            this.props.updateImage( dataURL) //pass dataURL to page2 parent
 
-                  })
-                  this.props.updateImage( dataURL) //pass dataURL to page2 parent
+            console.log('selectedImage ', this.state.selectedImage)
 
-                  console.log('selectedImage ', this.state.selectedImage)
-
-                 // console.log('data URL ' ,dataURL)
-                 // base64Img.img(dataURL, '', '1',function(err) {if (err, 'C:/Users/sneha/softwareEng/ImprintGenius') console.log(err)});
+            // console.log('data URL ' ,dataURL)
+            // base64Img.img(dataURL, '', '1',function(err) {if (err, 'C:/Users/sneha/softwareEng/ImprintGenius') console.log(err)});
 
 
             }
@@ -64,9 +72,9 @@ class UploadFile extends React.Component
 
                       <div className="form-group files">
                         <label>Upload Your File </label>
-                        <input type="file"  className="form-control" accept = "image/*" onChange={this.onChangeHandler}  />
-
-
+                        <input type="file"  className="form-control" 
+                                accept = "image/*" 
+                                onChange={this.onChangeHandler}  />
                       </div>
 
                   </form>
@@ -75,7 +83,8 @@ class UploadFile extends React.Component
               </div>
 
             </div>
-            <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
+            <button type="button" className="btn btn-success btn-block" 
+                    onClick={this.onClickHandler}>Upload</button>
             <img id = 'output'></img>
         </div>
 

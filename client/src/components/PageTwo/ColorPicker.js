@@ -42,10 +42,10 @@ class ColorPicker extends React.Component
 {
     constructor() {
         super();
-        //this.handleButton = this.handleButton.bind(this);
         this.state = { 
             btnVals: [] 
         } //returns array of buttons currently pressed
+       
     }
     
     handleButton = (btn) => {
