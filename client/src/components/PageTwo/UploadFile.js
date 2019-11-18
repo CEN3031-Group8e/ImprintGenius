@@ -4,21 +4,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class UploadFile extends React.Component
 {
-  constructor(props) {
-    super(props);
-    this.state = { 
-        selectedFile: null
-    } 
-}
+    constructor(props)
+     {
+        super(props);
+        this.state = { 
+            selectedFile: null
+        } 
+    }
     onChangeHandler=event=>
     {
         //setting state in app.js
-        this.setState({
+        if(event.target.files[0] != null)
+        {
+          this.setState({
             selectedFile: event.target.files[0]
           })
           //new
           this.props.updateFile( event.target.files[0])
-          window.URL.createObjectURL(event.target.files[0])
+
+          try
+          {window.URL.createObjectURL(event.target.files[0])}
+          catch(error){
+            console.log('no chosen file')
+          }
+
+        }
+       
     }
     onClickHandler = () => {
       console.log("clicked")
@@ -42,6 +53,7 @@ class UploadFile extends React.Component
       reader.readAsDataURL(input);
       
      }
+     
     allowUpload()
     {
       if(this.state.selectedFile === null){
@@ -49,7 +61,7 @@ class UploadFile extends React.Component
       }
       return (
       <div>
-        <button type="button" className="btn btn-success btn-block" 
+        <button type="button" className="btn btn-success btn" 
                 onClick={this.onClickHandler}>
                 Upload
         </button>
