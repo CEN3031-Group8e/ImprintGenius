@@ -12,10 +12,32 @@ import { withRouter } from "react-router-dom";
 
 //sidebar and item display components
 import UploadFile from "../../components/PageTwo/UploadFile";
-import DisplayItem from '../../components/PageTwo/DisplayItem.js';
+import DisplayApparelBar from '../../components/PageTwo/DisplayApparelBar.js';
 import {ColorPicker} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 
+import tshirt from '../../assets/large1.png';
+import longsleeve from '../../assets/large2.png';
+import hoodie from '../../assets/large3.png';
+import apparelIcon from '../../assets/apparel1.png';
+import popsocketIcon from '../../assets/pop1.png';
+import popsocket from '../../assets/pop2.png';
+import powerbankIcon from '../../assets/powerbank1.png';
+import powerbank from '../../assets/powerbank2.png';
+
+const largePath = {
+  tshirt: tshirt,
+  longsleeve: longsleeve,
+  hoodie: hoodie,
+  popsocket: popsocket,
+  powerbank: powerbank
+}
+
+const smallPath = {
+  tshirt: apparelIcon,
+  popsocket: popsocketIcon,
+  powerbank: powerbankIcon
+}
 
 class Customizer extends Component {
   constructor(props) {
@@ -35,7 +57,7 @@ class Customizer extends Component {
 
       sideBarOption: null //based on button id
     };
-    
+
     this.updateType = this.updateType.bind(this);
     this.updateMode = this.updateMode.bind(this);
     this.updateFile = this.updateFile.bind(this);
@@ -49,11 +71,11 @@ class Customizer extends Component {
     this.setState({
         imageType: imgType
   })}
-  updateMode(mdType){ 
+  updateMode(mdType){
     this.setState({
         apparelMode: mdType
-  })} 
-  updateFile(selectedFileNew){ 
+  })}
+  updateFile(selectedFileNew){
     this.setState({
         selectedFile: selectedFileNew
   })}
@@ -61,7 +83,7 @@ class Customizer extends Component {
     this.setState({
           selectedImage: selectedImageNew
   })}
-  updateColors(clrs){ 
+  updateColors(clrs){
     this.setState({
         colorsChosen: clrs
   })}
@@ -74,7 +96,7 @@ class Customizer extends Component {
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
-            <UploadFile updateFile={this.updateFile} 
+            <UploadFile updateFile={this.updateFile}
                         updateImage = {this.updateSelectedImgDataURL}/>)
     }
     else if(this.state.sideBarOption === "colors"){
@@ -90,12 +112,41 @@ class Customizer extends Component {
         else{
             return <div>Must choose colors first!</div>;
         }
-    }       
+    }
   }
+
+  updateApparelMode(imgtype){
+  if (imgtype != 'tshirt') { //if Package item clicked is not apparel
+    this.setState({
+        apparelMode: false
+  })
+  }
+  else {
+    this.setState({
+        apparelMode: true
+  })
+  }
+}
+
+checkApparelMode() {
+  if (this.state.apparelMode == true) {
+    return (
+      <div>
+      <h3 className="apparelSidebar">Apparel in your Package</h3>
+      <DisplayApparelBar updateBar={this.updateType}></DisplayApparelBar>
+      </div>
+    );
+  }
+  else {
+    return <h3 className="apparelSidebar">Out of Apparel Mode (test)</h3>;
+  }
+}
 
 
     render() {
       const { data } = this.props.location.state;
+      let packitems = ["tshirt", "popsocket", "powerbank"];
+
 
       return (
         <div>
@@ -106,11 +157,11 @@ class Customizer extends Component {
                   <h3 className='sidebarTitle'>Package Items</h3>
                   <img src={UpArrow} className='arrow m30Top'></img>
                   <div className='itemContainer'>
-                    {data.items.map((item) =>
-                      <div className='packItem'>
-                          
-                      </div>
-                    )}
+                  {packitems.map((image) =>
+                    <div className='packItem'>
+                    <img style = {{maxWidth: '140px'}} key={image} src={smallPath[`${image}`]} onClick={() => {this.updateType(`${image}`); this.updateApparelMode(`${image}`); }}/>
+                    </div>
+                  )}
                   </div>
                   <img src={DownArrow} className='arrow m30Top'></img>
                   <p className='m30Top greenLink'>View All</p>
@@ -120,7 +171,7 @@ class Customizer extends Component {
               <Col md={5}>
                 {//tshirt/item displayer (paula's seciton)
                 }
-                <DisplayItem updateDisplay={this.updateType}></DisplayItem>
+                <img style = {{maxWidth: '300px'}} src = {largePath[this.state.imageType]} />
 
               </Col>
               <Col md={5}>
@@ -128,7 +179,7 @@ class Customizer extends Component {
 
                  <div className="btn-component">
                      {this.checkBtns() }
-                 </div>    
+                 </div>
 
                   <div className='buttonContainer'>
                     <button className='itemControlButton'
@@ -158,6 +209,9 @@ class Customizer extends Component {
                       Help
                     </button>
                   </div>
+                </div>
+                <div className = 'apparelSidebar'>
+                {this.checkApparelMode()}
                 </div>
               </Col>
             </Row>

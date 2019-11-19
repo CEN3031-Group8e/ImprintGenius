@@ -12,6 +12,13 @@
 .sidebarTitle {
   color: black;
 }
+
+.apparelSidebar {
+  color: black;
+  font-size: 20px;
+  text-align: center;
+}
+
 .itemContainer {
   margin-top: 15px;
   height: 465px;
@@ -21,7 +28,7 @@
 .packItem {
   width: 140px;
   height: 140px;
-  background: blue;
+  /* background: blue; */
   margin-top: 15px;
   scroll-snap-align: start;
 }
