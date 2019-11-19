@@ -9,10 +9,9 @@ class QuantityForm extends React.Component
         super(props);
         this.state = { 
             missing: this.props.missing, //"missing"
-            colorBtn: this.props.color,
-            sizes: [], 
-            singleTotal: 0,   //total sizes for that color  
-            formID: this.props.id     
+            colorBtn: this.props.colorBtn, //{id,color, name, #}
+            sizes: ['','','','','',''], //XS-XXL mapped by id of form sub section XS = 0
+            oneSizeTotal: 0,   //total sizes for that color  
         }
     }    
 
@@ -22,9 +21,6 @@ class QuantityForm extends React.Component
         let change = {}
        
         let newSizes = [...this.state.sizes];
-        //console.log("typeof",typeof newSizes[e.target.id] );
-        //console.log("newSizes[e.target.id]", newSizes[e.target.id])
-        var oldValue = newSizes[e.target.id];
         newSizes[e.target.id] = e.target.value; 
         var sum = 0;
         newSizes.map(size => {
@@ -32,19 +28,17 @@ class QuantityForm extends React.Component
             if(!isNaN(size))
                 sum += size;
         });
-
-        this.props.updateCounter(this.state.formID, sum); 
-        console.log("total from map: ",sum)
+        //update counter/"missing" in quantity select
+        this.props.updateCounter(this.state.colorBtn, sum, newSizes); 
+        
         this.setState(
             (prevState)=>({
                 //change
                 sizes: newSizes,
-                singleTotal: sum 
+                oneSizeTotal: sum 
             }),
             ()=>{
         });
-        //Goal: find original value from sizes[i], add it back to total
-        //Then subtract new value from sum
     }
     render() {
 		return(
@@ -59,7 +53,7 @@ class QuantityForm extends React.Component
                     onChange={this.handleChange.bind(this)}
                     
                     value={this.state.sizes[0]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 />
                 </div>
                 
@@ -70,7 +64,7 @@ class QuantityForm extends React.Component
                     id='1'
                     onChange={this.handleChange.bind(this)} 
                     value={this.state.sizes[1]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 /> </div>
                 
                 <div>M <input 
@@ -80,7 +74,7 @@ class QuantityForm extends React.Component
                     id='2'
                     onChange={this.handleChange.bind(this)} 
                     value={this.state.sizes[2]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 /></div> 
                 
                 <div>L <input 
@@ -90,7 +84,7 @@ class QuantityForm extends React.Component
                     id='3'
                     onChange={this.handleChange.bind(this)} 
                     value={this.state.sizes[3]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 />  </div>
                 
                 <div>XL <input 
@@ -100,7 +94,7 @@ class QuantityForm extends React.Component
                     id='4'
                     onChange={this.handleChange.bind(this)} 
                     value={this.state.sizes[4]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 /></div> 
                 
                 <div>XXL <input 
@@ -110,7 +104,7 @@ class QuantityForm extends React.Component
                     id='5'
                     onChange={this.handleChange.bind(this)} 
                     value={this.state.sizes[5]} 
-                    placeholder="#" 
+                    placeholder="0" 
                 /> </div>
                      
             </form>

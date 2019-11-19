@@ -30,7 +30,7 @@ class Customizer extends Component {
       selectedImage: null, //selected image data URL (base64)
 
       colorsChosen: [], //updated from ColorPicker (child)
-      totalSizes: [],
+      allSizes: [],
       capacity:100,
 
       sideBarOption: null //based on button id
@@ -65,10 +65,12 @@ class Customizer extends Component {
     this.setState({
         colorsChosen: clrs
   })}
-  updateTotalSizes(total){
+  updateTotalSizes(all){
     this.setState({
-      itemSum: total
-  })}
+      allSizes: all
+  })
+  console.log("set state in customizer")
+  }
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
