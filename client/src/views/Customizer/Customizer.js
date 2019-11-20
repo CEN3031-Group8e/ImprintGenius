@@ -100,7 +100,7 @@ class Customizer extends Component {
                         updateImage = {this.updateSelectedImgDataURL}/>)
     }
     else if(this.state.sideBarOption === "colors"){
-        return (<ColorPicker updatePicker={this.updateColors} //child to parent sending clicked colors
+        return (<ColorPicker updateColors={this.updateColors} //child to parent sending clicked colors
                               colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
     }
     else if(this.state.sideBarOption === "quantity"){

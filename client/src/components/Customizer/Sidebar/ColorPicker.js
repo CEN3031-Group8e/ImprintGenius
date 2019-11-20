@@ -92,7 +92,7 @@ class ColorPicker extends React.Component
                         key={ btn.id }
                         onClick={ () => {
                             this.handleButton(btn) ; 
-                            this.props.updatePicker(this.state.btnVals); //update pageTwo (parent)
+                            this.props.updateColors(this.state.btnVals); //update pageTwo (parent)
                             }
                         }
                         style={{background: btn.number}}
