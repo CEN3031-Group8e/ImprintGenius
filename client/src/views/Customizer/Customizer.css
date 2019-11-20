@@ -29,7 +29,6 @@
 .packItem {
   width: 140px;
   height: 140px;
-  /* background: blue; */
   margin-top: 15px;
   scroll-snap-align: start;
 }

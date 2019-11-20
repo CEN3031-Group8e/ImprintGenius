@@ -13,30 +13,22 @@ import { withRouter } from "react-router-dom";
 //sidebar and item display components
 import UploadFile from "../../components/Customizer/Sidebar/UploadFile";
 import DisplayApparelBar from '../../components/Customizer/ItemSidebar/DisplayApparelBar.js';
+import DisplayPackageBar from '../../components/Customizer/ItemSidebar/DisplayPackageBar.js';
 import {ColorPicker} from '../../components/Customizer/Sidebar/ColorPicker.js';
 import QuantitySelect from '../../components/Customizer/Sidebar/QuantitySelect.js';
-
+//Large images of package items
 import tshirt from '../../assets/large1.png';
 import longsleeve from '../../assets/large2.png';
 import hoodie from '../../assets/large3.png';
-import apparelIcon from '../../assets/apparel1.png';
-import popsocketIcon from '../../assets/pop1.png';
 import popsocket from '../../assets/pop2.png';
-import powerbankIcon from '../../assets/powerbank1.png';
 import powerbank from '../../assets/powerbank2.png';
 
-const largePath = {
+const largePath = { //Chooses which image to display based on current imageType state
   tshirt: tshirt,
   longsleeve: longsleeve,
   hoodie: hoodie,
   popsocket: popsocket,
   powerbank: powerbank
-}
-
-const smallPath = {
-  tshirt: apparelIcon,
-  popsocket: popsocketIcon,
-  powerbank: powerbankIcon
 }
 
 class Customizer extends Component {
@@ -47,7 +39,6 @@ class Customizer extends Component {
 
       imageType: 'tshirt',
       apparelMode: true,
-      clicked: true,
       selectedFile: null,
       selectedImage: null, //selected image data URL (base64)
 
@@ -59,7 +50,6 @@ class Customizer extends Component {
     };
 
     this.updateType = this.updateType.bind(this);
-    this.updateMode = this.updateMode.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.updateSelectedImgDataURL = this.updateSelectedImgDataURL.bind(this);
     this.updateColors = this.updateColors.bind(this);
@@ -67,14 +57,6 @@ class Customizer extends Component {
 
   }
   //all update functions below are from child component to parent (page2)
-  updateType(imgType){
-    this.setState({
-        imageType: imgType
-  })}
-  updateMode(mdType){
-    this.setState({
-        apparelMode: mdType
-  })}
   updateFile(selectedFileNew){
     this.setState({
         selectedFile: selectedFileNew
@@ -91,6 +73,20 @@ class Customizer extends Component {
     this.setState({
       allSizes: all
   })}
+
+  updateType(imgType){
+    this.setState({
+      imageType: imgType
+    }) //Sets apparelMode state based on what was clicked in child
+    if (imgType == 'tshirt' || imgType == 'longsleeve' || imgType == 'hoodie'){
+      this.setState({apparelMode: true})
+    }
+    else {
+      this.setState({apparelMode: false})
+    }
+  }
+
+
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
@@ -115,38 +111,25 @@ class Customizer extends Component {
     }
   }
 
-  updateApparelMode(imgtype){
-  if (imgtype != 'tshirt') { //if Package item clicked is not apparel
-    this.setState({
-        apparelMode: false
-  })
+  //Checks if user is editing apparel or an accessory (e.g. popsocket)
+  //Displays Apparel bottom bar component - only if editing apparel
+  displayBottomBar() {
+    if (this.state.apparelMode == true) {
+      return (
+        <div>
+        <h3 className="apparelSidebar">Apparel in your Package</h3>
+        <DisplayApparelBar updateBar={this.updateType}></DisplayApparelBar>
+        </div>
+      );
+    }
+    else {
+      return <h3 className="apparelSidebar">Out of Apparel Mode</h3>;
+    }
   }
-  else {
-    this.setState({
-        apparelMode: true
-  })
-  }
-}
-
-checkApparelMode() {
-  if (this.state.apparelMode == true) {
-    return (
-      <div>
-      <h3 className="apparelSidebar">Apparel in your Package</h3>
-      <DisplayApparelBar updateBar={this.updateType}></DisplayApparelBar>
-      </div>
-    );
-  }
-  else {
-    return <h3 className="apparelSidebar">Out of Apparel Mode (test)</h3>;
-  }
-}
 
 
     render() {
       const { data } = this.props.location.state;
-      let packitems = ["tshirt", "popsocket", "powerbank"];
-
 
       return (
         <div>
@@ -156,13 +139,12 @@ checkApparelMode() {
                 <div className='itemSidebar'>
                   <h3 className='sidebarTitle'>Package Items</h3>
                   <img src={UpArrow} className='arrow m30Top'></img>
-                  <div className=''>
-                  {packitems.map((image) =>
-                    <div className='packItem'>
-                    <img style = {{maxWidth: '140px'}} key={image} src={smallPath[`${image}`]} onClick={() => {this.updateType(`${image}`); this.updateApparelMode(`${image}`); }}/>
-                    </div>
-                  )}
+
+                  {/*Package items sidebar*/}
+                  <div className='itemContainer'>
+                    <DisplayPackageBar updatePackBar={this.updateType}></DisplayPackageBar>
                   </div>
+
                   <img src={DownArrow} className='arrow m30Top'></img>
                   <p className='m30Top greenLink'>View All</p>
                   <p className='greenLink'>View Unfinished</p>
@@ -209,7 +191,8 @@ checkApparelMode() {
                   </div>
                 </div>
                 <div className = 'apparelSidebar'>
-                {this.checkApparelMode()}
+                {/*'Apparel in your Package' bottom bar*/}
+                {this.displayBottomBar()}
                 </div>
               </Col>
             </Row>

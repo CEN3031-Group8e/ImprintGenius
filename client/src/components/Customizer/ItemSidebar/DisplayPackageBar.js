@@ -1,16 +1,18 @@
 import React from 'react';
-import tshirtIcon from '../../../assets/test1.png';
-import longsleeveIcon from '../../../assets/test2.png';
-import hoodieIcon from '../../../assets/test3.png';
+import apparelIcon from '../../../assets/apparel1.png';
+import popsocketIcon from '../../../assets/pop1.png';
+import powerbankIcon from '../../../assets/powerbank1.png';
+
 
 const smallPath = {
-  tshirt: tshirtIcon,
-  longsleeve: longsleeveIcon,
-  hoodie: hoodieIcon
+  tshirt: apparelIcon,
+  popsocket: popsocketIcon,
+  powerbank: powerbankIcon
 }
 
 
-class DisplayPackageBar extends React.Component {
+
+class DisplayApparelBar extends React.Component {
 
   constructor(props) {
     super(props);
@@ -23,18 +25,19 @@ class DisplayPackageBar extends React.Component {
 
   clickHandler(image) {
     this.state.imageType= image;
-    this.props.updateBar(image);
+    this.props.updatePackBar(image);
   }
 
-
   render() {
-    let apparelitems = ["tshirt", "longsleeve", "hoodie"];
+    let packitems = ["tshirt", "popsocket", "powerbank"];
 
     return (
       <div>
-      {apparelitems.map((image) =>
+      {packitems.map((image) =>
+        <div className='packItem'>
         <img style = {{maxWidth: '140px'}} key={image} src={smallPath[`${image}`]}
         onClick={() => {this.clickHandler(`${image}`);}}/>
+        </div>
       )}
       </div>
 
@@ -42,4 +45,4 @@ class DisplayPackageBar extends React.Component {
   }
 }
 
-export default DisplayPackageBar;
+export default DisplayApparelBar;

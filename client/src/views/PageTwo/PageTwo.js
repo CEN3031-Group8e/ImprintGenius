@@ -1,7 +1,6 @@
 
 import React from 'react';
 import UploadFile from "../../components/PageTwo/UploadFile";
-import DisplayItem from '../../components/PageTwo/DisplayItem.js';
 import {ColorPicker, btnsList} from '../../components/PageTwo/ColorPicker.js';
 import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
 import './PageTwo.css';
@@ -21,7 +20,7 @@ class PageTwo extends React.Component {
             capacity:100,
 
             sideBarOption: null
-            
+
         };
 
         this.updateType = this.updateType.bind(this);
@@ -38,12 +37,12 @@ class PageTwo extends React.Component {
             imageType: imgType
         });
     }
-    updateMode(mdType){ 
+    updateMode(mdType){
         this.setState({
             apparelMode: mdType
         });
     }
-	updateFile(selectedFileNew){ 
+	updateFile(selectedFileNew){
         this.setState({
             selectedFile: selectedFileNew
         });
@@ -53,7 +52,7 @@ class PageTwo extends React.Component {
 	            selectedImage: selectedImageNew
 	        });
     }
-	updateColors(clrs){ 
+	updateColors(clrs){
         this.setState({
             colorsChosen: clrs
         });
@@ -66,7 +65,7 @@ class PageTwo extends React.Component {
     checkBtns(){
         if(this.state.sideBarOption == "upload"){
             return(
-                <UploadFile updateFile={this.updateFile} 
+                <UploadFile updateFile={this.updateFile}
                             updateImage = {this.updateSelectedImgDataURL}/>)
         }
         else if(this.state.sideBarOption == "colors"){
@@ -82,48 +81,48 @@ class PageTwo extends React.Component {
             else{
                 return <div>Must choose colors first!</div>;
             }
-        }       
+        }
     }
 
-  
+
 
     render(){
         return (
             <div>
-         
+
 
            <DisplayItem updateDisplay={this.updateType}></DisplayItem>
 
 			 <div className="SideBar">
-             <button className="btn-sidebar" 
+             <button className="btn-sidebar"
                     onClick={() => {
                         this.setState({
                             sideBarOption: "upload",
-                            
+
                             colorsChosen: [] //reset array (start-over)
                         })}}>
                     Upload File
                 </button>
-                <button className="btn-sidebar" 
+                <button className="btn-sidebar"
                     onClick={() => {
                         this.setState({
                             sideBarOption: "colors",
-                            
+
                             colorsChosen: [] //reset array (start-over)
                         })}}>
                     Colors
                 </button>
-                <button className="btn-sidebar" 
+                <button className="btn-sidebar"
                     onClick={() => {
                         this.setState({
                             sideBarOption: "quantity",
-                            
+
                         })}}>
                     Quantity
                 </button>
                 <div className="btn-component">
                      {this.checkBtns() }
-                </div>     
+                </div>
            </div>
             </div>
 
