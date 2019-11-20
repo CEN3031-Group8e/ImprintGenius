@@ -48,7 +48,7 @@ class ColorPicker extends React.Component
        
     }
     initChosenColors(colorsArr){  //handle "includes" error of undefined in render
-        if (colorsArr === undefined) //before clicking on a color
+        if (colorsArr === undefined || colorsArr === null) //before clicking on a color
             return []
         else
             return colorsArr;            
@@ -63,6 +63,7 @@ class ColorPicker extends React.Component
                     btnVals: tempBtns.filter(e => e !== btn) 
             }),
             () => {
+                    this.props.updateColors(this.state.btnVals);
                  }
             )
         }
@@ -74,6 +75,7 @@ class ColorPicker extends React.Component
                     btnVals: tempBtns 
                 }),
                 () => {
+                    this.props.updateColors(this.state.btnVals);
                 } 
             )
         } 

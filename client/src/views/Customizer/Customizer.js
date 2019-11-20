@@ -90,9 +90,7 @@ class Customizer extends Component {
   updateTotalSizes(all){
     this.setState({
       allSizes: all
-  })
-  console.log("set state in customizer")
-  }
+  })}
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
@@ -101,13 +99,14 @@ class Customizer extends Component {
     }
     else if(this.state.sideBarOption === "colors"){
         return (<ColorPicker updateColors={this.updateColors} //child to parent sending clicked colors
-                              colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
+                             colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
     }
     else if(this.state.sideBarOption === "quantity"){
         if(this.state.colorsChosen.length !== 0){
             return (
                 <QuantitySelect capacity={this.state.capacity }
-                    colorsArr={this.state.colorsChosen} //send to child
+                    colorsChosen={this.state.colorsChosen} //send to child
+                    allSizes={this.state.allSizes}
                     updateTotalSizes={this.updateTotalSizes}/> //update parent
             )}
         else{

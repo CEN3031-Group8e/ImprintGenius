@@ -10,15 +10,22 @@ class QuantityForm extends React.Component
         this.state = { 
             missing: this.props.missing, //"missing"
             colorBtn: this.props.colorBtn, //{id,color, name, #}
-            sizes: ['','','','','',''], //XS-XXL mapped by id of form sub section XS = 0
+            sizes: this.initSizes(this.props.sizes), //XS-XXL mapped by id of form sub section XS = 0
             oneSizeTotal: 0,   //total sizes for that color  
         }
     }    
-
+    initSizes(sizes){   //initialize the array to have x elements, each element will contain array[6]
+        if (sizes == undefined || sizes == null){
+            //if haven't filled in the form yet,
+            return ['','','','','',''];
+        }
+        else{ //already have something in the form, reload it
+            return sizes;
+        }
+    }
     handleChange(e){
         if(isNaN(e.target.value))
             return;
-        let change = {}
        
         let newSizes = [...this.state.sizes];
         newSizes[e.target.id] = e.target.value; 
@@ -29,15 +36,16 @@ class QuantityForm extends React.Component
                 sum += size;
         });
         //update counter/"missing" in quantity select
-        this.props.updateCounter(this.state.colorBtn, sum, newSizes); 
+        //this.props.updateCounter(this.state.colorBtn, sum, newSizes); 
         
         this.setState(
-            (prevState)=>({
-                //change
-                sizes: newSizes,
-                oneSizeTotal: sum 
-            }),
-            ()=>{
+        (prevState)=>({
+            //change
+            sizes: newSizes,
+            oneSizeTotal: sum 
+        }),
+        ()=>{//update counter/"missing" in quantity select
+            this.props.updateCounter(this.state.colorBtn, sum, newSizes); 
         });
     }
     render() {
