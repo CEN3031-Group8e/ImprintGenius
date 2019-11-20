@@ -82,7 +82,7 @@ class QuantitySelect extends React.Component
                     
                     <button className="btn-display"
                         key={btn.id}
-                        style={{background: btn.color}} 
+                        style={{background: btn.number}} 
                         
                     >
                     </button>

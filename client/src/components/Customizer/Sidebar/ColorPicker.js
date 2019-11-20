@@ -4,26 +4,26 @@ import './ColorPicker.css';
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
 const maxBtnCap = 3;
 const btnsList = [
-    { id:0, name:"red", color: "#FF0000"},
-    { id:1, name:"light-coral", color: "#F08080"},
-    { id:2, name:"dark-orange", color: "#FF8C00"},
-    { id:3, name:"maroon", color: "#800000"},
-    { id:4, name:"gold", color: "#FFD700"},
-    { id:5, name:"yellow-green", color: "#9ACD32"},
-    { id:6, name:"forest-green", color: "#228B22"},
-    { id:7, name:"dark-green", color: "#006400"},
-    { id:8, name:"deep-sky-blue", color: "#00BFFF"},
+    { id:0, name:"red", number: "#FF0000"},
+    { id:1, name:"light-coral", number: "#F08080"},
+    { id:2, name:"dark-orange", number: "#FF8C00"},
+    { id:3, name:"maroon", number: "#800000"},
+    { id:4, name:"gold", number: "#FFD700"},
+    { id:5, name:"yellow-green", number: "#9ACD32"},
+    { id:6, name:"forest-green", number: "#228B22"},
+    { id:7, name:"dark-green", number: "#006400"},
+    { id:8, name:"deep-sky-blue", number: "#00BFFF"},
 
-    { id:9, name:"black", color: "#000000"},
-    { id:10, name:"white", color: "#FFFFFF"},
-    { id:11, name:"dark-blue", color: "#00008B"},
-    { id:12, name:"indigo", color: "#4B0082"},
-    { id:13, name:"dark-violet", color: "#9400D3"},
-    { id:14, name:"deep-pink", color: "#FF1493"},
-    { id:15, name:"hot-pink", color: "#FF69B4"},
-    { id:16, name:"midnight-blue", color: "#191970"},
-    { id:17, name:"dodger-blue", color: "#1E90FF"},
-    { id:18, name:"gray", color: "gray"}
+    { id:9, name:"black", number: "#000000"},
+    { id:10, name:"white", number: "#FFFFFF"},
+    { id:11, name:"dark-blue", number: "#00008B"},
+    { id:12, name:"indigo", number: "#4B0082"},
+    { id:13, name:"dark-violet", number: "#9400D3"},
+    { id:14, name:"deep-pink", number: "#FF1493"},
+    { id:15, name:"hot-pink", number: "#FF69B4"},
+    { id:16, name:"midnight-blue", number: "#191970"},
+    { id:17, name:"dodger-blue", number: "#1E90FF"},
+    { id:18, name:"gray", number: "gray"}
 ]
 function CntrText(count){
     if(count === maxBtnCap )
@@ -40,12 +40,18 @@ function CntrText(count){
 }
 class ColorPicker extends React.Component 
 {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
-            btnVals: [] 
+            btnVals: this.initChosenColors(this.props.colorsChosen)
         } //returns array of buttons currently pressed
        
+    }
+    initChosenColors(colorsArr){  //handle "includes" error of undefined in render
+        if (colorsArr === undefined) //before clicking on a color
+            return []
+        else
+            return colorsArr;            
     }
     
     handleButton = (btn) => {
@@ -89,7 +95,7 @@ class ColorPicker extends React.Component
                             this.props.updatePicker(this.state.btnVals); //update pageTwo (parent)
                             }
                         }
-                        style={{background: btn.color}}
+                        style={{background: btn.number}}
                         className={ 
                             //if btn exists in list => use btn press class, else btn
                             this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
@@ -105,4 +111,4 @@ class ColorPicker extends React.Component
     }    
 }
 
-export {ColorPicker, btnsList};
+export {ColorPicker};

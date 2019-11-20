@@ -100,7 +100,8 @@ class Customizer extends Component {
                         updateImage = {this.updateSelectedImgDataURL}/>)
     }
     else if(this.state.sideBarOption === "colors"){
-        return (<ColorPicker updatePicker={this.updateColors}/>); //child to Parent
+        return (<ColorPicker updatePicker={this.updateColors} //child to parent sending clicked colors
+                              colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
     }
     else if(this.state.sideBarOption === "quantity"){
         if(this.state.colorsChosen.length !== 0){
@@ -186,7 +187,7 @@ checkApparelMode() {
                       onClick={() => {
                         this.setState({
                             sideBarOption: "upload",
-                            colorsChosen: [] //reset array (start-over)
+                            //colorsChosen: [] //reset array (start-over)
                       })}}>
                       Upload
                     </button>
@@ -194,7 +195,7 @@ checkApparelMode() {
                       onClick={() => {
                         this.setState({
                           sideBarOption: "colors",
-                          colorsChosen: [] //reset array (start-over)
+                          //colorsChosen: [] //reset array (start-over)
                       })}}>
                       Colors
                     </button>
