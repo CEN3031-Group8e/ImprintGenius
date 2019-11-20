@@ -1,5 +1,6 @@
 import React from 'react';
 import './ColorPicker.css';
+import '../../../App.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
 const maxBtnCap = 3;
@@ -27,40 +28,40 @@ const btnsList = [
 ]
 function CntrText(count){
     if(count === maxBtnCap )
-         return <div className="cnt">
+         return <p className="cnt">
              Color Limit Reached
-         </div>
+         </p>
     else{
         return(
-            <div className="cnt cntPckd" >
+            <p className="cnt cntPckd" >
                     { count + "/" + maxBtnCap + " Colors Picked  "}
-            </div>
+            </p>
         )
     }
 }
-class ColorPicker extends React.Component 
+class ColorPicker extends React.Component
 {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             btnVals: this.initChosenColors(this.props.colorsChosen)
         } //returns array of buttons currently pressed
-       
+
     }
     initChosenColors(colorsArr){  //handle "includes" error of undefined in render
         if (colorsArr === undefined || colorsArr === null) //before clicking on a color
             return []
         else
-            return colorsArr;            
+            return colorsArr;
     }
-    
+
     handleButton = (btn) => {
         let tempBtns = this.state.btnVals;
-        
+
         if(tempBtns.includes(btn)){ //if button already in list => remove
             this.setState((prevState) =>({
                     //keep all buttons that are not equal to btn just pressed
-                    btnVals: tempBtns.filter(e => e !== btn) 
+                    btnVals: tempBtns.filter(e => e !== btn)
             }),
             () => {
                     this.props.updateColors(this.state.btnVals);
@@ -71,34 +72,34 @@ class ColorPicker extends React.Component
         {
             tempBtns.push(btn); //add to list ==> this button is pressed
             this.setState(
-                ({ 
-                    btnVals: tempBtns 
+                ({
+                    btnVals: tempBtns
                 }),
                 () => {
                     this.props.updateColors(this.state.btnVals);
-                } 
+                }
             )
-        } 
-    } 
-    
+        }
+    }
+
     render() {
 		return(
         <div>
             <div className="colorPicker-box">
-                <h2> Tultex 202 Fine Jersey</h2>
-                <h4>Select 1-3 colors for your apparel</h4>
+                <h1>Tultex 202 Fine Jersey</h1>
+                <p>Select 1-3 colors for your apparel</p>
                 <div className="palette-box">
-                { btnsList.map(btn => 
+                { btnsList.map(btn =>
                 (
                     <button className="btn-menu"
                         key={ btn.id }
                         onClick={ () => {
-                            this.handleButton(btn) ; 
+                            this.handleButton(btn) ;
                             this.props.updateColors(this.state.btnVals); //update pageTwo (parent)
                             }
                         }
                         style={{background: btn.number}}
-                        className={ 
+                        className={
                             //if btn exists in list => use btn press class, else btn
                             this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
                         }>
@@ -107,10 +108,10 @@ class ColorPicker extends React.Component
                 </div>
                 {CntrText(this.state.btnVals.length)}
             </div>
-            
+
         </div>
-        );  
-    }    
+        );
+    }
 }
 
 export {ColorPicker};

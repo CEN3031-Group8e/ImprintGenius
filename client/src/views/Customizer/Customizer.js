@@ -177,9 +177,9 @@ checkApparelMode() {
               <Col md={5}>
                 <div className='itemControls'>
 
-                 <div className="btn-component">
-                     {this.checkBtns() }
-                 </div>
+                   <div className="btn-component">
+                       {this.checkBtns()}
+                   </div>
 
                   <div className='buttonContainer'>
                     <button className='itemControlButton'

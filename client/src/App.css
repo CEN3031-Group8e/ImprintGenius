@@ -4,6 +4,16 @@ h3 {
   line-height: 30px;
   font-family: 'Gurajada';
 }
+h1 {
+  font-size: 50px;
+  line-height: 35px;
+  font-family: 'Gurajada';
+}
+h4 {
+  font-size: 30px;
+  line-height: 20px;
+  font-family: 'Gurajada';
+}
 p {
   font-family: 'Open Sans';
   font-size: 16px;

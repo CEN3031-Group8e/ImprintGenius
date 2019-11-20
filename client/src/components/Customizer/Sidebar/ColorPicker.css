@@ -1,72 +1,49 @@
-.btn{
-    float:left;
-    border: solid 2px transparent;
-    box-shadow: 0 5px 10px #050e0173;
-    border-radius: 50%;
-    
-
-    padding: .7rem .7rem;
-    margin: 0.5rem 0.5rem;
+.btn {
+  box-shadow: 0 5px 10px rgba(0,0,0,0.015);
+  border-radius: 50%;
+  margin-right: 15px;
+  margin-top: 15px;
+  height: 40px;
+  width: 40px;
+  outline: none !important;
 }
 .btn.btn-press{
-    border: solid 2px #ffffff;
-    box-shadow: 0 0px 4px 4px #7B68EE;
+  border: solid 3px rgba(0,0,0,0.25);
 }
-.btn.btn-nopress{
-    border: solid 2px transparent;
-    box-shadow: 0 5px 10px #050e0173;	
+.btn.btn-nopress {
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
-.btn:hover{   
-    border: solid 2px #ffffff;
-    box-shadow: 0 0px 4px 4px #7B68EE;
-
+.btn:hover{
+  border: solid 3px #ffffff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.25);
 }
-.btn-menu{
-    float:center;
-    border: solid 0.8px rgba(0, 0, 0, 0.342);
-    box-shadow: 0 5px 10px #050e0173;
-    border-radius: 12%;
-    padding: .7rem .7rem;
-    margin: 0.5rem 0.5rem;
-}
-.btn-menu:hover{   
-    border: solid 0.8px #ffffff;
-    box-shadow: 0 0px 4px 4px #7B68EE;
-
-}
-.btn-component{
-    float:center;
-    
-}
-button:focus,
-select:focus {
-  outline: none;
+.btn:focus,
+.btn:focus {
+  outline: none !important;
 }
 
-.cnt{
-    float: right;
-    padding:0;
-    margin: 1rem 1rem;
-    font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-    font-size: 14pt;
-    color: red;
+.cnt {
+  position: absolute;
+  right: 115px;
+  bottom: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  background: blue;
 }
-.cnt.cntPckd{
-    color: black;
- }
-.colorPicker-box{
-    float: center;
-    border: solid 0.3px transparent;
-    padding: 10px;
-    width: 390px;
-    height: 250px;   
+.cnt .cntPckd {
+  color: black;
 }
-.palette-box{
-    float: center;
-    border: solid 0.3px transparent;
-    
-    width: 390px;
-    height: 110px;  
-
+.colorPicker-box {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  height: auto;
+}
+.palette-box {
+  padding: 0px;
+  margin-top: 20px;
+  height: auto;
+  width: 100%;
 }
