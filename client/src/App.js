@@ -5,8 +5,7 @@ import Customizer from "./views/Customizer/Customizer"
 import NotFound from "./views/NotFound"
 import './App.css';
 import Header from "./components/Header/Header"
-import DisplayItem from "./components/PageTwo/DisplayItem"
-import PageTwo from "./views/PageTwo/PageTwo"
+//import DisplayItem from "./components/CustomizerPage/ItemSidebar/DisplayItem"
 class App extends React.Component {
    constructor(props) {
      super(props);
@@ -32,7 +31,7 @@ class App extends React.Component {
             path='/Customizer'
             component={() => <Customizer data={this.state.selectedPackage} />}
           />
-		 <Route path = "/PageTwo" component = {PageTwo} />  
+		 
          <Route exact path="/">
            <Redirect to="/Home" />
          </Route>

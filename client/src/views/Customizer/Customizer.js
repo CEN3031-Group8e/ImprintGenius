@@ -11,10 +11,10 @@ import Shirt from '../../assets/shirt.png' // relative path to image
 import { withRouter } from "react-router-dom";
 
 //sidebar and item display components
-import UploadFile from "../../components/PageTwo/UploadFile";
-import DisplayApparelBar from '../../components/PageTwo/DisplayApparelBar.js';
-import {ColorPicker} from '../../components/PageTwo/ColorPicker.js';
-import QuantitySelect from '../../components/PageTwo/QuantitySelect.js';
+import UploadFile from "../../components/Customizer/Sidebar/UploadFile";
+import DisplayApparelBar from '../../components/Customizer/ItemSidebar/DisplayApparelBar.js';
+import {ColorPicker} from '../../components/Customizer/Sidebar/ColorPicker.js';
+import QuantitySelect from '../../components/Customizer/Sidebar/QuantitySelect.js';
 
 import tshirt from '../../assets/large1.png';
 import longsleeve from '../../assets/large2.png';

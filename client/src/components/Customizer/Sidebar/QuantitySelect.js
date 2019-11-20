@@ -1,5 +1,5 @@
 import React from 'react';
-import QuantityForm from '../../components/PageTwo/QuantityForm.js';
+import QuantityForm from '../Sidebar/QuantityForm.js';
 import './QuantitySelect.css';
 import './ColorPicker.css';
 

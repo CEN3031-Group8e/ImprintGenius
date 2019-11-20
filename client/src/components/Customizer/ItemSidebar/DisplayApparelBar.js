@@ -1,15 +1,15 @@
 import React from 'react';
-import tshirtIcon from '../../assets/test1.png';
-import longsleeveIcon from '../../assets/test2.png';
-import hoodieIcon from '../../assets/test3.png';
-import tshirt from '../../assets/large1.png';
-import longsleeve from '../../assets/large2.png';
-import hoodie from '../../assets/large3.png';
-import apparelIcon from '../../assets/apparel1.png';
-import popsocketIcon from '../../assets/pop1.png';
-import popsocket from '../../assets/pop2.png';
-import powerbankIcon from '../../assets/powerbank1.png';
-import powerbank from '../../assets/powerbank2.png';
+import tshirtIcon from '../../../assets/test1.png';
+import longsleeveIcon from '../../../assets/test2.png';
+import hoodieIcon from '../../../assets/test3.png';
+import tshirt from '../../../assets/large1.png';
+import longsleeve from '../../../assets/large2.png';
+import hoodie from '../../../assets/large3.png';
+import apparelIcon from '../../../assets/apparel1.png';
+import popsocketIcon from '../../../assets/pop1.png';
+import popsocket from '../../../assets/pop2.png';
+import powerbankIcon from '../../../assets/powerbank1.png';
+import powerbank from '../../../assets/powerbank2.png';
 
 const largePath = {
   tshirt: tshirt,
