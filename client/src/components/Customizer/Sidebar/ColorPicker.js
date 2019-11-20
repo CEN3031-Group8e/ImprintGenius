@@ -28,8 +28,8 @@ const btnsList = [
 ]
 function CntrText(count){
     if(count === maxBtnCap )
-         return <p className="cnt">
-             Color Limit Reached
+         return <p className="cnt cntLimit">
+             Color Limit Reached!
          </p>
     else{
         return(

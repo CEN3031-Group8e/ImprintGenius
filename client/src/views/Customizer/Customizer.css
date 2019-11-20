@@ -44,7 +44,7 @@
 }
 .btn-component {
   width: calc(100% - 100px);
-  height: 100%;
+  height: calc(100% - 15px);
   overflow: scroll;
 }
 .itemControls {

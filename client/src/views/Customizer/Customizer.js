@@ -169,9 +169,7 @@ checkApparelMode() {
                 </div>
               </Col>
               <Col md={5}>
-                {//tshirt/item displayer (paula's seciton)
-                }
-                <img style = {{maxWidth: '300px'}} src = {largePath[this.state.imageType]} />
+                <img src = {largePath[this.state.imageType]} />
 
               </Col>
               <Col md={5}>
