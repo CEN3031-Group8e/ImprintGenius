@@ -41,16 +41,23 @@ class QuantitySelect extends React.Component
             var tempAllSizes = [] 
             colorsArr.map(btn => {
                 tempAllSizes.push({
-                    color: btn,
-                    sizes: []
+                    color: btn, //{id, name, #}
+                    sizes: [] //[XS-XXL]
                 })
             });
             return tempAllSizes;
         }
         else{ //already have something in the form, reload it
-            return allSizes; // [{color, sizes}]
+            //where e is {color, sizes[]}     
+            console.log("colorsArr", colorsArr)
+           console.log("filter return",allSizes.filter(e => colorsArr.includes(e.color)))
+           
+           var tempArr = allSizes.filter(e => colorsArr.includes(e.color));
+           this.props.updateTotalSizes(tempArr);
+            return tempArr; // [{color, sizes}]
         }
     }
+    
     updateCounter(colorBtn, itemsCount, newSizes){ //note: id is both color and form id
         
         //update current (quantity select)
@@ -107,7 +114,7 @@ class QuantitySelect extends React.Component
                     <div>
                         {   
                         ///******FIX MISSIN VARIABLE RESETS */ 
-                            console.log("found size:", this.getSizes(btn))
+                            //console.log("found size:", this.getSizes(btn))
                         }
                         <QuantityForm id={ btn.id } colorBtn={btn} //send to child, Form
                                 capacity={this.state.capacity}

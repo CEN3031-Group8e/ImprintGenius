@@ -52,7 +52,7 @@ class Customizer extends Component {
       selectedImage: null, //selected image data URL (base64)
 
       colorsChosen: [], //updated from ColorPicker (child)
-      allSizes: [],
+      allSizes: [], //{color, sizes[]}
       capacity:100,
 
       sideBarOption: null //based on button id
@@ -156,7 +156,7 @@ checkApparelMode() {
                 <div className='itemSidebar'>
                   <h3 className='sidebarTitle'>Package Items</h3>
                   <img src={UpArrow} className='arrow m30Top'></img>
-                  <div className='itemContainer'>
+                  <div className=''>
                   {packitems.map((image) =>
                     <div className='packItem'>
                     <img style = {{maxWidth: '140px'}} key={image} src={smallPath[`${image}`]} onClick={() => {this.updateType(`${image}`); this.updateApparelMode(`${image}`); }}/>
