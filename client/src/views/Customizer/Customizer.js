@@ -111,6 +111,62 @@ class Customizer extends Component {
     }
   }
 
+  //render upload/colors/quantity/help buttons based on whether item is selected or apparel
+  renderBtns()
+  {
+    if(this.state.apparelMode == true)
+        return( 
+        <div className='buttonContainer'>
+          <button className='itemControlButton'
+            onClick={() => {
+              this.setState({
+                  sideBarOption: "upload",
+                  //colorsChosen: [] //reset array (start-over)
+            })}}>
+            Upload
+          </button>
+          <button className='itemControlButton borderTop'
+            onClick={() => {
+              this.setState({
+                sideBarOption: "colors",
+                //colorsChosen: [] //reset array (start-over)
+            })}}>
+            Colors
+          </button>
+          <button className='itemControlButton borderTop'
+            onClick={() => {
+              this.setState({
+                sideBarOption: "quantity",
+            })}}>
+            Quantity
+          </button>
+          <button className='itemControlButton borderTop'>
+            Help
+          </button>
+      </div>
+    )
+
+    else
+    return(
+        <div className='buttonContainer'>
+          <button className='itemControlButton'
+            onClick={() => {
+              this.setState({
+                  sideBarOption: "upload",
+                  //colorsChosen: [] //reset array (start-over)
+            })}}>
+            Upload
+          </button>
+
+          <button className='itemControlButton borderTop'>
+            Help
+          </button>
+      </div>
+
+    )
+
+  }
+
   //Checks if user is editing apparel or an accessory (e.g. popsocket)
   //Displays Apparel bottom bar component - only if editing apparel
   displayBottomBar() {
@@ -162,32 +218,7 @@ class Customizer extends Component {
                    </div>
 
                   <div className='buttonContainer'>
-                    <button className='itemControlButton'
-                      onClick={() => {
-                        this.setState({
-                            sideBarOption: "upload",
-                            //colorsChosen: [] //reset array (start-over)
-                      })}}>
-                      Upload
-                    </button>
-                    <button className='itemControlButton borderTop'
-                      onClick={() => {
-                        this.setState({
-                          sideBarOption: "colors",
-                          //colorsChosen: [] //reset array (start-over)
-                      })}}>
-                      Colors
-                    </button>
-                    <button className='itemControlButton borderTop'
-                      onClick={() => {
-                        this.setState({
-                          sideBarOption: "quantity",
-                      })}}>
-                      Quantity
-                    </button>
-                    <button className='itemControlButton borderTop'>
-                      Help
-                    </button>
+                    {this.renderBtns()} 
                   </div>
                 </div>
                 <div className = 'apparelSidebar'>
