@@ -86,3 +86,18 @@
 .customizeTitle {
   margin-top: 30px;
 }
+.mainImage {
+  position: relative;
+}
+.apparelImg {
+  z-index: 0;
+  width: 100%;
+}
+.selectedImg {
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: 25%;
+  top: 25%;
+  left: 36%;
+}

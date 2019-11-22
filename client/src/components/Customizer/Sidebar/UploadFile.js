@@ -1,5 +1,6 @@
 import React from 'react';
 import './UploadFile.css';
+import '../../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class UploadFile extends React.Component
@@ -7,9 +8,9 @@ class UploadFile extends React.Component
     constructor(props)
      {
         super(props);
-        this.state = { 
+        this.state = {
             selectedFile: null
-        } 
+        }
     }
     onChangeHandler=event=>
     {
@@ -29,65 +30,56 @@ class UploadFile extends React.Component
           }
 
         }
-       
-    }
-    onClickHandler = () => {
-      console.log("clicked")
-      var input = this.state.selectedFile
-      var reader = new FileReader();
 
-      //define onload function
-      //onload event is fired when the filereader has finished reading the file
-      reader.onload = () =>
-      {
-          var dataURL = reader.result; //render.result contains resultant contents of the file
-          var output = document.getElementById('output') //get the area where you want the image to be displayed
-          output.src = dataURL; //set that image's src as the file's dataURL
-          this.setState({
-              selectedImage: dataURL
-            })
-            this.props.updateImage( dataURL) //pass dataURL to page2 parent
-            //console.log('selectedImage ', this.state.selectedImage)
-      }
-      //read file. Once it is read, onload function will be called
-      reader.readAsDataURL(input);
-      
-     }
-     
+    }
+
     allowUpload()
     {
       if(this.state.selectedFile === null){
         return;
+      } else {
+
+        var input = this.state.selectedFile;
+        var reader = new FileReader();
+
+        //define onload function
+        //onload event is fired when the filereader has finished reading the file
+        reader.onload = () =>
+        {
+            var dataURL = reader.result; //render.result contains resultant contents of the file
+            this.setState({
+                selectedImage: dataURL
+              })
+              this.props.updateImage( dataURL) //pass dataURL to page2 parent
+              //console.log('selectedImage ', this.state.selectedImage)
+        }
+        //read file. Once it is read, onload function will be called
+        reader.readAsDataURL(input);
       }
-      return (
-      <div>
-        <button type="button" className="btn btn-success btn" 
-                onClick={this.onClickHandler}>
-                Upload
-        </button>
-        
-      </div>)
+      // return (
+      // <div>
+      //   <button type="button" className="btn btn-success btn"
+      //           onClick={this.onClickHandler}>
+      //           Upload
+      //   </button>
+      //
+      // </div>)
     }
     render()
     {
         return(
-            <div className="container">
-            <div className="row">
-              <div className="col-md-6">
-                  <form method="post" action="#" id="#">
-                      <div className="form-group files">
-                        <label>Upload Your File </label>
-                        <input type="file"  className="form-control" 
-                                accept = "image/*" 
-                                onChange={this.onChangeHandler}  />
-                      </div>
-                  </form>
-              </div>
-            </div>
+            <div className="uploadBox">
+              <h1>Add an Image</h1>
+              <p>Upload your file</p>
+              <form className="uploadForm" method="post" action="#" id="#">
+                  <div className="form-group files">
+                    <input type="file"  className="form-control"
+                           accept = "image/*"
+                           onChange={this.onChangeHandler}/>
+                  </div>
+              </form>
             {this.allowUpload()}
-            <img id = 'output'></img>
-            
-        </div>
+            </div>
         )
     }
   }

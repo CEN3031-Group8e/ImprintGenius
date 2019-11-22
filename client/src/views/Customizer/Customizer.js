@@ -115,7 +115,7 @@ class Customizer extends Component {
   renderBtns()
   {
     if(this.state.apparelMode == true)
-        return( 
+        return(
         <div className='buttonContainer'>
           <button className='itemControlButton'
             onClick={() => {
@@ -207,7 +207,10 @@ class Customizer extends Component {
                 </div>
               </Col>
               <Col md={5}>
-                <img src = {largePath[this.state.imageType]} />
+                <div className="mainImage">
+                  <img className="apparelImg" src = {largePath[this.state.imageType]} />
+                  <img className="selectedImg" src = {this.state.selectedImage} />
+                </div>
 
               </Col>
               <Col md={5}>
@@ -218,7 +221,7 @@ class Customizer extends Component {
                    </div>
 
                   <div className='buttonContainer'>
-                    {this.renderBtns()} 
+                    {this.renderBtns()}
                   </div>
                 </div>
                 <div className = 'apparelSidebar'>

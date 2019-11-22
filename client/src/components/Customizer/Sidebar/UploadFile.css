@@ -44,6 +44,17 @@
     text-align: center;
 }
 
+.uploadForm {
+  margin-top: 30px;
+}
+
+.uploadBox {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  height: 100%;
+}
+
 {/*image output*/}
 #output  {
     width: 15%;
