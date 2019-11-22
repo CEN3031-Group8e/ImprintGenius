@@ -33,3 +33,9 @@ p {
   color: rgb(153,233,205);
   text-decoration: underline;
 }
+.innerBoxCustomizer {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  height: 100%;
+}

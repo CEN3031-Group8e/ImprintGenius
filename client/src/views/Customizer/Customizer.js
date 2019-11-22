@@ -106,7 +106,7 @@ class Customizer extends Component {
                     updateTotalSizes={this.updateTotalSizes}/> //update parent
             )}
         else{
-            return <div>Must choose colors first!</div>;
+            return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
         }
     }
   }
@@ -172,9 +172,9 @@ class Customizer extends Component {
   displayBottomBar() {
     if (this.state.apparelMode == true) {
       return (
-        <div>
-        <h3 className="apparelSidebar">Apparel in your Package</h3>
-        <DisplayApparelBar updateBar={this.updateType}></DisplayApparelBar>
+        <div className="apparelSideBack">
+          <h3 className="apparelSidebar">Apparel in your Package</h3>
+          <DisplayApparelBar updateBar={this.updateType}></DisplayApparelBar>
         </div>
       );
     }
