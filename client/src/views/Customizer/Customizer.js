@@ -42,6 +42,12 @@ class Customizer extends Component {
       selectedFile: null,
       selectedImage: null, //selected image data URL (base64)
 
+      //test
+      selectedFileTwo:null,
+      selectedImageTwo:null,
+
+      //test
+
       colorsChosen: [], //updated from ColorPicker (child)
       allSizes: [], //{color, sizes[]}
       capacity:100,
@@ -55,12 +61,31 @@ class Customizer extends Component {
     this.updateColors = this.updateColors.bind(this);
     this.updateTotalSizes = this.updateTotalSizes.bind(this);
 
+    //test
+    this.updateFileTwo = this.updateFileTwo.bind(this);
+    this.updateSelectedImgDataURLTwo = this.updateSelectedImgDataURLTwo.bind(this);
+
+    //test
+
   }
   //all update functions below are from child component to parent (page2)
   updateFile(selectedFileNew){
     this.setState({
         selectedFile: selectedFileNew
   })}
+
+  //test
+  updateFileTwo(selectedFileNew){
+    this.setState({
+        selectedFileTwo: selectedFileNew
+  })}
+
+  //test
+  updateSelectedImgDataURLTwo(selectedImageNew){
+    this.setState({
+          selectedImageTwo: selectedImageNew
+  })}
+
   updateSelectedImgDataURL(selectedImageNew){
     this.setState({
           selectedImage: selectedImageNew
@@ -91,7 +116,10 @@ class Customizer extends Component {
     if(this.state.sideBarOption === "upload"){
         return(
             <UploadFile updateFile={this.updateFile}
-                        updateImage = {this.updateSelectedImgDataURL}/>)
+                        updateImage = {this.updateSelectedImgDataURL}
+                        apparelMode = {this.state.apparelMode}
+                        updateFileTwo={this.updateFileTwo}
+                        updateImageTwo = {this.updateSelectedImgDataURLTwo}/>)
     }
     else if(this.state.sideBarOption === "colors"){
         return (<ColorPicker updateColors={this.updateColors} //child to parent sending clicked colors
@@ -183,6 +211,18 @@ class Customizer extends Component {
     }
   }
 
+  renderlogo()
+  {
+    if (this.state.apparelMode == true) {
+      return (
+        <img className="selectedImg" src = {this.state.selectedImage} />
+      );
+    }
+    else {
+      return <img className="selectedImg" src = {this.state.selectedImageTwo} />;
+    }
+  }
+
 
     render() {
       const { data } = this.props.location.state;
@@ -209,7 +249,8 @@ class Customizer extends Component {
               <Col md={5}>
                 <div className="mainImage">
                   <img className="apparelImg" src = {largePath[this.state.imageType]} />
-                  <img className="selectedImg" src = {this.state.selectedImage} />
+                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
+                     {this.renderlogo()}
                 </div>
 
               </Col>
