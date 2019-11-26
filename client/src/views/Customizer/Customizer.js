@@ -221,6 +221,14 @@ class Customizer extends Component {
             Upload
           </button>
 
+          <button className='itemControlButton borderTop'
+            onClick={() => {
+              this.setState({
+                sideBarOption: "colors",
+            })}}>
+            Colors
+          </button>
+         
           <button className='itemControlButton borderTop'>
             Help
           </button>
