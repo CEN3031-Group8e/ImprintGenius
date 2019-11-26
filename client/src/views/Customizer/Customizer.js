@@ -23,6 +23,8 @@ import hoodie from '../../assets/large3.png';
 import popsocket from '../../assets/pop2.png';
 import powerbank from '../../assets/powerbank2.png';
 
+import {promoItems, apparelItems} from '../../data/itemsData.js'
+
 const largePath = { //Chooses which image to display based on current imageType state
   tshirt: tshirt,
   longsleeve: longsleeve,
@@ -47,6 +49,7 @@ class Customizer extends Component {
       selectedImageTwo:null,
 
       //test
+      currentItemData: null,
 
       colorsChosen: [], //updated from ColorPicker (child)
       allSizes: [], //{color, sizes[]}
@@ -66,7 +69,7 @@ class Customizer extends Component {
     this.updateSelectedImgDataURLTwo = this.updateSelectedImgDataURLTwo.bind(this);
 
     //test
-
+    
   }
   //all update functions below are from child component to parent (page2)
   updateFile(selectedFileNew){
@@ -103,14 +106,20 @@ class Customizer extends Component {
     this.setState({
       imageType: imgType
     }) //Sets apparelMode state based on what was clicked in child
-    if (imgType == 'tshirt' || imgType == 'longsleeve' || imgType == 'hoodie'){
+    if (imgType === 'tshirt' || imgType === 'longsleeve' || imgType === 'hoodie'){
       this.setState({apparelMode: true})
     }
     else {
       this.setState({apparelMode: false})
     }
   }
-
+  updateItemData(data){
+    this.setState({
+      currentItemData: data  
+      //itemData: data,
+        //colorsAvailable: data.colorsAvailable
+    })
+}
 
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
@@ -122,7 +131,22 @@ class Customizer extends Component {
                         updateImageTwo = {this.updateSelectedImgDataURLTwo}/>)
     }
     else if(this.state.sideBarOption === "colors"){
-        return (<ColorPicker updateColors={this.updateColors} //child to parent sending clicked colors
+        //this.state.imageType
+        var allItemsColors;
+        if(this.state.apparelMode)
+          allItemsColors = apparelItems;
+        else
+          allItemsColors = promoItems;
+
+        
+          console.log("imageType:", this.state.imageType)
+
+        var itemData = allItemsColors.find(e => e.type === this.state.imageType);
+        console.log("itemData found:", itemData)
+      
+        return (<ColorPicker //onChange={e => this.updateItemData(itemData)}
+                            //itemData ={this.updateItemData(itemData)}
+                             updateColors={this.updateColors} //child to parent sending clicked colors
                              colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
     }
     else if(this.state.sideBarOption === "quantity"){
@@ -142,14 +166,14 @@ class Customizer extends Component {
   //render upload/colors/quantity/help buttons based on whether item is selected or apparel
   renderBtns()
   {
-    if(this.state.apparelMode == true)
+    
+    if(this.state.apparelMode === true)
         return(
         <div className='buttonContainer'>
           <button className='itemControlButton'
             onClick={() => {
               this.setState({
                   sideBarOption: "upload",
-                  //colorsChosen: [] //reset array (start-over)
             })}}>
             Upload
           </button>
@@ -157,7 +181,6 @@ class Customizer extends Component {
             onClick={() => {
               this.setState({
                 sideBarOption: "colors",
-                //colorsChosen: [] //reset array (start-over)
             })}}>
             Colors
           </button>
@@ -173,7 +196,6 @@ class Customizer extends Component {
           </button>
       </div>
     )
-
     else
     return(
         <div className='buttonContainer'>
@@ -181,7 +203,6 @@ class Customizer extends Component {
             onClick={() => {
               this.setState({
                   sideBarOption: "upload",
-                  //colorsChosen: [] //reset array (start-over)
             })}}>
             Upload
           </button>
@@ -198,7 +219,7 @@ class Customizer extends Component {
   //Checks if user is editing apparel or an accessory (e.g. popsocket)
   //Displays Apparel bottom bar component - only if editing apparel
   displayBottomBar() {
-    if (this.state.apparelMode == true) {
+    if (this.state.apparelMode === true) {
       return (
         <div className="apparelSideBack">
           <h3 className="apparelSidebar">Apparel in your Package</h3>
@@ -213,7 +234,7 @@ class Customizer extends Component {
 
   renderlogo()
   {
-    if (this.state.apparelMode == true) {
+    if (this.state.apparelMode === true) {
       return (
         <img className="selectedImg" src = {this.state.selectedImage} />
       );
@@ -223,58 +244,57 @@ class Customizer extends Component {
     }
   }
 
+  render() {
+    const { data } = this.props.location.state;
 
-    render() {
-      const { data } = this.props.location.state;
+    return (
+      <div>
+        <Container className='' fluid={true}>
+          <Row>
+            <Col md={2}>
+              <div className='itemSidebar'>
+                <h3 className='sidebarTitle'>Package Items</h3>
+                <img src={UpArrow} className='arrow m30Top'></img>
 
-      return (
-        <div>
-          <Container className='' fluid={true}>
-            <Row>
-              <Col md={2}>
-                <div className='itemSidebar'>
-                  <h3 className='sidebarTitle'>Package Items</h3>
-                  <img src={UpArrow} className='arrow m30Top'></img>
+                {/*Package items sidebar*/}
+                <div className='itemContainer'>
+                  <DisplayPackageBar updatePackBar={this.updateType}></DisplayPackageBar>
+                </div>
 
-                  {/*Package items sidebar*/}
-                  <div className='itemContainer'>
-                    <DisplayPackageBar updatePackBar={this.updateType}></DisplayPackageBar>
+                <img src={DownArrow} className='arrow m30Top'></img>
+                <p className='m30Top greenLink'>View All</p>
+                <p className='greenLink'>View Unfinished</p>
+              </div>
+            </Col>
+            <Col md={5}>
+              <div className="mainImage">
+                <img className="apparelImg" src = {largePath[this.state.imageType]} />
+                    {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
+                    {this.renderlogo()}
+              </div>
+
+            </Col>
+            <Col md={5}>
+              <div className='itemControls'>
+
+                  <div className="btn-component">
+                      {this.checkBtns()}
                   </div>
 
-                  <img src={DownArrow} className='arrow m30Top'></img>
-                  <p className='m30Top greenLink'>View All</p>
-                  <p className='greenLink'>View Unfinished</p>
+                <div className='buttonContainer'>
+                  {this.renderBtns()}
                 </div>
-              </Col>
-              <Col md={5}>
-                <div className="mainImage">
-                  <img className="apparelImg" src = {largePath[this.state.imageType]} />
-                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
-                     {this.renderlogo()}
-                </div>
-
-              </Col>
-              <Col md={5}>
-                <div className='itemControls'>
-
-                   <div className="btn-component">
-                       {this.checkBtns()}
-                   </div>
-
-                  <div className='buttonContainer'>
-                    {this.renderBtns()}
-                  </div>
-                </div>
-                <div className = 'apparelSidebar'>
-                {/*'Apparel in your Package' bottom bar*/}
-                {this.displayBottomBar()}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    }
+              </div>
+              <div className = 'apparelSidebar'>
+              {/*'Apparel in your Package' bottom bar*/}
+              {this.displayBottomBar()}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default withRouter(Customizer);

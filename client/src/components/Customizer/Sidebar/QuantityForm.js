@@ -15,7 +15,7 @@ class QuantityForm extends React.Component
         }
     }
     initSizes(sizes){   //initialize the array to have x elements, each element will contain array[6]
-        if (sizes == undefined || sizes == null){
+        if (sizes === undefined || sizes === null){
             //if haven't filled in the form yet,
             return ['','','','','',''];
         }
@@ -35,9 +35,7 @@ class QuantityForm extends React.Component
             if(!isNaN(size))
                 sum += size;
         });
-        //update counter/"missing" in quantity select
-        //this.props.updateCounter(this.state.colorBtn, sum, newSizes);
-
+        
         this.setState(
         (prevState)=>({
             //change

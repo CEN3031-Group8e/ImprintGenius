@@ -62,7 +62,7 @@ class QuantitySelect extends React.Component
 
         //update current (quantity select)
         //allSizes = {color={id,name,#}, sizes}
-        var newAllSizes = this.state.allSizes.filter(e => e.color.id !== colorBtn.id);
+        var newAllSizes = this.state.allSizes.filter(e => e.color !== colorBtn);
         newAllSizes.push(
         {
             color: colorBtn,
@@ -71,10 +71,10 @@ class QuantitySelect extends React.Component
 
     //Handle live counting updates
         //remove previous count
-        var newArr = this.state.countArr.filter(e => e.formID !== colorBtn.id);
+        var newArr = this.state.countArr.filter(e => e.formID !== colorBtn);
         newArr.push( //add new count to index
         {
-            formID: colorBtn.id,
+            formID: colorBtn,
             count: itemsCount
         })
         this.setState(
@@ -108,17 +108,17 @@ class QuantitySelect extends React.Component
             <h1>Choose Quantities</h1>
             <p>How many of each size?</p>
               { this.state.colorsArr.map(btn => (
-                  <div key={btn.id}  >
+                  <div key={btn}  >
                       <button className="btn-display"
-                          key={btn.id}
-                          style={{background: btn.number}}>
+                          key={btn}
+                          style={{background: btn}}>
                       </button>
                       <div>
                           {
                           ///******FIX MISSIN VARIABLE RESETS */
                               //console.log("found size:", this.getSizes(btn))
                           }
-                          <QuantityForm id={ btn.id } colorBtn={btn} //send to child, Form
+                          <QuantityForm id={ btn } colorBtn={btn} //send to child, Form
                                   capacity={this.state.capacity}
                                   missing={this.state.capacity}
                                   sizes={this.getSizes(btn)} //reload sizes
