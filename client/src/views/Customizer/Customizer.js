@@ -137,17 +137,23 @@ class Customizer extends Component {
           allItemsColors = apparelItems;
         else
           allItemsColors = promoItems;
-
-        
-          console.log("imageType:", this.state.imageType)
-
         var itemData = allItemsColors.find(e => e.type === this.state.imageType);
-        console.log("itemData found:", itemData)
-      
-        return (<ColorPicker //onChange={e => this.updateItemData(itemData)}
-                            //itemData ={this.updateItemData(itemData)}
+  
+       if(itemData !== this.state.currentItemData){ //avoid infinite loop crash, only update on change
+        this.setState(({
+          currentItemData: itemData  
+        }),
+        () => { //only render until state is updated
+          return (<ColorPicker itemData ={this.state.currentItemData}
+                               updateColors={this.updateColors} //child to parent sending clicked colors
+                               colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
+        })
+      }
+      else{
+        return (<ColorPicker itemData ={this.state.currentItemData}
                              updateColors={this.updateColors} //child to parent sending clicked colors
                              colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
+      } 
     }
     else if(this.state.sideBarOption === "quantity"){
         if(this.state.colorsChosen.length !== 0){
@@ -160,6 +166,14 @@ class Customizer extends Component {
         else{
             return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
         }
+    }
+  }
+  updatePalette(data)
+  {
+    if(data !== this.state.currentItemData){
+      this.setState({
+        currentItemData: data  
+      })
     }
   }
 

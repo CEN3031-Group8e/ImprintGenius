@@ -4,19 +4,7 @@ import '../../../App.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
 const maxBtnCap = 3;
-function CntrText(count){
-    if(count === maxBtnCap )
-         return <p className="cnt cntLimit">
-             Color Limit Reached!
-         </p>
-    else{
-        return(
-            <p className="cnt cntPckd" >
-                    { count + "/" + maxBtnCap + " Colors Picked  "}
-            </p>
-        )
-    }
-}
+ 
 class ColorPicker extends React.Component
 {
     constructor(props) {
@@ -26,6 +14,7 @@ class ColorPicker extends React.Component
             colorsAvailable: [],
             btnVals: this.initChosenColors(this.props.colorsChosen)//returns array of buttons currently pressed
         } 
+        console.log("itemData in constructor", this.state.itemData)
        //this.updateItemData = this.updateItemData.bind(this);
     }
     initChosenColors(colorsArr){  //handle "includes" error of undefined in render
@@ -35,7 +24,7 @@ class ColorPicker extends React.Component
             return colorsArr;
     }
  
-
+  
     handleButton = (btn) => {
         let tempBtns = this.state.btnVals;
 
@@ -62,7 +51,19 @@ class ColorPicker extends React.Component
             )
         }
     }
-
+    cntrText(count){
+        if(count === maxBtnCap )
+             return <p className="cnt cntLimit">
+                 Color Limit Reached!
+             </p>
+        else{
+            return(
+                <p className="cnt cntPckd" >
+                        { count + "/" + maxBtnCap + " Colors Picked  "}
+                </p>
+            )
+        }
+    }
     render() {
 		return(
         <div>
@@ -72,7 +73,11 @@ class ColorPicker extends React.Component
                 <p>Select 1-5 colors for your apparel</p>
                
                 <div className="palette-box">
-                { this.state.colorsAvailable.map(btn =>
+                {console.log("state item data", this.state.itemData)}
+                
+                    {//this.props.onChange
+                    }
+                {this.state.itemData.colorsAvailable.map(btn =>
                 (
                     <button className="btn-menu"
                         //key={ btn.id }
@@ -89,7 +94,7 @@ class ColorPicker extends React.Component
                     </button>
                 ))}
                 </div>
-                {CntrText(this.state.btnVals.length)}
+                {this.cntrText(this.state.btnVals.length)}
             </div>
 
         </div>
