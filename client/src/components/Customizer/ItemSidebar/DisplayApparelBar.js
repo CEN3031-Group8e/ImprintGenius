@@ -2,6 +2,7 @@ import React from 'react';
 import tshirtIcon from '../../../assets/test1.png';
 import longsleeveIcon from '../../../assets/test2.png';
 import hoodieIcon from '../../../assets/test3.png';
+// import apparelData from '../../../data/itemsData';
 
 const smallPath = {
   tshirt: tshirtIcon,

@@ -1,13 +1,22 @@
 import React from 'react';
-import apparelIcon from '../../../assets/apparel1.png';
-import popsocketIcon from '../../../assets/pop1.png';
-import powerbankIcon from '../../../assets/powerbank1.png';
+
+import apparelIcon from '../../../assets/apparelIcon.pdf';
+import bottleIcon from '../../../assets/bottleIcon.pdf';
+import cableIcon from '../../../assets/cableIcon.pdf';
+import notebookIcon from '../../../assets/notebookIcon.pdf';
+import penIcon from '../../../assets/penIcon.pdf';
+import stickerIcon from '../../../assets/stickerIcon.pdf';
+import walletIcon from '../../../assets/walletIcon.pdf';
 
 
 const smallPath = {
   tshirt: apparelIcon,
-  popsocket: popsocketIcon,
-  powerbank: powerbankIcon
+  bottle: bottleIcon,
+  cable: cableIcon,
+  notebook: notebookIcon,
+  pen: penIcon,
+  sticker: stickerIcon,
+  wallet: walletIcon
 }
 
 
@@ -29,7 +38,7 @@ class DisplayApparelBar extends React.Component {
   }
 
   render() {
-    let packitems = ["tshirt", "popsocket", "powerbank"];
+    let packitems = ["tshirt", "bottle", "cable", "notebook", "pen", "sticker", "wallet" ];
 
     return (
       <div>
