@@ -4,7 +4,7 @@ import '../../../App.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
 const maxBtnCap = 3;
- 
+
 class ColorPicker extends React.Component
 {
     constructor(props) {
@@ -13,7 +13,7 @@ class ColorPicker extends React.Component
             itemData: this.props.itemData,
             colorsAvailable: [],
             btnVals: this.initChosenColors(this.props.colorsChosen)//returns array of buttons currently pressed
-        } 
+        }
         console.log("itemData in constructor", this.state.itemData)
        //this.updateItemData = this.updateItemData.bind(this);
     }
@@ -23,8 +23,8 @@ class ColorPicker extends React.Component
         else
             return colorsArr;
     }
- 
-  
+
+
     handleButton = (btn) => {
         let tempBtns = this.state.btnVals;
 
@@ -71,10 +71,10 @@ class ColorPicker extends React.Component
                 <h1>{//this.state.itemData.name
                 }</h1>
                 <p>Select 1-5 colors for your apparel</p>
-               
+
                 <div className="palette-box">
                 {console.log("state item data", this.state.itemData)}
-                
+
                     {//this.props.onChange
                     }
                 {this.state.itemData.colorsAvailable.map(btn =>
@@ -92,6 +92,25 @@ class ColorPicker extends React.Component
                             this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
                         }>
                     </button>
+                ))}
+
+                <br></br>
+                <p className="chosenTitle">Chosen colors</p>
+                {this.state.btnVals.map(btn =>
+                (
+                  <button className="btn-menu"
+                      //key={ btn.id }
+                      onClick={ () => {
+                          this.handleButton(btn) ;
+                          this.props.updateColors(this.state.btnVals); //update pageTwo (parent)
+                          }
+                      }
+                      style={{background: btn}}
+                      className={
+                          //if btn exists in list => use btn press class, else btn
+                          this.state.btnVals.includes(btn) ? "btn btn-press": "btn btn-nopress"
+                      }>
+                  </button>
                 ))}
                 </div>
                 {this.cntrText(this.state.btnVals.length)}

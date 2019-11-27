@@ -7,8 +7,9 @@
   width: 40px;
   outline: none !important;
 }
-.btn.btn-press{
-  border: solid 3px rgba(0,0,0,0.25);
+.btn.btn-press {
+  box-shadow: none;
+  border: solid 3px rgba(0,0,0,0.35);
 }
 .btn.btn-nopress {
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
@@ -55,4 +56,7 @@
   padding-bottom: 15px;
   height: auto;
   width: 100%;
+}
+.chosenTitle {
+  margin-top: 30px;
 }
