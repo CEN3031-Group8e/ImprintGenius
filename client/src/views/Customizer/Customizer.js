@@ -51,51 +51,66 @@ class Customizer extends Component {
       //test
       currentItemData: null,
 
-      colorsChosen: [], //updated from ColorPicker (child)
+      allApparelColorsChosen: this.initAllApparelColorsChosen(), //updated from ColorPicker (child)
+      allPromoColorsChosen: this.initAllPromoColorsChosen(),
       allSizes: [], //{color, sizes[]}
       capacity:100,
 
       sideBarOption: null //based on button id
     };
-
     this.updateType = this.updateType.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.updateSelectedImgDataURL = this.updateSelectedImgDataURL.bind(this);
     this.updateColors = this.updateColors.bind(this);
     this.updateTotalSizes = this.updateTotalSizes.bind(this);
-
     //test
     this.updateFileTwo = this.updateFileTwo.bind(this);
     this.updateSelectedImgDataURLTwo = this.updateSelectedImgDataURLTwo.bind(this);
-
-    //test
-    
   }
+  initAllApparelColorsChosen(){   //each arr element init with itemType + colorsChosen[]
+    //includes both
+    var tempAllChosen = [];
+    apparelItems.map(item => {
+      tempAllChosen.push({
+        type: item.type, //distinguish what item it is
+        colorsChosen: [] //empty arr[max 5] to be filled by colorPicker return
+      })
+    });
+    return tempAllChosen;
+ }
+ initAllPromoColorsChosen(){   
+  var tempAllChosen = [];
+  promoItems.map(item => {
+    tempAllChosen.push({
+      type: item.type, 
+      colorChosen: null //up to 1 item can be stored
+    })
+  });
+  return tempAllChosen;
+  
+}
   //all update functions below are from child component to parent (page2)
   updateFile(selectedFileNew){
     this.setState({
-        selectedFile: selectedFileNew
+      selectedFile: selectedFileNew
   })}
-
   //test
   updateFileTwo(selectedFileNew){
     this.setState({
-        selectedFileTwo: selectedFileNew
+      selectedFileTwo: selectedFileNew
   })}
-
   //test
   updateSelectedImgDataURLTwo(selectedImageNew){
     this.setState({
-          selectedImageTwo: selectedImageNew
+      selectedImageTwo: selectedImageNew
   })}
-
   updateSelectedImgDataURL(selectedImageNew){
     this.setState({
-          selectedImage: selectedImageNew
+      selectedImage: selectedImageNew
   })}
   updateColors(clrs){
     this.setState({
-        colorsChosen: clrs
+      colorsChosen: clrs
   })}
   updateTotalSizes(all){
     this.setState({

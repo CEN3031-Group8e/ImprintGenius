@@ -4,24 +4,7 @@ import './QuantitySelect.css';
 import './ColorPicker.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
-function displayMissing(capacity, sizearr){
-    //takes in an array of XS-XXL
-    var sum = 0;
-    sizearr.map(e => {
-        sum += e.count;
-    });
-    var missing = capacity - sum;
-    if (missing < 0)
-    {
-        console.log("items over")
-        return (
-        <div>Items over: {0 - missing}</div>)
-    }
-    else{
-        return <div>Missing items: {missing}</div>
-    }
 
-}
 class QuantitySelect extends React.Component
 {
     constructor(props) {
@@ -47,11 +30,8 @@ class QuantitySelect extends React.Component
             });
             return tempAllSizes;
         }
-        else{ //already have something in the form, reload it
+        else{ //already have something in the form, reload it ("saved state")
             //where e is {color, sizes[]}
-            console.log("colorsArr", colorsArr)
-           console.log("filter return",allSizes.filter(e => colorsArr.includes(e.color)))
-
            var tempArr = allSizes.filter(e => colorsArr.includes(e.color));
            this.props.updateTotalSizes(tempArr);
             return tempArr; // [{color, sizes}]
@@ -84,9 +64,6 @@ class QuantitySelect extends React.Component
         }),() => {
             this.props.updateTotalSizes(this.state.allSizes) //update parent (Customizer)
         });
-
-        //this.props.updateTotalSizes(this.state.allSizes) //update parent (Customizer)
-
     }
     handleSubmit = (event) => {
         event.preventDefault();
@@ -100,6 +77,24 @@ class QuantitySelect extends React.Component
         else
             return element.sizes;
 
+    }
+    displayMissing(capacity, sizearr){
+        //takes in an array of XS-XXL
+        var sum = 0;
+        sizearr.map(e => {
+            sum += e.count;
+        });
+        var missing = capacity - sum;
+        if (missing < 0)
+        {
+            console.log("items over")
+            return (
+            <div>Items over: {0 - missing}</div>)
+        }
+        else{
+            return <div>Missing items: {missing}</div>
+        }
+    
     }
     render() {
 		return(
@@ -128,7 +123,7 @@ class QuantitySelect extends React.Component
                       </div>
                   </div>
               ))}
-             { <div>{displayMissing(this.state.capacity, this.state.countArr)}</div>}
+             { <div>{this.displayMissing(this.state.capacity, this.state.countArr)}</div>}
 
              {/* <button className= "btn-submit" type ="submit" onClick={this.handleSubmit}>
                   Submit
