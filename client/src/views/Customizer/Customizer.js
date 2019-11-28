@@ -83,7 +83,7 @@ class Customizer extends Component {
   promoItems.map(item => {
     tempAllChosen.push({
       type: item.type, 
-      colorChosen: null //up to 1 item can be stored
+      colorChosen: []//up to 1 item can be stored
     })
   });
   return tempAllChosen;
@@ -108,10 +108,39 @@ class Customizer extends Component {
     this.setState({
       selectedImage: selectedImageNew
   })}
-  updateColors(clrs){
+
+  /*updateColors(clrs){
+    console.log("allapparelcolorschosen ", this.state.allApparelColorsChosen)
+    console.log("allpromocolorschosen ", this.state.allPromoColorsChosen)
     this.setState({
       colorsChosen: clrs
-  })}
+  })}*/
+
+  updateColors(clrs){
+
+    console.log("allapparelcolorschosen ", this.state.allApparelColorsChosen)
+    console.log("allpromocolorschosen ", this.state.allPromoColorsChosen)
+   
+    if(this.state.apparelMode === true)
+    {
+      var tempIndex = this.state.allApparelColorsChosen.findIndex(item => item.type === this.state.imageType)
+      var temparr = this.state.allApparelColorsChosen;
+      temparr[tempIndex].colorsChosen = clrs;
+      this.setState({
+        allApparelColorsChosen: temparr})
+    }
+
+    else
+    {
+      var tempIndex = this.state.allPromoColorsChosen.findIndex(item => item.type === this.state.imageType)
+      var temparr = this.state.allPromoColorsChosen;
+      temparr[tempIndex].colorChosen = clrs;
+      this.setState({
+      allPromoColorsChosen: temparr})
+
+    }
+    
+  }
   updateTotalSizes(all){
     this.setState({
       allSizes: all
@@ -225,6 +254,7 @@ class Customizer extends Component {
           </button>
       </div>
     )
+    
     else
     return(
         <div className='buttonContainer'>
