@@ -1,13 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import './Header.css';
+import { withRouter } from "react-router-dom";
 
-const Header = () => {
+class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const path = this.props.location.pathname.slice(1);
+    var headerStr;
+    if (path === "Report") {
+      headerStr = "Confirm Order"
+    } else if (path === "Home") {
+      headerStr = "Packages"
+    } else if (path === "Customizer") {
+      headerStr = "Customize Your Package"
+    }
     return (
-        <div className='mainHeader'>
-            Packages
-        </div>
-    )
+      <div className='mainHeader'>
+        <h1>{headerStr}</h1>
+      </div>
+    );
+  }
 }
 
-export default Header;
+export default withRouter(Header);

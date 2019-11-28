@@ -4,7 +4,9 @@ import Home from "./views/Home/Home"
 import Customizer from "./views/Customizer/Customizer"
 import NotFound from "./views/NotFound"
 import './App.css';
+import Report from "./views/Report/Report"
 import Header from "./components/Header/Header"
+
 //import DisplayItem from "./components/CustomizerPage/ItemSidebar/DisplayItem"
 class App extends React.Component {
    constructor(props) {
@@ -31,7 +33,10 @@ class App extends React.Component {
             path='/Customizer'
             component={() => <Customizer data={this.state.selectedPackage} />}
           />
-		 
+          <Route
+            path='/Report'
+            component={() => <Report />}
+          />
          <Route exact path="/">
            <Redirect to="/Home" />
          </Route>
