@@ -57,7 +57,7 @@ const promoItems = [
     },
     {   type: "sticker",
         name: "VINYL STICKERS",
-        colorsAvailable: null,
+        colorsAvailable: ["##ffffff"],
         unitPrice: 0.65,
         totalPrice: 130,
         bundleUnitPrice: 0.5,
