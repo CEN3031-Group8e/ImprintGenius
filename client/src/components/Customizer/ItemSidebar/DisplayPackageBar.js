@@ -1,12 +1,12 @@
 import React from 'react';
 
-import apparelIcon from '../../../assets/apparelIcon.pdf';
-import bottleIcon from '../../../assets/bottleIcon.pdf';
-import cableIcon from '../../../assets/cableIcon.pdf';
-import notebookIcon from '../../../assets/notebookIcon.pdf';
-import penIcon from '../../../assets/penIcon.pdf';
-import stickerIcon from '../../../assets/stickerIcon.pdf';
-import walletIcon from '../../../assets/walletIcon.pdf';
+import apparelIcon from '../../../assets/apparelIcon.png';
+import bottleIcon from '../../../assets/bottleIcon.png';
+import cableIcon from '../../../assets/cableIcon.png';
+import notebookIcon from '../../../assets/notebookIcon.png';
+import penIcon from '../../../assets/penIcon.png';
+import stickerIcon from '../../../assets/stickerIcon.png';
+import walletIcon from '../../../assets/walletIcon.png';
 
 
 const smallPath = {
