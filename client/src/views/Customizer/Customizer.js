@@ -209,14 +209,16 @@ updateSelectedImgDataURL(selectedImageNew){
           return (<ColorPicker maxColorsChosen={maxColorsChosen}
                                itemData ={this.state.currentItemData}
                                updateColors={this.updateColors} //child to parent sending clicked colors
-                               colorsChosen={colorsChosen}/>); //send to child to show saved state
+                               colorsChosen={colorsChosen}
+                               apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
         })
       }
       else{ //render unupdated
         return (<ColorPicker maxColorsChosen={maxColorsChosen}
                              itemData ={this.state.currentItemData}
                              updateColors={this.updateColors} //child to parent sending clicked colors
-                             colorsChosen={colorsChosen}/>); //send to child to show saved state
+                             colorsChosen={colorsChosen}
+                             apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
       }
     }
     else if(this.state.sideBarOption === "quantity"){
