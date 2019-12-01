@@ -220,6 +220,10 @@ updateSelectedImgDataURL(selectedImageNew){
       }
     }
     else if(this.state.sideBarOption === "quantity"){
+      //because user may be in quantity option when switching to promo item
+      //this prevents crash (quantity doesnt show up for promo)
+      if(!this.state.apparelMode) 
+        return;
      //{type, colorsChosen[]}
         var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
         var colorsChosen = apparelColors.colorsChosen;
