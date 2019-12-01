@@ -249,6 +249,20 @@ updateSelectedImgDataURL(selectedImageNew){
     }
   }
 
+  //send data to app.js once required data is saved
+  handleSubmit()
+  {
+    if(this.state.selectedImage != null && this.state.selectedImageTwo != null)
+    {
+      this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo);
+    }
+
+    else
+    alert("Please fill all details before submitting");
+  
+    
+  }
+
   //render upload/colors/quantity/help buttons based on whether item is selected or apparel
   renderBtns()
   {
@@ -367,6 +381,9 @@ updateSelectedImgDataURL(selectedImageNew){
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
+              <button type="button"  onClick={ () => {
+                          this.handleSubmit(); //update app.js
+                          }}>Submit</button> 
 
             </Col>
             <Col md={5}>
