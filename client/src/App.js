@@ -15,15 +15,15 @@ class App extends React.Component {
         selectedPackage: null,
 
 
-        //new
 
-        selectedImage: null,
-       selectedImageTwo:null
+        selectedImage: null, //image data uri for apparel logo
+        selectedImageTwo:null, //image data uri for promo items logo
 
-      //allApparelColorsChosen: this.initAllApparelColorsChosen(), //updated from ColorPicker (child)
-      //allPromoColorsChosen: this.initAllPromoColorsChosen(),
+        allApparelColorsChosen: [], //{type, colorsChosen[] (5 max)}
+        allPromoColorsChosen: [], //{type, colorsChosen[] (1 item in colorsChosen[])}
+        allApparelSizes: [] //{type, allSizes[]}, allsizes array = {color, formCount, sizes[]}, sizes[] = array of numbers (eg:  sizes[0] = 2 means 2 items of size xs)
 
-        //new end
+        
       }
       this.didSelectPackage = this.didSelectPackage.bind(this);
       this.updateData= this.updateData.bind(this);
@@ -36,10 +36,14 @@ class App extends React.Component {
 
 
    //new
-   updateData(selectedImage, selectedImageTwo){
+   updateData(selectedImage, selectedImageTwo, allApparelColorsChosen, allPromoColorsChosen, allApparelSizes ){
     this.setState({
       selectedImage: selectedImage,
-      selectedImageTwo: selectedImageTwo
+      selectedImageTwo: selectedImageTwo,
+      allApparelColorsChosen: allApparelColorsChosen,
+      allPromoColorsChosen: allPromoColorsChosen,
+      allApparelSizes: allApparelSizes
+
   })}
 
   //new end
