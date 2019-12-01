@@ -1,4 +1,4 @@
-const promoItems = [
+const promoItemsData = [
     {   type: "wallet", 
         name: "DUAL POCKET SILICONE PHONE WALLET",
         colorsAvailable: [
@@ -6,6 +6,7 @@ const promoItems = [
             "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080", 
             "0xFF0000", "#ffffff", " #ffff00"
         ],
+        capacity: 250,
         unitPrice: 1.65,
         totalPrice: 412.5,
         bundleUnitPrice: 1.3,
@@ -17,6 +18,7 @@ const promoItems = [
             //Black, Blue, Lime Green, Orange, Purple, Red, White
             "#000000", "#0000ff", "#808080", "#32cd32", "#ffc0cb", "0xFF0000", "#ffffff"
         ],
+        capacity: 100,
         unitPrice: 4,
         totalPrice: 400,
         bundleUnitPrice: 3,
@@ -28,6 +30,7 @@ const promoItems = [
             //Black, Blue, Gunmetal, Green, Red
             "#000000", "#0000ff", "#2a3439", "#008000", "0xFF0000"
         ],
+        capacity: 150,
         unitPrice: 2.2,
         totalPrice: 330,
         bundleUnitPrice: 1.4,
@@ -39,6 +42,7 @@ const promoItems = [
             //Black, Blue, Lilac, Lime Green, Navy, Red, White.
             "#000000", "#0000ff","#c8a2c8","#808080","#000080","#FF0000", "##ffffff"
         ],
+        capacity: 25,
         unitPrice: 15,
         totalPrice: 375,
         bundleUnitPrice: 11,
@@ -50,6 +54,7 @@ const promoItems = [
             //Black, Blue, Red
             "#000000", "#0000ff","#FF0000"
         ],
+        capacity: 100,
         unitPrice: 3,
         totalPrice: 300,
         bundleUnitPrice: 1.5,
@@ -58,13 +63,14 @@ const promoItems = [
     {   type: "sticker",
         name: "VINYL STICKERS",
         colorsAvailable: ["##ffffff"],
+        capacity: 200,
         unitPrice: 0.65,
         totalPrice: 130,
         bundleUnitPrice: 0.5,
         bundleTotalPrice: 100
     }
 ]
-const apparelItems = [
+const apparelItemsData = [
     {   type: "tshirt",
         name: "CVC CREW T-SHIRT",
         colorsAvailable: [
@@ -75,6 +81,10 @@ const apparelItems = [
             "#4b0082", "#4cbb17", "#02075d", "#98ff98", "#ffa500","#6A4481", "#FF0000",
             "#c2b280", "#888c8d", "#747880", "#1c87b7", "#40e0d0", "#8c7d7", "#ffffff"
         ],
+        capacity: 60,
+        sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
+                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"},
+                       {id:6, name:"3XL"},{id:7, name:"4XL"} ],
         unitPrice: 12,
         totalPrice: 720,
         bundleUnitPrice: 7,
@@ -88,6 +98,9 @@ const apparelItems = [
             "#000000", "##ffffff", "#c41e3a","#2F66A9", "#9aa297", "#46473e",
             "#4b0082", "#02075d", "#4b5320", "#FF0000", "#4169e1"
         ],
+        capacity: 10,
+        sizeOptions: [ {id:0, name:"S"},{id:1, name:"M"},{id:2, name:"L"},
+        {id:3, name:"XL"},{id:4, name:"2XL"}],
         unitPrice: 26,
         totalPrice: 260,
         bundleUnitPrice: 10,
@@ -99,10 +112,14 @@ const apparelItems = [
             //NEED UPDATED COLORS LINK!!!!!!!!!!!!!!!!!
             "#000000", "##ffffff", "#c41e3a"
         ],
+        capacity: 5,
+        sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
+                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"},
+                       {id:6, name:"3XL"}],
         unitPrice: 50,
         totalPrice: 250,
         bundleUnitPrice: 20,
         bundleTotalPrice: 100
     }
 ]
-export {promoItems, apparelItems}
+export {promoItemsData, apparelItemsData}
