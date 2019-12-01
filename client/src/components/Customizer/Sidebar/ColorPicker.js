@@ -3,19 +3,17 @@ import './ColorPicker.css';
 import '../../../App.css';
 
 // https://stackoverflow.com/questions/55453192/selecting-multiple-options-in-reactjs
-const maxBtnCap = 3;
 
 class ColorPicker extends React.Component
 {
     constructor(props) {
         super(props);
         this.state = {
+            maxBtnCap: this.props.maxColorsChosen,
             itemData: this.props.itemData,
             colorsAvailable: [],
             btnVals: this.initChosenColors(this.props.colorsChosen)//returns array of buttons currently pressed
-        }
-        console.log("itemData in constructor", this.state.itemData)
-       //this.updateItemData = this.updateItemData.bind(this);
+        }       
     }
     initChosenColors(colorsArr){  //handle "includes" error of undefined in render
         if (colorsArr === undefined || colorsArr === null) //before clicking on a color
@@ -38,7 +36,7 @@ class ColorPicker extends React.Component
                  }
             )
         }
-        else if(this.state.btnVals.length !== maxBtnCap)
+        else if(this.state.btnVals.length !== this.state.maxBtnCap)
         {
             tempBtns.push(btn); //add to list ==> this button is pressed
             this.setState(
@@ -52,14 +50,14 @@ class ColorPicker extends React.Component
         }
     }
     cntrText(count){
-        if(count === maxBtnCap )
+        if(count === this.state.maxBtnCap )
              return <p className="cnt cntLimit">
                  Color Limit Reached!
              </p>
         else{
             return(
                 <p className="cnt cntPckd" >
-                        { count + "/" + maxBtnCap + " Colors Picked  "}
+                        { count + "/" + this.state.maxBtnCap + " Colors Picked  "}
                 </p>
             )
         }
@@ -73,10 +71,6 @@ class ColorPicker extends React.Component
                 <p>Select 1-5 colors for your apparel</p>
 
                 <div className="palette-box">
-                {console.log("state item data", this.state.itemData)}
-
-                    {//this.props.onChange
-                    }
                 {this.state.itemData.colorsAvailable.map(btn =>
                 (
                     <button className="btn-menu"

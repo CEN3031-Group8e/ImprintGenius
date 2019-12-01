@@ -10,14 +10,15 @@ class QuantitySelect extends React.Component
     constructor(props) {
         super(props);
         this.state = {
+            sizeOptions: this.props.sizeOptions,
             colorsArr: this.props.colorsChosen, //received from PageTwo (which pg2 received from ColorPicker)
             allSizes: this.initAllSizes(this.props.colorsChosen, this.props.allSizes), //XS-XXL, so length=6 , will update from child QuantityForm ON SUBMIT
-            countArr: [], //elements: {colorId, count, sizes}
+            //countArr: this.props.countArr, //elements: {colorId, count, sizes}
             capacity: this.props.capacity, //fixed atm (will be passed in from parent App.js to know which package was chosen)
         }
-        this.updateCounter = this.updateCounter.bind(this);
-        this.handleSubmit.bind(this);
+        this.updateSizesAndCounter = this.updateSizesAndCounter.bind(this);
     }
+   
     initAllSizes(colorsArr, allSizes){   //initialize the array to have x elements, each element will contain array[6]
        if (allSizes === undefined || allSizes === null){
         //if haven't filled in the form yet,
@@ -25,7 +26,8 @@ class QuantitySelect extends React.Component
             colorsArr.map(btn => {
                 tempAllSizes.push({
                     color: btn, //{id, name, #}
-                    sizes: [] //[XS-XXL]
+                    sizes: [], //[XS-XXL]
+                    formCount: 0
                 })
             });
             return tempAllSizes;
@@ -33,41 +35,31 @@ class QuantitySelect extends React.Component
         else{ //already have something in the form, reload it ("saved state")
             //where e is {color, sizes[]}
            var tempArr = allSizes.filter(e => colorsArr.includes(e.color));
-           this.props.updateTotalSizes(tempArr);
+           this.props.updateApparelAllSizes(tempArr);
             return tempArr; // [{color, sizes}]
         }
     }
-
-    updateCounter(colorBtn, itemsCount, newSizes){ //note: id is both color and form id
+    updateSizesAndCounter(colorBtn, itemsCount, newSizes){ //note: id is both color and form id
 
         //update current (quantity select)
-        //allSizes = {color={id,name,#}, sizes}
-        var newAllSizes = this.state.allSizes.filter(e => e.color !== colorBtn);
-        newAllSizes.push(
+        //allSizes = {color, sizes, count}
+        var newAllSizes = this.state.allSizes.filter(e => e.color !== colorBtn); //remove old
+        newAllSizes.push(//element = one form (one color)
         {
             color: colorBtn,
-            sizes: newSizes
+            sizes: newSizes,
+            formCount:itemsCount //sum for one color
         })
 
     //Handle live counting updates
-        //remove previous count
-        var newArr = this.state.countArr.filter(e => e.formID !== colorBtn);
-        newArr.push( //add new count to index
-        {
-            formID: colorBtn,
-            count: itemsCount
-        })
         this.setState(
         () => ({
-            countArr: newArr,
+            //countArr: newArr,
             allSizes: newAllSizes
         }),() => {
-            this.props.updateTotalSizes(this.state.allSizes) //update parent (Customizer)
+
+            this.props.updateApparelAllSizes(this.state.allSizes)//, this.state.countArr) //update parent (Customizer)
         });
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.props.updateTotalSizes(this.state.allSizes); //sending ALL sizes to Customizer
     }
     getSizes(colorBtn){
         var element = this.state.allSizes.find(e => e.color === colorBtn);
@@ -78,13 +70,13 @@ class QuantitySelect extends React.Component
             return element.sizes;
 
     }
-    displayMissing(capacity, sizearr){
+    displayMissing(){
         //takes in an array of XS-XXL
         var sum = 0;
-        sizearr.map(e => {
-            sum += e.count;
+        this.state.allSizes.map(e => {
+            sum += e.formCount;
         });
-        var missing = capacity - sum;
+        var missing = this.state.capacity - sum;
         if (missing < 0)
         {
             console.log("items over")
@@ -114,20 +106,18 @@ class QuantitySelect extends React.Component
                               //console.log("found size:", this.getSizes(btn))
                           }
                           <QuantityForm id={ btn } colorBtn={btn} //send to child, Form
+                                sizeOptions={this.state.sizeOptions}
                                   capacity={this.state.capacity}
                                   missing={this.state.capacity}
                                   sizes={this.getSizes(btn)} //reload sizes
-                                  updateCounter={this.updateCounter}
+                                  updateSizesAndCounter={this.updateSizesAndCounter}
                                   updateSizes={this.updateSizes}
                           />
                       </div>
                   </div>
               ))}
-             { <div>{this.displayMissing(this.state.capacity, this.state.countArr)}</div>}
+             { <div>{this.displayMissing()}</div>}
 
-             {/* <button className= "btn-submit" type ="submit" onClick={this.handleSubmit}>
-                  Submit
-              </button>*/}
             </div>
         </div>
         );

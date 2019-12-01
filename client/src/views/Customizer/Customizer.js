@@ -23,7 +23,8 @@ import hoodie from '../../assets/large3.png';
 import popsocket from '../../assets/pop2.png';
 import powerbank from '../../assets/powerbank2.png';
 
-import {promoItems, apparelItems} from '../../data/itemsData.js'
+import {promoItemsData, apparelItemsData} from '../../data/itemsData.js'
+import { element } from 'prop-types';
 
 const largePath = { //Chooses which image to display based on current imageType state
   tshirt: tshirt,
@@ -51,26 +52,36 @@ class Customizer extends Component {
       //test
       currentItemData: null,
 
-      allApparelColorsChosen: this.initAllApparelColorsChosen(), //updated from ColorPicker (child)
-      allPromoColorsChosen: this.initAllPromoColorsChosen(),
-      allSizes: [], //{color, sizes[]}
-      capacity:100,
-
+      //updated from ColorPicker (child)
+      allApparelColorsChosen: this.initAllApparelColorsChosen(), //{type, colorsChosen[] (5 max)}
+      allPromoColorsChosen: this.initAllPromoColorsChosen(),  //{type, colorsChosen (one)}
+      //allSizes: [], //{color, sizes[]}
+      allApparelSizes: this.initAllApparelSizes(), //{type, allSizes[]}
       sideBarOption: null //based on button id
     };
     this.updateType = this.updateType.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.updateSelectedImgDataURL = this.updateSelectedImgDataURL.bind(this);
     this.updateColors = this.updateColors.bind(this);
-    this.updateTotalSizes = this.updateTotalSizes.bind(this);
-    //test
+    this.updateApparelAllSizes = this.updateApparelAllSizes.bind(this);
     this.updateFileTwo = this.updateFileTwo.bind(this);
     this.updateSelectedImgDataURLTwo = this.updateSelectedImgDataURLTwo.bind(this);
   }
+  initAllApparelSizes(){   //each arr element init with itemType + colorsChosen[]
+    var tempAllApparelSizes = [];
+    apparelItemsData.map(item => {
+      tempAllApparelSizes.push({
+        type: item.type, //id from itemData
+        allSizes: [] //each element: {color, sizes[]}, for storing allsizes array (XS-XXL)
+      })
+    });
+
+    return tempAllApparelSizes;
+ }
+
   initAllApparelColorsChosen(){   //each arr element init with itemType + colorsChosen[]
-    //includes both
     var tempAllChosen = [];
-    apparelItems.map(item => {
+    apparelItemsData.map(item => {
       tempAllChosen.push({
         type: item.type, //distinguish what item it is
         colorsChosen: [] //empty arr[max 5] to be filled by colorPicker return
@@ -80,71 +91,48 @@ class Customizer extends Component {
  }
  initAllPromoColorsChosen(){   
   var tempAllChosen = [];
-  promoItems.map(item => {
+  promoItemsData.map(item => {
     tempAllChosen.push({
       type: item.type, 
-      colorChosen: []//up to 1 item can be stored
+      colorsChosen: []//up to 1 item can be stored
     })
   });
   return tempAllChosen;
   
 }
   //all update functions below are from child component to parent (page2)
-  updateFile(selectedFileNew){
-    this.setState({
-      selectedFile: selectedFileNew
-  })}
-  //test
-  updateFileTwo(selectedFileNew){
-    this.setState({
-      selectedFileTwo: selectedFileNew
-  })}
-  //test
-  updateSelectedImgDataURLTwo(selectedImageNew){
-    this.setState({
-      selectedImageTwo: selectedImageNew
-  })}
-  updateSelectedImgDataURL(selectedImageNew){
-    this.setState({
-      selectedImage: selectedImageNew
-  })}
-
-  /*updateColors(clrs){
-    console.log("allapparelcolorschosen ", this.state.allApparelColorsChosen)
-    console.log("allpromocolorschosen ", this.state.allPromoColorsChosen)
-    this.setState({
-      colorsChosen: clrs
-  })}*/
-
   updateColors(clrs){
-
-    console.log("allapparelcolorschosen ", this.state.allApparelColorsChosen)
-    console.log("allpromocolorschosen ", this.state.allPromoColorsChosen)
-   
     if(this.state.apparelMode === true)
     {
       var tempIndex = this.state.allApparelColorsChosen.findIndex(item => item.type === this.state.imageType)
       var temparr = this.state.allApparelColorsChosen;
       temparr[tempIndex].colorsChosen = clrs;
       this.setState({
-        allApparelColorsChosen: temparr})
+        allApparelColorsChosen: temparr
+      })
     }
-
     else
     {
       var tempIndex = this.state.allPromoColorsChosen.findIndex(item => item.type === this.state.imageType)
       var temparr = this.state.allPromoColorsChosen;
       temparr[tempIndex].colorChosen = clrs;
       this.setState({
-      allPromoColorsChosen: temparr})
-
+        allPromoColorsChosen: temparr
+      })
     }
-    
   }
-  updateTotalSizes(all){
+
+  //{type,allSizes}/type
+  updateApparelAllSizes(allSizes){ //allsizes now contains sum per form/color
+    var tempIndex = this.state.allApparelSizes.findIndex(item => item.type === this.state.imageType)
+    var temparr = this.state.allApparelSizes;
+    temparr[tempIndex].allSizes = allSizes;
+
     this.setState({
-      allSizes: all
-  })}
+      allApparelSizes: temparr,
+    })
+  }
+
 
   updateType(imgType){
     this.setState({
@@ -157,13 +145,25 @@ class Customizer extends Component {
       this.setState({apparelMode: false})
     }
   }
-  updateItemData(data){
-    this.setState({
-      currentItemData: data  
-      //itemData: data,
-        //colorsAvailable: data.colorsAvailable
-    })
-}
+ 
+updateFile(selectedFileNew){
+  this.setState({
+    selectedFile: selectedFileNew
+})}
+//test
+updateFileTwo(selectedFileNew){
+  this.setState({
+    selectedFileTwo: selectedFileNew
+})}
+//test
+updateSelectedImgDataURLTwo(selectedImageNew){
+  this.setState({
+    selectedImageTwo: selectedImageNew
+})}
+updateSelectedImgDataURL(selectedImageNew){
+  this.setState({
+    selectedImage: selectedImageNew
+})}
 
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
@@ -175,40 +175,68 @@ class Customizer extends Component {
                         updateImageTwo = {this.updateSelectedImgDataURLTwo}/>)
     }
     else if(this.state.sideBarOption === "colors"){
-        //this.state.imageType
-        var allItemsColors;
-        if(this.state.apparelMode)
-          allItemsColors = apparelItems;
-        else
-          allItemsColors = promoItems;
-        var itemData = allItemsColors.find(e => e.type === this.state.imageType);
-  
+      var allItemsColors; //data to be passed into colorpicker
+      var allColorsChosen; //{type, colorsChosen[]}
+      var maxColorsChosen;
+      if(this.state.apparelMode){
+        allItemsColors = apparelItemsData; //from ItemData.js
+        allColorsChosen = this.state.allApparelColorsChosen;
+        maxColorsChosen = 5;
+      } 
+      else{ //promo type
+        allItemsColors = promoItemsData; ////from ItemData.js
+        allColorsChosen = this.state.allPromoColorsChosen;
+        maxColorsChosen = 1;
+      }
+      //item data contains {type, allPossibleColors[], package size,etc.}
+      var itemData = allItemsColors.find(e => e.type === this.state.imageType);
+      var element = allColorsChosen.find(e => e.type === this.state.imageType);
+      var colorsChosen = element.colorsChosen;
        if(itemData !== this.state.currentItemData){ //avoid infinite loop crash, only update on change
         this.setState(({
           currentItemData: itemData  
         }),
         () => { //only render until state is updated
-          return (<ColorPicker itemData ={this.state.currentItemData}
+          return (<ColorPicker maxColorsChosen={maxColorsChosen}
+                               itemData ={this.state.currentItemData}
                                updateColors={this.updateColors} //child to parent sending clicked colors
-                               colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
+                               colorsChosen={colorsChosen}/>); //send to child to show saved state
         })
       }
-      else{
-        return (<ColorPicker itemData ={this.state.currentItemData}
+      else{ //render unupdated
+        return (<ColorPicker maxColorsChosen={maxColorsChosen}
+                             itemData ={this.state.currentItemData}
                              updateColors={this.updateColors} //child to parent sending clicked colors
-                             colorsChosen={this.state.colorsChosen}/>); //send to child to show saved state
+                             colorsChosen={colorsChosen}/>); //send to child to show saved state
       } 
     }
     else if(this.state.sideBarOption === "quantity"){
-        if(this.state.colorsChosen.length !== 0){
-            return (
-                <QuantitySelect capacity={this.state.capacity }
-                    colorsChosen={this.state.colorsChosen} //send to child
-                    allSizes={this.state.allSizes}
-                    updateTotalSizes={this.updateTotalSizes}/> //update parent
-            )}
+     //{type, colorsChosen[]}
+        var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
+        var colorsChosen = apparelColors.colorsChosen;
+
+        // allSizes: {color,sizes[],sum}/element
+        var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
+        var allSizes = sizesOfApparelItem.allSizes;
+
+
+        var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
+        var sizeOptions = apparelItem.sizeOptions;
+       var capacity = apparelItem.capacity;
+       
+        if(colorsChosen.length !== 0){
+          
+          return (
+            
+            <QuantitySelect 
+            sizeOptions ={sizeOptions}
+                capacity={capacity }
+                colorsChosen={colorsChosen} //send to child
+                allSizes={allSizes}
+                updateApparelAllSizes={this.updateApparelAllSizes}/> //update parent
+        )}
         else{
-            return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
+          return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
         }
     }
   }
