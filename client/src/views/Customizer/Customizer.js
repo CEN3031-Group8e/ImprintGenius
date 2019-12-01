@@ -124,7 +124,7 @@ class Customizer extends Component {
     {
       var tempIndex = this.state.allPromoColorsChosen.findIndex(item => item.type === this.state.imageType)
       var temparr = this.state.allPromoColorsChosen;
-      temparr[tempIndex].colorChosen = clrs;
+      temparr[tempIndex].colorsChosen = clrs;
       this.setState({
         allPromoColorsChosen: temparr
       })
@@ -262,19 +262,67 @@ updateSelectedImgDataURL(selectedImageNew){
     }
   }
 
-  //send data to app.js once required data is saved
+
+
+  isSizesfilled()
+  {   
+
+    let array1 = this.state.allApparelSizes[0].allSizes;
+    var sum1 = 0;
+    array1.map(e => {
+        sum1 += e.formCount;
+    });
+
+    let array2 = this.state.allApparelSizes[1].allSizes;
+    var sum2 = 0;
+    array2.map(e => {
+        sum2 += e.formCount;
+    });
+
+    let array3 = this.state.allApparelSizes[2].allSizes;
+    var sum3 = 0;
+    array3.map(e => {
+        sum3 += e.formCount;
+    });
+
+
+    if(sum1 == 60 && sum2 == 10 && sum3 == 5)
+    return true
+    else
+    return false  
+   
+  }
+
+  isPromoColorsChosen()
+  {
+    
+    var temp = this.state.allPromoColorsChosen.filter(e => e.colorsChosen.length == 1)
+    console.log(temp);
+
+    if(temp.length == 6)
+    return true;
+
+    else
+    return false;
+
+  }
+
+
+  //send data to app.js once required data is saved and all details are filled
   handleSubmit()
   {
-    if(this.state.selectedImage != null && this.state.selectedImageTwo != null)
+   // if(this.state.selectedImage == null || this.state.selectedImageTwo == null || )
+    if( !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null)
     {
-      this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo);
+      alert("Please fill all details before submitting");
+      
     }
 
     else
-    alert("Please fill all details before submitting");
-
-
+    this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
+    
   }
+
 
   //render upload/colors/quantity/help buttons based on whether item is selected or apparel
   renderBtns()
