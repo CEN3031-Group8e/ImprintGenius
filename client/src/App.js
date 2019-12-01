@@ -12,14 +12,37 @@ class App extends React.Component {
    constructor(props) {
      super(props);
       this.state = {
-        selectedPackage: null
+        selectedPackage: null,
+
+
+        //new
+
+        selectedImage: null,
+       selectedImageTwo:null
+
+      //allApparelColorsChosen: this.initAllApparelColorsChosen(), //updated from ColorPicker (child)
+      //allPromoColorsChosen: this.initAllPromoColorsChosen(),
+
+        //new end
       }
       this.didSelectPackage = this.didSelectPackage.bind(this);
+      this.updateData= this.updateData.bind(this);
    }
+
    didSelectPackage(data) {
      this.setState({ selectedPackage: data }, () => {
      });
    }
+
+
+   //new
+   updateData(selectedImage, selectedImageTwo){
+    this.setState({
+      selectedImage: selectedImage,
+      selectedImageTwo: selectedImageTwo
+  })}
+
+  //new end
    render() {
      return(
        <div>
@@ -31,7 +54,7 @@ class App extends React.Component {
           />
           <Route
             path='/Customizer'
-            component={() => <Customizer data={this.state.selectedPackage} />}
+            component={() => <Customizer data={this.state.selectedPackage} updateData={this.updateData}  />}
           />
           <Route
             path='/Report'
