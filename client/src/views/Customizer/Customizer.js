@@ -20,8 +20,13 @@ import QuantitySelect from '../../components/Customizer/Sidebar/QuantitySelect.j
 import tshirt from '../../assets/large1.png';
 import longsleeve from '../../assets/large2.png';
 import hoodie from '../../assets/large3.png';
-import popsocket from '../../assets/pop2.png';
-import powerbank from '../../assets/powerbank2.png';
+//Promo item large images
+import bottle from '../../assets/bottle.jpg';
+import cable from '../../assets/cable.jpg';
+import notebook from '../../assets/notebook.jpg';
+import pen from '../../assets/pen.jpg';
+import sticker from '../../assets/sticker.jpg';
+import wallet from '../../assets/wallet.jpg';
 
 import {promoItemsData, apparelItemsData} from '../../data/itemsData.js'
 import { element } from 'prop-types';
@@ -30,8 +35,12 @@ const largePath = { //Chooses which image to display based on current imageType 
   tshirt: tshirt,
   longsleeve: longsleeve,
   hoodie: hoodie,
-  popsocket: popsocket,
-  powerbank: powerbank
+  bottle: bottle,
+  cable: cable,
+  notebook: notebook,
+  pen: pen,
+  sticker: sticker,
+  wallet: wallet
 }
 
 class Customizer extends Component {
@@ -89,16 +98,16 @@ class Customizer extends Component {
     });
     return tempAllChosen;
  }
- initAllPromoColorsChosen(){   
+ initAllPromoColorsChosen(){
   var tempAllChosen = [];
   promoItemsData.map(item => {
     tempAllChosen.push({
-      type: item.type, 
+      type: item.type,
       colorsChosen: []//up to 1 item can be stored
     })
   });
   return tempAllChosen;
-  
+
 }
   //all update functions below are from child component to parent (page2)
   updateColors(clrs){
@@ -145,7 +154,7 @@ class Customizer extends Component {
       this.setState({apparelMode: false})
     }
   }
- 
+
 updateFile(selectedFileNew){
   this.setState({
     selectedFile: selectedFileNew
@@ -182,7 +191,7 @@ updateSelectedImgDataURL(selectedImageNew){
         allItemsColors = apparelItemsData; //from ItemData.js
         allColorsChosen = this.state.allApparelColorsChosen;
         maxColorsChosen = 5;
-      } 
+      }
       else{ //promo type
         allItemsColors = promoItemsData; ////from ItemData.js
         allColorsChosen = this.state.allPromoColorsChosen;
@@ -194,7 +203,7 @@ updateSelectedImgDataURL(selectedImageNew){
       var colorsChosen = element.colorsChosen;
        if(itemData !== this.state.currentItemData){ //avoid infinite loop crash, only update on change
         this.setState(({
-          currentItemData: itemData  
+          currentItemData: itemData
         }),
         () => { //only render until state is updated
           return (<ColorPicker maxColorsChosen={maxColorsChosen}
@@ -208,7 +217,7 @@ updateSelectedImgDataURL(selectedImageNew){
                              itemData ={this.state.currentItemData}
                              updateColors={this.updateColors} //child to parent sending clicked colors
                              colorsChosen={colorsChosen}/>); //send to child to show saved state
-      } 
+      }
     }
     else if(this.state.sideBarOption === "quantity"){
      //{type, colorsChosen[]}
@@ -223,12 +232,12 @@ updateSelectedImgDataURL(selectedImageNew){
         var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
         var sizeOptions = apparelItem.sizeOptions;
        var capacity = apparelItem.capacity;
-       
+
         if(colorsChosen.length !== 0){
-          
+
           return (
-            
-            <QuantitySelect 
+
+            <QuantitySelect
             sizeOptions ={sizeOptions}
                 capacity={capacity }
                 colorsChosen={colorsChosen} //send to child
@@ -244,7 +253,7 @@ updateSelectedImgDataURL(selectedImageNew){
   {
     if(data !== this.state.currentItemData){
       this.setState({
-        currentItemData: data  
+        currentItemData: data
       })
     }
   }
@@ -259,14 +268,14 @@ updateSelectedImgDataURL(selectedImageNew){
 
     else
     alert("Please fill all details before submitting");
-  
-    
+
+
   }
 
   //render upload/colors/quantity/help buttons based on whether item is selected or apparel
   renderBtns()
   {
-    
+
     if(this.state.apparelMode === true)
         return(
         <div className='buttonContainer'>
@@ -296,7 +305,7 @@ updateSelectedImgDataURL(selectedImageNew){
           </button>
       </div>
     )
-    
+
     else
     return(
         <div className='buttonContainer'>
@@ -315,7 +324,7 @@ updateSelectedImgDataURL(selectedImageNew){
             })}}>
             Colors
           </button>
-         
+
           <button className='itemControlButton borderTop'>
             Help
           </button>
@@ -383,7 +392,7 @@ updateSelectedImgDataURL(selectedImageNew){
               </div>
               <button type="button"  onClick={ () => {
                           this.handleSubmit(); //update app.js
-                          }}>Submit</button> 
+                          }}>Submit</button>
 
             </Col>
             <Col md={5}>
