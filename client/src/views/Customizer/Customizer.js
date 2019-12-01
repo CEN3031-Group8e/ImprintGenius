@@ -319,7 +319,11 @@ updateSelectedImgDataURL(selectedImageNew){
     }
 
     else
-    this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
+    {
+      this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
+      this.props.history.push('/Report')
+    }
+    
     
   }
 
