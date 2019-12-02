@@ -7,7 +7,7 @@ import {
 import './HomeModal.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import packageData from '../../data/packages';
+import packageData from '../../data/packageinfo';
 import CardObject from '../../components/CardObject/CardObject.js'
 
 export default class HomeModal extends React.Component {
@@ -31,7 +31,7 @@ export default class HomeModal extends React.Component {
       <Modal size="lg" isOpen={this.state.modal}>
         <ModalHeader>
           <div className='header'>
-            Trade Show Basics
+            {packageData[this.props.id - 1].name}
           <Button className='modalbutton' align='right' close onClick={this.toggle}>
           <img src={require("../../assets/closebutton.png")} width="40"></img>
           </Button>

@@ -22,7 +22,7 @@ export default class CardObject extends React.Component {
             <Row>
               <Col sm={6}>{data.name}
               <div className="image">
-              <img src={require("../../assets/" + name + ".png")}
+              <img src={require("../../assets/" + data.file)}
               width="100" align ="middle">
               </img>
               </div>

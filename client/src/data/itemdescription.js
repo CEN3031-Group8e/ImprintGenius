@@ -2,7 +2,7 @@ export default [
 
     {
       name: "T-Shirts",
-      description: "Desc of T-Shirts"
+      description: "Description of T-Shirts"
     }, {
       name: "Long Sleeves",
       description: "Description of long sleeves"
@@ -10,19 +10,22 @@ export default [
       name: "Cotton Hoodies",
       description: "Description of cotton hoodies"
     }, {
-      name: "Popsockets",
-      description: "Description of pop sockets"
+      name: "Phone Wallets",
+      description: "Description of Phone Wallets"
     }, {
-      name: "Powerbanks",
-      description: "Description of powerbanks"
+      name: "Charging Buddys",
+      description: "Description of Charging Buddys"
     }, {
-      name: "Fans",
-      description: "Description of Fans"
+      name: "Vinyl Stickers",
+      description: "Description of Vinyl Stickers"
     }, {
-      name: "Sweaters",
-      description: "Description of Sweaters"
+      name: "LED Pens",
+      description: "Description of LED Pens"
     }, {
-      name: "Drones",
-      description: "Description of Drones"
-    }
+      name: "Bottles",
+      description: "Description of Bottles"
+    }, {
+      name: "Notebooks",
+      description: "Description of Notebooks"
+    },
 ]

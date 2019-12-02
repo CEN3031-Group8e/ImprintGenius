@@ -5,6 +5,7 @@
   "dependencies": {
     "emailjs": "^2.2.0",
     "emailjs-com": "^2.4.1",
+    "imgur": "^0.3.1",
     "nodemailer": "^6.3.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",

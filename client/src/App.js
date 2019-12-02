@@ -17,13 +17,13 @@ class App extends React.Component {
 
 
         selectedImage: null, //image data uri for apparel logo
-        selectedImageTwo:null, //image data uri for promo items logo
+        selectedImageTwo: null, //image data uri for promo items logo
 
         allApparelColorsChosen: [], //{type, colorsChosen[] (5 max)}
         allPromoColorsChosen: [], //{type, colorsChosen[] (1 item in colorsChosen[])}
         allApparelSizes: [] //{type, allSizes[]}, allsizes array = {color, formCount, sizes[]}, sizes[] = array of numbers (eg:  sizes[0] = 2 means 2 items of size xs)
 
-        
+
       }
       this.didSelectPackage = this.didSelectPackage.bind(this);
       this.updateData= this.updateData.bind(this);
@@ -62,7 +62,9 @@ class App extends React.Component {
           />
           <Route
             path='/Report'
-            component={() => <Report />}
+            component={() => <Report selectedImage={this.state.selectedImage} selectedImageTwo={this.state.selectedImageTwo}
+            allApparelColorsChosen={this.state.allApparelColorsChosen} allPromoColorsChosen={this.state.allPromoColorsChosen}
+            allApparelSizes={this.state.allApparelSizes}/>}
           />
          <Route exact path="/">
            <Redirect to="/Home" />
