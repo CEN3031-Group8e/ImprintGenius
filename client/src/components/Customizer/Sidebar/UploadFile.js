@@ -137,6 +137,10 @@ class UploadFile extends React.Component
        </div>)}
     }
 
+    OnClickInput = (event) => {
+      event.target.value = ''
+  }
+  
   
 
     render()
@@ -167,9 +171,10 @@ class UploadFile extends React.Component
             <h1>Add an Image</h1>
             <p>Upload your item logo file</p>
             <form className="uploadForm" method="post" action="#" id="#2">
-                <div className="form-group files">
+                <div className="form-group files ">
                   <input type="file"  className="form-control"
                          accept = "image/*"
+                         onClick = {this.OnClickInput}
                          onChange={this.onChangeHandlerTwo}/>
                 </div>
             </form>
