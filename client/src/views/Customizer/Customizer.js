@@ -209,14 +209,16 @@ updateSelectedImgDataURL(selectedImageNew){
           return (<ColorPicker maxColorsChosen={maxColorsChosen}
                                itemData ={this.state.currentItemData}
                                updateColors={this.updateColors} //child to parent sending clicked colors
-                               colorsChosen={colorsChosen}/>); //send to child to show saved state
+                               colorsChosen={colorsChosen}
+                               apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
         })
       }
       else{ //render unupdated
         return (<ColorPicker maxColorsChosen={maxColorsChosen}
                              itemData ={this.state.currentItemData}
                              updateColors={this.updateColors} //child to parent sending clicked colors
-                             colorsChosen={colorsChosen}/>); //send to child to show saved state
+                             colorsChosen={colorsChosen}
+                             apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
       }
     }
     else if(this.state.sideBarOption === "quantity"){
@@ -414,7 +416,7 @@ updateSelectedImgDataURL(selectedImageNew){
       );
     }
     else {
-      return <img className="selectedImg" src = {this.state.selectedImageTwo} />;
+      return <img className="selectedImgTwo" src = {this.state.selectedImageTwo} />;
     }
   }
 
@@ -446,9 +448,7 @@ updateSelectedImgDataURL(selectedImageNew){
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
-              <button type="button"  onClick={ () => {
-                          this.handleSubmit(); //update app.js
-                          }}>Submit</button>
+            
 
             </Col>
             <Col md={5}>
@@ -466,9 +466,15 @@ updateSelectedImgDataURL(selectedImageNew){
               {/*'Apparel in your Package' bottom bar*/}
               {this.displayBottomBar()}
               </div>
-            </Col>
+              <Row>
+              <button type="button" xlassName = "submitBtn" onClick={ () => {
+                          this.handleSubmit(); //update app.js
+                          }}>Submit Order</button>
+               </Row>           
+              
+            </Col>            
           </Row>
-        </Container>
+        </Container>       
       </div>
     );
   }

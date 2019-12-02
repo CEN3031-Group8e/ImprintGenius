@@ -62,13 +62,21 @@ class ColorPicker extends React.Component
             )
         }
     }
+
+    display()
+    {
+        if(this.props.apparelMode === true)
+        return(<p>Select 1-5 colors for your apparel</p>)
+        else
+        return(<p>Select 1 color for your item</p>)
+    }
     render() {
 		return(
         <div>
             <div className="colorPicker-box" >
                 <h1>{//this.state.itemData.name
                 }</h1>
-                <p>Select 1-5 colors for your apparel</p>
+               {this.display()}
 
                 <div className="palette-box">
                 {this.state.itemData.colorsAvailable.map(btn =>

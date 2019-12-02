@@ -109,3 +109,13 @@
   top: 25%;
   left: 36%;
 }
+.selectedImgTwo {
+  position: absolute;
+  z-index: 50;
+  height: auto;
+  width: 25%;
+  top: 100%;
+  right: 36%;
+}
+
+
