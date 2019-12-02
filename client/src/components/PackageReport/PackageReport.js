@@ -176,7 +176,8 @@ class PackageReport extends React.Component {
             <Row>
             {this.props.allPromoColorsChosen.map((item) =>
               <Col lg>
-                {item.type} : {item.colorsChosen[0]}
+                {item.type} : <button className = "btn btn-circle" style = {{background : item.colorsChosen[0]}}></button>
+                {/*{item.type} : {item.colorsChosen[0]}*/}
               </Col>
             )}
             </Row>
