@@ -3,7 +3,7 @@ const promoItemsData = [
     name: "16 OZ. KALI SWIGGY STAINLESS STEEL BOTTLE",
     colorsAvailable: [
         //Black, Blue, Lilac, Lime Green, Navy, Red, White.
-        "#000000", "#0000ff","#c8a2c8","#32CD32","#000080","#FF0000", "##ffffff"
+        "#000000", "#0000ff","#c8a2c8","#32CD32","#000080","#ff0000", "#ffffff"
     ],
     capacity: 25,
     unitPrice: 15,
@@ -15,7 +15,7 @@ const promoItemsData = [
         name: "3-IN-1 CHARGING BUDDY WITH CARABINER CLIP",
         colorsAvailable: [
             //Black, Blue, Lime Green, Orange, Purple, Red, White
-            "#000000", "#0000ff", "#32CD32", "#ffa500", "#6a0dad", "#FF0000", "#ffffff"
+            "#000000", "#0000ff", "#32CD32", "#ffa500", "#6a0dad", "#ff0000", "#ffffff"
         ],
         capacity: 100,
         unitPrice: 4,
@@ -27,7 +27,7 @@ const promoItemsData = [
         name: "JOURNAL NOTEBOOK",
         colorsAvailable: [
             //Black, Blue, Red
-            "#000000", "#0000ff","#FF0000"
+            "#000000", "#0000ff","#ff0000"
         ],
         capacity: 100,
         unitPrice: 3,
@@ -39,7 +39,7 @@ const promoItemsData = [
         name: "DEJA VU LIGHT UP PEN",
         colorsAvailable: [
             //Black, Blue, Red, Gunmetal, Green
-            "#000000", "#0000ff", "#FF0000","#2a3439", "#008000" 
+            "#000000", "#0000ff", "#ff0000","#2a3439", "#008000"
         ],
         capacity: 150,
         unitPrice: 2.2,
@@ -56,12 +56,12 @@ const promoItemsData = [
         bundleUnitPrice: 0.5,
         bundleTotalPrice: 100
     },
-    {   type: "wallet", 
+    {   type: "wallet",
         name: "DUAL POCKET SILICONE PHONE WALLET",
         colorsAvailable: [
             //Black, Blue, Gray, Lime Green, Orange, Pink, Purple, Red, White, Yellow
-            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080", 
-            "#FF0000", "#ffffff", " #ffff00"
+            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080",
+            "#ff0000", "#ffffff", "#ffff00"
         ],
         capacity: 250,
         unitPrice: 1.65,
@@ -101,7 +101,7 @@ const apparelItemsData = [
         ],
         capacity: 10,
         sizeOptions: [ {id:0, name:"S"},{id:1, name:"M"},{id:2, name:"L"},
-                       {id:3, name:"XL"},{id:4, name:"2XL"} 
+                       {id:3, name:"XL"},{id:4, name:"2XL"}
         ],
         unitPrice: 26,
         totalPrice: 260,
@@ -118,9 +118,9 @@ const apparelItemsData = [
             Dk Gry Marb Flc ,Drk Gry Htr/Blk ,Deep Heather ,Dtg Dark Grey,
             Black ,Black Heather ,Dtg Black ,Teal ,Forest ,Military Green,
             Ash ,Dtg White ,Vintage White ,White ,Heather Forest ,Heather Navy,
-            Heather Slate ,Heather Tru Royl ,Hthr Deep Teal ,Maroon ,Storm 
+            Heather Slate ,Heather Tru Royl ,Hthr Deep Teal ,Maroon ,Storm
              */
-            "#0061a5", "#222953", "#efcfe7", "#48267a", "#f6c2ac", "#b96c64", "#e43441", 
+            "#0061a5", "#222953", "#efcfe7", "#48267a", "#f6c2ac", "#b96c64", "#e43441",
             "#d43134", "#733a40", "#f8b327", "#dd9526","#e7c5a0", "#bfa284", "#bab7b5",
             "#999999", "#474246", "#474246", "#6c6f70","#494B48","#363539","#858785",
             "#373538", "#000000", "#1e1e1e", "#141414","#58aa93","#1f3832","#5a5e45",
@@ -129,7 +129,7 @@ const apparelItemsData = [
         ],
         capacity: 5,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
-                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"} 
+                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"}
         ],
         unitPrice: 50,
         totalPrice: 250,

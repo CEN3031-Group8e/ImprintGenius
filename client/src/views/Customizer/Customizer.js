@@ -16,32 +16,13 @@ import DisplayApparelBar from '../../components/Customizer/ItemSidebar/DisplayAp
 import DisplayPackageBar from '../../components/Customizer/ItemSidebar/DisplayPackageBar.js';
 import {ColorPicker} from '../../components/Customizer/Sidebar/ColorPicker.js';
 import QuantitySelect from '../../components/Customizer/Sidebar/QuantitySelect.js';
-//Large images of package items
-import tshirt from '../../assets/large1.png';
-import longsleeve from '../../assets/large2.png';
-import hoodie from '../../assets/large3.png';
-//Promo item large images
-import bottle from '../../assets/bottle.jpg';
-import cable from '../../assets/cable.jpg';
-import notebook from '../../assets/notebook.jpg';
-import pen from '../../assets/pen.jpg';
-import sticker from '../../assets/sticker.jpg';
-import wallet from '../../assets/wallet.jpg';
+
+import {largePath, notebookPath, penPath, bottlePath, cablePath, walletPath} from './CustomizerImages.js';
+
 
 import {promoItemsData, apparelItemsData} from '../../data/itemsData.js'
 import { element } from 'prop-types';
 
-const largePath = { //Chooses which image to display based on current imageType state
-  tshirt: tshirt,
-  longsleeve: longsleeve,
-  hoodie: hoodie,
-  bottle: bottle,
-  cable: cable,
-  notebook: notebook,
-  pen: pen,
-  sticker: sticker,
-  wallet: wallet
-}
 
 class Customizer extends Component {
   constructor(props) {
@@ -174,6 +155,64 @@ updateSelectedImgDataURL(selectedImageNew){
     selectedImage: selectedImageNew
 })}
 
+
+//Show image by color chosen
+imagesPath(){
+  var allColorsChosen = this.state.allPromoColorsChosen;
+
+  if(this.state.imageType == 'notebook'){
+    var element1 = allColorsChosen.find(e => e.type === 'notebook');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'notebook';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    // console.log(str);
+    return (notebookPath[str]);
+  }
+
+  else if (this.state.imageType == 'pen'){
+    var element1 = allColorsChosen.find(e => e.type === 'pen');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'pen';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (penPath[str]);
+  }
+
+  else if (this.state.imageType == 'bottle'){
+    var element1 = allColorsChosen.find(e => e.type === 'bottle');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'bottle';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (bottlePath[str]);
+  }
+
+  else if (this.state.imageType == 'cable'){
+    var element1 = allColorsChosen.find(e => e.type === 'cable');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'cable';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (cablePath[str]);
+  }
+
+  else if (this.state.imageType == 'wallet'){
+    var element1 = allColorsChosen.find(e => e.type === 'wallet');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'wallet';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (walletPath[str]);
+  }
+
+  else {
+    return (largePath[this.state.imageType]);
+  }
+}
+
+
+
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
@@ -224,7 +263,7 @@ updateSelectedImgDataURL(selectedImageNew){
     else if(this.state.sideBarOption === "quantity"){
       //because user may be in quantity option when switching to promo item
       //this prevents crash (quantity doesnt show up for promo)
-      if(!this.state.apparelMode) 
+      if(!this.state.apparelMode)
         return;
      //{type, colorsChosen[]}
         var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
@@ -267,7 +306,7 @@ updateSelectedImgDataURL(selectedImageNew){
 
 
   isSizesfilled()
-  {   
+  {
 
     let array1 = this.state.allApparelSizes[0].allSizes;
     var sum1 = 0;
@@ -291,13 +330,13 @@ updateSelectedImgDataURL(selectedImageNew){
     if(sum1 == 60 && sum2 == 10 && sum3 == 5)
     return true
     else
-    return false  
-   
+    return false
+
   }
 
   isPromoColorsChosen()
   {
-    
+
     var temp = this.state.allPromoColorsChosen.filter(e => e.colorsChosen.length == 1)
     console.log(temp);
 
@@ -317,7 +356,7 @@ updateSelectedImgDataURL(selectedImageNew){
     if( !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null)
     {
       alert("Please fill all details before submitting");
-      
+
     }
 
     else
@@ -325,8 +364,8 @@ updateSelectedImgDataURL(selectedImageNew){
       this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
       this.props.history.push('/Report')
     }
-    
-    
+
+
   }
 
 
@@ -442,13 +481,27 @@ updateSelectedImgDataURL(selectedImageNew){
                 <p className='greenLink'>View Unfinished</p>
               </div>
             </Col>
+
+
+
+
+
+
+
             <Col md={5}>
               <div className="mainImage">
-                <img className="apparelImg" src = {largePath[this.state.imageType]} />
+                <img className="apparelImg" src = {this.imagesPath()} />
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
-            
+
+
+
+
+
+
+
+
 
             </Col>
             <Col md={5}>
@@ -470,11 +523,11 @@ updateSelectedImgDataURL(selectedImageNew){
               <button type="button" xlassName = "submitBtn" onClick={ () => {
                           this.handleSubmit(); //update app.js
                           }}>Submit Order</button>
-               </Row>           
-              
-            </Col>            
+               </Row>
+
+            </Col>
           </Row>
-        </Container>       
+        </Container>
       </div>
     );
   }
