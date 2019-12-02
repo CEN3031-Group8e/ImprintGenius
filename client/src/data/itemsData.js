@@ -1,52 +1,27 @@
 const promoItemsData = [
-    {   type: "wallet", 
-        name: "DUAL POCKET SILICONE PHONE WALLET",
-        colorsAvailable: [
-            //Black, Blue, Gray, Lime Green, Orange, Pink, Purple, Red, White, Yellow
-            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080", 
-            "0xFF0000", "#ffffff", " #ffff00"
-        ],
-        capacity: 250,
-        unitPrice: 1.65,
-        totalPrice: 412.5,
-        bundleUnitPrice: 1.3,
-        bundleTotalPrice: 325
+    {   type: "bottle",
+    name: "16 OZ. KALI SWIGGY STAINLESS STEEL BOTTLE",
+    colorsAvailable: [
+        //Black, Blue, Lilac, Lime Green, Navy, Red, White.
+        "#000000", "#0000ff","#c8a2c8","#32CD32","#000080","#FF0000", "##ffffff"
+    ],
+    capacity: 25,
+    unitPrice: 15,
+    totalPrice: 375,
+    bundleUnitPrice: 11,
+    bundleTotalPrice: 275
     },
     {   type: "cable",
         name: "3-IN-1 CHARGING BUDDY WITH CARABINER CLIP",
         colorsAvailable: [
             //Black, Blue, Lime Green, Orange, Purple, Red, White
-            "#000000", "#0000ff", "#808080", "#32cd32", "#ffc0cb", "0xFF0000", "#ffffff"
+            "#000000", "#0000ff", "#32CD32", "#ffa500", "#6a0dad", "#FF0000", "#ffffff"
         ],
         capacity: 100,
         unitPrice: 4,
         totalPrice: 400,
         bundleUnitPrice: 3,
         bundleTotalPrice: 300
-    },
-    {   type: "pen",
-        name: "DEJA VU LIGHT UP PEN",
-        colorsAvailable: [
-            //Black, Blue, Gunmetal, Green, Red
-            "#000000", "#0000ff", "#2a3439", "#008000", "0xFF0000"
-        ],
-        capacity: 150,
-        unitPrice: 2.2,
-        totalPrice: 330,
-        bundleUnitPrice: 1.4,
-        bundleTotalPrice: 210
-    },
-    {   type: "bottle",
-        name: "16 OZ. KALI SWIGGY STAINLESS STEEL BOTTLE",
-        colorsAvailable: [
-            //Black, Blue, Lilac, Lime Green, Navy, Red, White.
-            "#000000", "#0000ff","#c8a2c8","#808080","#000080","#FF0000", "##ffffff"
-        ],
-        capacity: 25,
-        unitPrice: 15,
-        totalPrice: 375,
-        bundleUnitPrice: 11,
-        bundleTotalPrice: 275
     },
     {   type: "notebook",
         name: "JOURNAL NOTEBOOK",
@@ -60,6 +35,18 @@ const promoItemsData = [
         bundleUnitPrice: 1.5,
         bundleTotalPrice: 150
     },
+    {   type: "pen",
+        name: "DEJA VU LIGHT UP PEN",
+        colorsAvailable: [
+            //Black, Blue, Red, Gunmetal, Green
+            "#000000", "#0000ff", "#FF0000","#2a3439", "#008000" 
+        ],
+        capacity: 150,
+        unitPrice: 2.2,
+        totalPrice: 330,
+        bundleUnitPrice: 1.4,
+        bundleTotalPrice: 210
+    },
     {   type: "sticker",
         name: "VINYL STICKERS",
         colorsAvailable: ["##ffffff"],
@@ -68,6 +55,19 @@ const promoItemsData = [
         totalPrice: 130,
         bundleUnitPrice: 0.5,
         bundleTotalPrice: 100
+    },
+    {   type: "wallet", 
+        name: "DUAL POCKET SILICONE PHONE WALLET",
+        colorsAvailable: [
+            //Black, Blue, Gray, Lime Green, Orange, Pink, Purple, Red, White, Yellow
+            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080", 
+            "#FF0000", "#ffffff", " #ffff00"
+        ],
+        capacity: 250,
+        unitPrice: 1.65,
+        totalPrice: 412.5,
+        bundleUnitPrice: 1.3,
+        bundleTotalPrice: 325
     }
 ]
 const apparelItemsData = [
