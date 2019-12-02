@@ -84,7 +84,8 @@ const apparelItemsData = [
         capacity: 60,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
                        {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"},
-                       {id:6, name:"3XL"},{id:7, name:"4XL"} ],
+                       {id:6, name:"3XL"},{id:7, name:"4XL"}
+        ],
         unitPrice: 12,
         totalPrice: 720,
         bundleUnitPrice: 7,
@@ -100,22 +101,36 @@ const apparelItemsData = [
         ],
         capacity: 10,
         sizeOptions: [ {id:0, name:"S"},{id:1, name:"M"},{id:2, name:"L"},
-        {id:3, name:"XL"},{id:4, name:"2XL"}],
+                       {id:3, name:"XL"},{id:4, name:"2XL"} 
+        ],
         unitPrice: 26,
         totalPrice: 260,
         bundleUnitPrice: 10,
         bundleTotalPrice: 100
     },
     {   type: "hoodie",
-        name: "Hooded Hood",
+        name: "BELLA + CANVAS SPONGE FLEECE PULLOVER HOODED SWEATSHIRT",
         colorsAvailable: [
-            //NEED UPDATED COLORS LINK!!!!!!!!!!!!!!!!!
-            "#000000", "##ffffff", "#c41e3a"
+            /*
+            True Royal,Navy,Lilac,Team Purple ,Peach, ,Mauve ,Heather Red,
+            Red,Heather Maroon ,Gold ,Heather Mustard ,Heathr Sand Dune,
+            Tan ,Lt Grey Marble ,Athletic Heather ,Dark Grey ,Dk Gray Heather,
+            Dk Gry Marb Flc ,Drk Gry Htr/Blk ,Deep Heather ,Dtg Dark Grey,
+            Black ,Black Heather ,Dtg Black ,Teal ,Forest ,Military Green,
+            Ash ,Dtg White ,Vintage White ,White ,Heather Forest ,Heather Navy,
+            Heather Slate ,Heather Tru Royl ,Hthr Deep Teal ,Maroon ,Storm 
+             */
+            "#0061a5", "#222953", "#efcfe7", "#48267a", "#f6c2ac", "#b96c64", "#e43441", 
+            "#d43134", "#733a40", "#f8b327", "#dd9526","#e7c5a0", "#bfa284", "#bab7b5",
+            "#999999", "#474246", "#474246", "#6c6f70","#494B48","#363539","#858785",
+            "#373538", "#000000", "#1e1e1e", "#141414","#58aa93","#1f3832","#5a5e45",
+            "#f3f3f5","#faf9fe", "#ece5df","#FFFFFF", "#67807f", "#556a87","#4C6F82",
+            "#285FA2", "#55787a","#5b2a2e","#a39396"
         ],
         capacity: 5,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
-                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"},
-                       {id:6, name:"3XL"}],
+                       {id:3, name:"L"},{id:4, name:"XL"},{id:5, name:"2XL"} 
+        ],
         unitPrice: 50,
         totalPrice: 250,
         bundleUnitPrice: 20,
