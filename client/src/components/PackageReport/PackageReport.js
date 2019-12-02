@@ -6,6 +6,8 @@ import {
   FormGroup, Label, Input,
   Button, FormText, FormFeedback
 } from 'reactstrap';
+import Row from 'react-bootstrap/Row';
+import Col2 from 'react-bootstrap/Row';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import packageData from '../../data/packageinfo';
@@ -164,6 +166,20 @@ class PackageReport extends React.Component {
             <div className='packageHeader'>
               {packageData[0].name}
             </div>
+            <Row>
+              {this.props.allApparelSizes.map((item) =>
+                <Col lg>
+                  {item.type} :
+                </Col>
+              )}
+            </Row>
+            <Row>
+            {this.props.allPromoColorsChosen.map((item) =>
+              <Col lg>
+                {item.type} : {item.colorsChosen[0]}
+              </Col>
+            )}
+            </Row>
             <Button className='button greenGradient m15Top overflowHalf' onClick={this.handleSubmit.bind(this)}>
               Confirm Order
             </Button>
@@ -175,18 +191,43 @@ class PackageReport extends React.Component {
 
   handleSubmit () {
     // make message stuff
-
+    console.log(this.props);
+    var sizes  = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+    var sizes2  = ["S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+    var message = "";
+    message += "---------APPAREL ITEMS---------<br>"
+    this.props.allApparelSizes.forEach(function(apparel){ // each apparel
+      message +=  apparel.type + ":<br>";
+      apparel.allSizes.forEach(function(color){ // each color
+        message +=  "Color: " + color.color + "<br>";
+        for (var i = 0; i < color.sizes.length; i++) {
+          if (color.sizes[i] > 0) {
+            if (apparel.type === "longsleeve") {
+              message +=  "   " + sizes2[i] + ": " + color.sizes[i] + " <br>";
+            } else {
+              message +=  "   " + sizes[i] + ": " + color.sizes[i] + " <br>";
+            }
+          }
+        }
+      });
+    });
+    message += "---------PROMO ITEMS---------<br>";
+    this.props.allPromoColorsChosen.forEach(function(promo){ // each promo
+      message +=  promo.type + ": ";
+      message +=  promo.colorsChosen[0] + "<br>";
+    });
+    console.log(message)
     // make image url
 
     var templateParams = {
-      message_html: 'nothing for now!',
+      message_html: message,
       name: this.state.name,
       number: this.state.number,
       zip: this.state.zipcode,
       email: this.state.email,
       info: this.state.info,
     }
-    emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+    //emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
   }
 
 }
