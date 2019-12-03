@@ -169,7 +169,7 @@ class PackageReport extends React.Component {
             <Row>
               {this.props.allApparelSizes.map((item) =>
                 <Col lg>
-                  {item.type} :
+                  {item.type} : {this.DisplayApparel(item)}
                 </Col>
               )}
             </Row>
@@ -188,7 +188,25 @@ class PackageReport extends React.Component {
       </Container2>
 
     );
-	}
+  }
+  
+  DisplayApparel(item)
+  {
+   
+
+    return(
+      <div>
+        {item.allSizes.map((color) =>
+        <div>
+               <button className = "btn btn-circle" style = {{background : color.color}}></button>
+               <p>{color.formCount}</p>
+          </div>
+        )}
+      </div>
+    )
+           
+    
+  }
 
   handleSubmit () {
     // make message stuff
