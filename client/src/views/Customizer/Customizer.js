@@ -449,8 +449,23 @@ imagesPath(){
         <img className="selectedImg" src = {this.state.selectedImage} />
       );
     }
-    else {
-      return <img className="selectedImgTwo" src = {this.state.selectedImageTwo} />;
+    else if (this.state.imageType === "pen") {
+      return <img className="penImg" src = {this.state.selectedImageTwo} />;
+    }
+
+    else if(this.state.imageType === "notebook" ){
+      return <img className="notebookImg" src = {this.state.selectedImageTwo} />;
+    }
+
+    else if(this.state.imageType === "wallet" || this.state.imageType === "sticker"){
+      return <img className="walletImg" src = {this.state.selectedImageTwo} />;
+    }
+
+    else if(this.state.imageType === "cable" ){
+      return <img className="cableImg" src = {this.state.selectedImageTwo} />;
+    }
+    else if(this.state.imageType === "bottle" ){
+      return <img className="bottleImg" src = {this.state.selectedImageTwo} />;
     }
   }
 
