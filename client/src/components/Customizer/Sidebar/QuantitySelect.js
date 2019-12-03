@@ -79,12 +79,7 @@ class QuantitySelect extends React.Component
         var missing = this.state.capacity - sum;
         if (missing < 0)
         {
-            console.log("items over")
-            return (
-              <p className="cnt cntPckd" >
-                      Items over: {0 - missing}
-              </p>
-          )
+            return (<p className="cnt cntPckd">Too many items inputted! {0 - missing} over.</p>)
         }
         else{
 
