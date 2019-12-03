@@ -443,7 +443,7 @@ imagesPath(){
       );
     }
     else {
-      return <h3 className="apparelSidebar">Out of Apparel Mode</h3>;
+
     }
   }
 
