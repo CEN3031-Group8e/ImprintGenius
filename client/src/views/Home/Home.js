@@ -32,13 +32,15 @@ class Home extends Component {
     render() {
       return (
         <div>
-          <Container className='packagesContainer' fluid={true}>
+          <Container className='packagesContainer' fluid={false}>
             <Row>
+              <Col lg></Col>
               {packageData.map((item) =>
                 <Col lg>
                   <PackageColumn data={item} didSelectPackage={this.didSelectPackage} />
                 </Col>
               )}
+              <Col lg></Col>
             </Row>
           </Container>
         </div>
