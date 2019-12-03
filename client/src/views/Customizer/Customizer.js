@@ -367,7 +367,7 @@ imagesPath(){
     else
     {
       this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
-      this.props.history.push('/Report')
+      this.props.history.push('/Report', {data: this.props.data})
     }
 
 
@@ -486,7 +486,7 @@ imagesPath(){
   }
 
   render() {
-    const { data } = this.props.location.state;
+    //const { data } = this.props.location.state;
 
     return (
       <div>

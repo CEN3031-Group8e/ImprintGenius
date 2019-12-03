@@ -9,14 +9,16 @@ class UploadFile extends React.Component
      {
         super(props);
         this.state = {
-            selectedFile: null,    //apparel logo
-            selectedFileTwo: null  //item logo
-            //selectedImage: null
+            selectedFile: null,    //selected apparel logo
+            selectedFileTwo: null,  //selected item logo
+            selectedImage: null,   //uploaded apparel logo
+            selectedImageTwo: null //uploaded item logo
+
         }
     }
     onChangeHandler=event=>
     {
-        //setting state in app.js
+     
         if(event.target.files[0] != null)
         {
           this.setState({
@@ -46,13 +48,11 @@ class UploadFile extends React.Component
       reader.onload = () =>
       {
           var dataURL = reader.result; //render.result contains resultant contents of the file
-         // var output = document.getElementById('output') //get the area where you want the image to be displayed
-         // output.src = dataURL; //set that image's src as the file's dataURL
           this.setState({
               selectedImage: dataURL
             })
-            this.props.updateImage( dataURL) //pass dataURL to page2 parent
-            //console.log('selectedImage ', this.state.selectedImage)
+            this.props.updateImage( dataURL) //pass dataURL to customizer parent
+           
       }
       //read file. Once it is read, onload function will be called
       reader.readAsDataURL(input);
@@ -61,9 +61,11 @@ class UploadFile extends React.Component
 
     allowUpload()
     {
+     
       if(this.state.selectedFile === null){
         return;
       } else {
+   
 
       return (
        <div>
@@ -78,11 +80,12 @@ class UploadFile extends React.Component
 
     onChangeHandlerTwo=event=>
     {
-        //setting state in app.js
+        
         if(event.target.files[0] != null)
         {
           this.setState({
-            selectedFileTwo: event.target.files[0]
+            selectedFileTwo: event.target.files[0],
+            
           })
           //new
           this.props.updateFileTwo( event.target.files[0])
@@ -108,8 +111,6 @@ class UploadFile extends React.Component
       reader.onload = () =>
       {
           var dataURL = reader.result; //render.result contains resultant contents of the file
-         // var output = document.getElementById('output') //get the area where you want the image to be displayed
-         // output.src = dataURL; //set that image's src as the file's dataURL
           this.setState({
               selectedImageTwo: dataURL
             })
@@ -137,12 +138,6 @@ class UploadFile extends React.Component
        </div>)}
     }
 
-    OnClickInput = (event) => {
-      event.target.value = ''
-  }
-
-
-
     render()
     {
       if(this.props.apparelMode === true)
@@ -153,7 +148,7 @@ class UploadFile extends React.Component
             <p>Upload your apparel logo file</p>
             <form className="uploadForm" method="post" action="#" id="#">
                 <div className="form-group files">
-                  <input type="file"  className="form-control"
+                  <input type="file"   key = {this.state.selectedImage} className="form-control"
                          accept = "image/*"
                          onChange={this.onChangeHandler}/>
                 </div>
@@ -172,9 +167,8 @@ class UploadFile extends React.Component
             <p>Upload your item logo file</p>
             <form className="uploadForm" method="post" action="#" id="#2">
                 <div className="form-group files ">
-                  <input type="file"  className="form-control"
+                  <input type="file" key = {this.state.selectedImageTwo} className="form-control"
                          accept = "image/*"
-                         onClick = {this.OnClickInput}
                          onChange={this.onChangeHandlerTwo}/>
                 </div>
             </form>

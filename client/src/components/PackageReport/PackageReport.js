@@ -16,6 +16,10 @@ import * as emailjs from 'emailjs-com'
 import './PackageReport.css';
 import { Client } from '@rmp135/imgur';
 
+import tshirt from '../../assets/large1.png';
+import longsleeve from '../../assets/large2.png';
+import hoodie from '../../assets/large3.png';
+
 const config =  require('../../config.js');
 
 class PackageReport extends React.Component {
@@ -72,10 +76,9 @@ class PackageReport extends React.Component {
     const { name, email, number, zipcode, info} = this.state;
     return (
 
-      <Container2 className='packagesContainer' fluid={true}>
-      <h2>Contact Info</h2>
+      <Container className='packagesContainer' fluid={false}>
+      <h1>Contact Info</h1>
       <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
-        <Col>
           <FormGroup>
             <Label>Email</Label>
             <Input
@@ -97,8 +100,6 @@ class PackageReport extends React.Component {
               Looks like there is an issue with your email.
             </FormFeedback>
           </FormGroup>
-        </Col>
-        <Col>
         <FormGroup>
           <Label>Name</Label>
           <Input
@@ -111,8 +112,6 @@ class PackageReport extends React.Component {
                       } }
           />
           </FormGroup>
-        </Col>
-        <Col>
         <FormGroup>
           <Label>Zipcode</Label>
           <Input
@@ -125,8 +124,6 @@ class PackageReport extends React.Component {
                       } }
           />
           </FormGroup>
-        </Col>
-        <Col>
           <FormGroup>
             <Label>Phone Number</Label>
             <Input
@@ -148,8 +145,6 @@ class PackageReport extends React.Component {
               Looks like there is an issue with your phone number.
             </FormFeedback>
           </FormGroup>
-        </Col>
-        <Col>
           <FormGroup>
             <Label>Any additional concerns?</Label>
             <Input
@@ -161,56 +156,62 @@ class PackageReport extends React.Component {
                         } }
             />
           </FormGroup>
-        </Col>
-    </Form>
-        <div className='packageCol m50TopSm'>
+          </Form>
+        <div className='packageCol m50Top'>
             <div className='packageHeader'>
               {packageData[0].name}
             </div>
             <Row>
-              {this.props.allApparelSizes.map((item) =>
-                <Col lg>
-                  {item.type} : {this.DisplayApparel(item)}
-                </Col>
-              )}
-            </Row>
-            <Row>
-            {this.props.allPromoColorsChosen.map((item) =>
-              <Col lg>
-                {item.type} : <button className = "btn btn-circle" style = {{background : item.colorsChosen[0]}}></button>
-                {/*{item.type} : {item.colorsChosen[0]}*/}
+              <Col>
+                <h1 className="m50Top">Apparel Logo</h1>
+                <img className="reportLogo m15Top" src={this.props.selectedImage}></img>
+                <h1 className="m30Top">Colors Selected</h1>
+                {this.props.allApparelSizes.map((item) =>
+                  <div>{this.DisplayApparel(item)}</div>
+                )}
               </Col>
-            )}
+              <Col>
+                <h1 className="m50Top">Other Items Logo</h1>
+                <img className="reportLogo m15Top" src={this.props.selectedImageTwo}></img>
+                <h1 className="m30Top">Colors Selected</h1>
+                {this.props.allPromoColorsChosen.map((item) =>
+                  <button className="btn btn-circle" style={{background : item.colorsChosen[0]}}></button>
+                )}
+              </Col>
             </Row>
             <Button className='button greenGradient m15Top overflowHalf' onClick={this.handleSubmit.bind(this)}>
               Confirm Order
             </Button>
         </div>
-      </Container2>
+      </Container>
 
     );
   }
 
-  DisplayApparel(item)
-  {
-
+  DisplayApparel(item) {
+    var apparelImg = tshirt;
+    if(item.type === "longsleeve") {
+      apparelImg = longsleeve;
+    } else if(item.type === "hoodie") {
+      apparelImg = hoodie;
+    }
 
     return(
-      <div>
-        {item.allSizes.map((color) =>
-        <div>
-               <button className = "btn btn-circle" style = {{background : color.color}}></button>
-               <p>{color.formCount}</p>
-          </div>
-        )}
+      <div className="reportApparelCard">
+        <img className="apparelImgReport" src={apparelImg}></img>
+        <div class="apparelInfoCon">
+          {item.allSizes.map((color) =>
+            <div className="apparelInfo">
+              <button className="btn btn-circle" style={{background : color.color}}></button>
+              <p className="apparelCount">{color.formCount}</p>
+            </div>
+          )}
+        </div>
       </div>
     )
-
-
   }
 
-
-  handleSubmit () {
+  handleSubmit() {
     // make message stuff
     console.log(this.props);
     var sizes  = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
