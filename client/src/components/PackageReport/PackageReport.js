@@ -14,7 +14,7 @@ import packageData from '../../data/packageinfo';
 import Container2 from 'react-bootstrap/Container';
 import * as emailjs from 'emailjs-com'
 import './PackageReport.css';
-import { Client } from '@rmp135/imgur'
+import { Client } from '@rmp135/imgur';
 
 const config =  require('../../config.js');
 
@@ -190,10 +190,10 @@ class PackageReport extends React.Component {
 
     );
   }
-  
+
   DisplayApparel(item)
   {
-   
+
 
     return(
       <div>
@@ -205,9 +205,10 @@ class PackageReport extends React.Component {
         )}
       </div>
     )
-           
-    
+
+
   }
+
 
   handleSubmit () {
     // make message stuff
@@ -252,36 +253,36 @@ class PackageReport extends React.Component {
 
     var imageLink1 = '';
     var imageLink2 = '';
-
+    //(async () => {
+    //  data = await client.Image.upload(image, { type: 'base64'});
+    //})();
     client.Image.upload(image, { type: 'base64'}).then(function (json) {
-        console.log(json.data.link)
+        //console.log(json.data.link)
         //console.log(json.data.link);
-        imageLink1 += json.data.link;
+        imageLink1 = json.data.link;
     })
     .catch(function (err) {
         console.error(err.message);
     });
+    let me = this;
     client.Image.upload(image2, { type: 'base64'}).then(function (json) {
         //console.log(json.data.link);
-        imageLink2 += json.data.link;
+        imageLink2 = json.data.link;
+        var templateParams = {
+        message_html: message,
+        name: me.state.name,
+        number: me.state.number,
+        zip: me.state.zipcode,
+        email: me.state.email,
+        info: me.state.info,
+        image1: imageLink1,
+        image2: imageLink2,
+      }
+      emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
     })
     .catch(function (err) {
         console.error(err.message);
     });
-    console.log(imageLink1)
-    console.log(imageLink2)
-
-      var templateParams = {
-      message_html: message,
-      name: this.state.name,
-      number: this.state.number,
-      zip: this.state.zipcode,
-      email: this.state.email,
-      info: this.state.info,
-      image1: imageLink1,
-      image2: imageLink2,
-    }
-    //emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
   }
 
 }

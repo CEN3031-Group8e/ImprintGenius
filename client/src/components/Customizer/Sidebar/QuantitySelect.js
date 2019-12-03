@@ -18,7 +18,7 @@ class QuantitySelect extends React.Component
         }
         this.updateSizesAndCounter = this.updateSizesAndCounter.bind(this);
     }
-   
+
     initAllSizes(colorsArr, allSizes){   //initialize the array to have x elements, each element will contain array[6]
        if (allSizes === undefined || allSizes === null){
         //if haven't filled in the form yet,
@@ -82,9 +82,10 @@ class QuantitySelect extends React.Component
             return (<div>Too many items inputted! {0 - missing} over.</div>)
         }
         else{
-            return <div>Missing items: {missing}</div>
+
+            return <p className="cnt cntPckd">Missing items: {missing}</p>
         }
-    
+
     }
     render() {
 		return(
