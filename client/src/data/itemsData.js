@@ -79,7 +79,7 @@ const apparelItemsData = [
             //sand, stone gray, storm, tahiti blue, turquouise, warm gray, white
             "#000000", "#0095b6", "#46220b", "#36454f",  "#4e312d", "#d6ecef",
             "#4b0082", "#4cbb17", "#02075d", "#98ff98", "#ffa500","#6A4481", "#FF0000",
-            "#c2b280", "#888c8d", "#747880", "#1c87b7", "#40e0d0", "#8c7d7", "#ffffff"
+            "#c2b280", "#888c8d", "#747880", "#1c87b7", "#40e0d0", "#8c7d70", "#ffffff"
         ],
         capacity: 60,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
