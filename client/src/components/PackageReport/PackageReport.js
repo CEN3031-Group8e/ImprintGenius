@@ -14,6 +14,7 @@ import packageData from '../../data/packageinfo';
 import Container2 from 'react-bootstrap/Container';
 import * as emailjs from 'emailjs-com'
 import './PackageReport.css';
+import { Client } from '@rmp135/imgur'
 
 const config =  require('../../config.js');
 
@@ -219,14 +220,48 @@ class PackageReport extends React.Component {
     });
     console.log(message)
     // make image url
+    let client = new Client(config.imgur.clientid)
 
-    var templateParams = {
+    var image = this.props.selectedImage;
+    image = image.replace("data:image/png;base64,", "");
+    image = image.replace("data:image/jpeg;base64,", "");
+    image = image.replace("data:image/jpg;base64,", "");
+
+    var image2 = this.props.selectedImageTwo;
+    image2 = image2.replace("data:image/png;base64,", "");
+    image2 = image2.replace("data:image/jpeg;base64,", "");
+    image2 = image2.replace("data:image/jpg;base64,", "");
+
+    var imageLink1 = '';
+    var imageLink2 = '';
+
+    client.Image.upload(image, { type: 'base64'}).then(function (json) {
+        console.log(json.data.link)
+        //console.log(json.data.link);
+        imageLink1 += json.data.link;
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+    client.Image.upload(image2, { type: 'base64'}).then(function (json) {
+        //console.log(json.data.link);
+        imageLink2 += json.data.link;
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+    console.log(imageLink1)
+    console.log(imageLink2)
+
+      var templateParams = {
       message_html: message,
       name: this.state.name,
       number: this.state.number,
       zip: this.state.zipcode,
       email: this.state.email,
       info: this.state.info,
+      image1: imageLink1,
+      image2: imageLink2,
     }
     //emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
   }
