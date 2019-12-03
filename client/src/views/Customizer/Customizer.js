@@ -486,7 +486,7 @@ imagesPath(){
   }
 
   render() {
-    //const { data } = this.props.location.state;
+    const { data } = this.props.location.state;
 
     return (
       <div>
