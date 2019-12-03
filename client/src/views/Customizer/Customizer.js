@@ -36,14 +36,14 @@ class Customizer extends Component {
       selectedFileTwo:null,
       selectedImageTwo:null,
 
-      //to send to customizer for color palette + 
+      //to send to customizer for color palette +
       //for force render checker of customizer/quantity
-      currentItemData: null, 
+      currentItemData: null,
       //updated from ColorPicker (child)
       allApparelColorsChosen: this.initAllApparelColorsChosen(), //{type, colorsChosen[] (5 max)}
       allPromoColorsChosen: this.initAllPromoColorsChosen(),  //{type, colorsChosen (one)}
       allApparelSizes: this.initAllApparelSizes(), //{type, allSizes[]}
-      
+
       sideBarOption: null //based on button id
     };
     this.updateType = this.updateType.bind(this);
@@ -221,7 +221,7 @@ imagesPath(){
                           colorsChosen={colorsChosen} //send to child
                           allSizes={allSizes}
                           updateApparelAllSizes={this.updateApparelAllSizes}/>
-      
+
     )
   }
 
@@ -257,11 +257,11 @@ imagesPath(){
           currentItemData: itemData
         }),
         () => { //force rerender/reload of props so the just clicked item's color picker gets displayed
-          return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
+          return (this.displayCustomizer(maxColorsChosen,colorsChosen));
         })
       }
       else{ //render unupdated
-        return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
+        return (this.displayCustomizer(maxColorsChosen,colorsChosen));
       }
     }
     else if(this.state.sideBarOption === "quantity"){
@@ -303,12 +303,11 @@ imagesPath(){
     {
       return(
        <div className="innerBoxCustomizer">
-         <p> </p>
-         <font color = "black">Phone: 352-554-8254</font>
-         <p> </p>
-         <font color = "black">Email: Sales@imprintgenius.com</font>
+         <h1>Get Help</h1>
+         <p><b>Phone:</b> 352-554-8254</p>
+         <p><b>Email:</b> sales@imprintgenius.com</p>
        </div>)
-      
+
     }
   }
   isSizesfilled()
@@ -504,8 +503,6 @@ imagesPath(){
                 </div>
 
                 <img src={DownArrow} className='arrow m30Top'></img>
-                <p className='m30Top greenLink'>View All</p>
-                <p className='greenLink'>View Unfinished</p>
               </div>
             </Col>
 
@@ -516,10 +513,6 @@ imagesPath(){
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
-
-
-
-
             </Col>
             <Col md={5}>
               <div className='itemControls'>
@@ -532,15 +525,16 @@ imagesPath(){
                   {this.renderBtns()}
                 </div>
               </div>
-              <div className = 'apparelSidebar'>
+              <div className='apparelSidebar'>
               {/*'Apparel in your Package' bottom bar*/}
               {this.displayBottomBar()}
               </div>
-              <Row>
-              <button type="button" xlassName = "submitBtn" onClick={ () => {
-                          this.handleSubmit(); //update app.js
-                          }}>Submit Order</button>
-               </Row>
+
+              <button type="button" className={
+                !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null ? "submitBtn greenGradient disabled": "submitBtn greenGradient enabled"
+              } onClick={ () => {
+                  this.handleSubmit(); //update app.js
+              }}>Submit Order</button>
 
             </Col>
           </Row>
