@@ -15,25 +15,17 @@ export default class CardObject extends React.Component {
     const { data } = this.props;
     const name = data.name;
     return (
-      <div>
+      <div className="cardObjectCon">
             <Card style={{ width: '14rem' }}>
-            <CardText>
-            <Container>
-            <Row>
-              <Col sm={6}>{data.name}
-              <div className="image">
-              <img src={require("../../assets/" + data.file)}
-              width="100" align ="middle">
-              </img>
-              </div>
-              </Col>
-              <Col sm={6}>
-              {itemdescription[itemdescription.findIndex(x => x.name === name)].description}
-              </Col>
-            </Row>
-            </Container>
-            </CardText>
+              <CardText>
+                <div className="cardCon">
+                  <div className="title">{data.name}</div>
+                  <img className="image" src={require("../../assets/" + data.file)} width="100"></img>
+                  <div className="des">{itemdescription[itemdescription.findIndex(x => x.name === name)].description}</div>
+                </div>
+              </CardText>
             </Card>
+
       </div>
     )
   }
