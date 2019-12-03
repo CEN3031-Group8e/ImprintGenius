@@ -113,18 +113,15 @@ const apparelItemsData = [
         colorsAvailable: [
             /*
             True Royal,Navy,Lilac,Team Purple ,Peach, ,Mauve ,Heather Red,
-            Red,Heather Maroon ,Gold ,Heather Mustard ,Heathr Sand Dune,
-            Tan ,Lt Grey Marble ,Athletic Heather ,Dark Grey ,Dk Gray Heather,
-
-            Dk Gry Marb Flc ,Drk Gry Htr/Blk ,Deep Heather ,Dtg Dark Grey,
-
-            Black ,Black Heather ,Dtg Black ,Teal ,Forest ,Military Green,
+            Red,Heather Maroon ,Gold ,Heather Mustard ,Heathr Sand Dune,Tan ,Lt Grey Marble ,
+            Athletic Heather,Dark Grey ,Dk Gray Heather, Dk Gry Marb Flc, Drk Gry Htr/Blk ,Deep Heather ,
+           Dtg Dark Grey,Black ,Black Heather ,Dtg Black ,Teal ,Forest ,Military Green,
             Ash ,Dtg White ,Vintage White ,White ,Heather Forest ,Heather Navy,
             Heather Slate ,Heather Tru Royl ,Hthr Deep Teal ,Maroon ,Storm Purple
              */
             "#0061a5", "#222953", "#efcfe7", "#48267a", "#f6c2ac", "#b96c64", "#e43441",
             "#d43134", "#733a40", "#f8b327", "#dd9526","#e7c5a0", "#bfa284", "#bab7b5",
-            "#999999", "#474246", "#6c6f70", "#6c6f70","#494B48","#363539","#858785",
+            "#999999", "#474246", "#6c6f70", "#494B48","#363539","#858785",
             "#373538", "#000000", "#1e1e1e", "#141414","#58aa93","#1f3832","#5a5e45",
             "#f3f3f5","#faf9fe", "#ece5df","#FFFFFF", "#67807f", "#556a87","#4C6F82",
             "#285FA2", "#55787a","#5b2a2e","#a39396"
