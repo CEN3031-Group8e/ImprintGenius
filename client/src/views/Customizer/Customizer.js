@@ -299,6 +299,17 @@ imagesPath(){
         return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
       }
     }
+    else if(this.state.sideBarOption == "help")
+    {
+      return(
+       <div className="innerBoxCustomizer">
+         <p> </p>
+         <font color = "black">Phone: 352-554-8254</font>
+         <p> </p>
+         <font color = "black">Email: Sales@imprintgenius.com</font>
+       </div>)
+      
+    }
   }
   isSizesfilled()
   {
@@ -392,7 +403,10 @@ imagesPath(){
             })}}>
             Quantity
           </button>
-          <button className='itemControlButton borderTop'>
+          <button className='itemControlButton borderTop' onClick={() => {
+              this.setState({
+                sideBarOption: "help",
+            })}}>
             Help
           </button>
       </div>
@@ -417,7 +431,10 @@ imagesPath(){
             Colors
           </button>
 
-          <button className='itemControlButton borderTop'>
+          <button className='itemControlButton borderTop'onClick={() => {
+              this.setState({
+                sideBarOption: "help",
+            })}}>
             Help
           </button>
       </div>
@@ -493,22 +510,12 @@ imagesPath(){
             </Col>
 
 
-
-
-
-
-
             <Col md={5}>
               <div className="mainImage">
                 <img className="apparelImg" src = {this.imagesPath()} />
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
-
-
-
-
-
 
 
 
