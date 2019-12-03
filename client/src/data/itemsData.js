@@ -212,7 +212,7 @@ const colorRoute =[
     {name: "Storm Blue", color: "#747880"},
     {name: "Tahiti Blue", color: "#1c87b7"},
     {name: "Turquouise", color: "#40e0d0"},
-    {name: "Warm Gray", color: "#8c7d70"},
+    {name: "Warm Gray", color: "#8c7d70"}
     
 ]
 export {promoItemsData, apparelItemsData, colorRoute}
