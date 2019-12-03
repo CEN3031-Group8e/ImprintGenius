@@ -14,7 +14,7 @@ import packageData from '../../data/packageinfo';
 import Container2 from 'react-bootstrap/Container';
 import * as emailjs from 'emailjs-com'
 import './PackageReport.css';
-import { Client } from '@rmp135/imgur'
+import { Client } from '@rmp135/imgur';
 
 const config =  require('../../config.js');
 

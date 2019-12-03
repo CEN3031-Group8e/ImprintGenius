@@ -14,9 +14,9 @@ class QuantityForm extends React.Component
             sizes: this.initSizes(this.props.sizes), //XS-XXL mapped by id of form sub section XS = 0
             oneSizeTotal: 0   //total sizes for that color
         }
-        
+
     }
-    
+
     initSizes(sizes){   //initialize the array to have x elements, each element will contain array[6]
         if (sizes === undefined || sizes === null){
             //if haven't filled in the form yet,
@@ -39,7 +39,7 @@ class QuantityForm extends React.Component
             if(!isNaN(size))
                 sum += size;
         });
-        
+
         this.setState(
         (prevState)=>({
             //change
@@ -56,9 +56,9 @@ class QuantityForm extends React.Component
           <div className="">
             <form id="sizeForm" onSubmit={this.handleSubmit}>
             {this.state.sizeOptions.map(sizeElement => (
-                <div>
+                <div className="sizeInput">
                     {sizeElement.name}
-                    <input
+                    <input className="inputField"
                         type="text" //text box
                         pattern="[0-9]*"
                        // name={element.name}

@@ -13,7 +13,7 @@ class ColorPicker extends React.Component
             itemData: this.props.itemData,
             colorsAvailable: [],
             btnVals: this.initChosenColors(this.props.colorsChosen)//returns array of buttons currently pressed
-        }       
+        }
     }
     initChosenColors(colorsArr){  //handle "includes" error of undefined in render
         if (colorsArr === undefined || colorsArr === null) //before clicking on a color
@@ -74,8 +74,7 @@ class ColorPicker extends React.Component
 		return(
         <div>
             <div className="colorPicker-box" >
-                <h1>{//this.state.itemData.name
-                }</h1>
+                <h1>Choose Colors</h1>
                {this.display()}
 
                 <div className="palette-box">

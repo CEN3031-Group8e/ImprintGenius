@@ -35,27 +35,27 @@ class UploadFile extends React.Component
 
     }
 
-    onClickHandler = () => {	
-      console.log("clicked")	
-      var input = this.state.selectedFile	
-      var reader = new FileReader();	
+    onClickHandler = () => {
+      console.log("clicked")
+      var input = this.state.selectedFile
+      var reader = new FileReader();
 
 
-      //define onload function	
-      //onload event is fired when the filereader has finished reading the file	
-      reader.onload = () =>	
-      {	
-          var dataURL = reader.result; //render.result contains resultant contents of the file	
-         // var output = document.getElementById('output') //get the area where you want the image to be displayed	
-         // output.src = dataURL; //set that image's src as the file's dataURL	
-          this.setState({	
-              selectedImage: dataURL	
-            })	
-            this.props.updateImage( dataURL) //pass dataURL to page2 parent	
-            //console.log('selectedImage ', this.state.selectedImage)	
-      }	
-      //read file. Once it is read, onload function will be called	
-      reader.readAsDataURL(input);	
+      //define onload function
+      //onload event is fired when the filereader has finished reading the file
+      reader.onload = () =>
+      {
+          var dataURL = reader.result; //render.result contains resultant contents of the file
+         // var output = document.getElementById('output') //get the area where you want the image to be displayed
+         // output.src = dataURL; //set that image's src as the file's dataURL
+          this.setState({
+              selectedImage: dataURL
+            })
+            this.props.updateImage( dataURL) //pass dataURL to page2 parent
+            //console.log('selectedImage ', this.state.selectedImage)
+      }
+      //read file. Once it is read, onload function will be called
+      reader.readAsDataURL(input);
 
      }
 
@@ -67,15 +67,15 @@ class UploadFile extends React.Component
 
       return (
        <div>
-         <button type="button" className="btn btn-success btn"
+         <button className="button greenGradient upBtn"
                 onClick={this.onClickHandler}>
                 Upload
         </button>
-      
+
        </div>)}
     }
 
-    
+
     onChangeHandlerTwo=event=>
     {
         //setting state in app.js
@@ -97,27 +97,27 @@ class UploadFile extends React.Component
 
     }
 
-    onClickHandlerTwo = () => {	
-      console.log("clicked")	
-      var input = this.state.selectedFileTwo	
-      var reader = new FileReader();	
+    onClickHandlerTwo = () => {
+      console.log("clicked")
+      var input = this.state.selectedFileTwo
+      var reader = new FileReader();
 
 
-      //define onload function	
-      //onload event is fired when the filereader has finished reading the file	
-      reader.onload = () =>	
-      {	
-          var dataURL = reader.result; //render.result contains resultant contents of the file	
-         // var output = document.getElementById('output') //get the area where you want the image to be displayed	
-         // output.src = dataURL; //set that image's src as the file's dataURL	
-          this.setState({	
-              selectedImageTwo: dataURL	
-            })	
-            this.props.updateImageTwo( dataURL) //pass dataURL to page2 parent	
-            //console.log('selectedImage ', this.state.selectedImage)	
-      }	
-      //read file. Once it is read, onload function will be called	
-      reader.readAsDataURL(input);	
+      //define onload function
+      //onload event is fired when the filereader has finished reading the file
+      reader.onload = () =>
+      {
+          var dataURL = reader.result; //render.result contains resultant contents of the file
+         // var output = document.getElementById('output') //get the area where you want the image to be displayed
+         // output.src = dataURL; //set that image's src as the file's dataURL
+          this.setState({
+              selectedImageTwo: dataURL
+            })
+            this.props.updateImageTwo( dataURL) //pass dataURL to page2 parent
+            //console.log('selectedImage ', this.state.selectedImage)
+      }
+      //read file. Once it is read, onload function will be called
+      reader.readAsDataURL(input);
 
      }
 
@@ -129,19 +129,19 @@ class UploadFile extends React.Component
 
       return (
        <div>
-         <button type="button" className="btn btn-success btn"
-                onClick={this.onClickHandlerTwo}>
-                Upload
-        </button>
-      
+       <button className="button greenGradient upBtn"
+              onClick={this.onClickHandlerTwo}>
+              Upload
+       </button>
+
        </div>)}
     }
 
     OnClickInput = (event) => {
       event.target.value = ''
   }
-  
-  
+
+
 
     render()
     {
@@ -182,7 +182,7 @@ class UploadFile extends React.Component
           </div>
       )
       }
-        
+
     }
   }
 

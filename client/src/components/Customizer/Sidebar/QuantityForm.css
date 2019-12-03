@@ -3,15 +3,30 @@
     border: solid 0.5px black;
     box-shadow: 0 5px 10px #050e0173;
     border-radius: 50%;
-    
+
 
     padding: .7rem .7rem;
     margin: 0.5rem 0.5rem;
 }
-.btn-submit:hover{   
-    border: solid 0.5px #ffffff;
-    box-shadow: 0 0px 4px 4px #7B68EE;
-
+.btn-submit:hover{
+  border: solid 0.5px #ffffff;
+  box-shadow: 0 0px 4px 4px #7B68EE;
+}
+.sizeInput {
+  color: rgba(0,0,0,0.25);
+  font-weight: bold;
+  width: 50px;
+  display: inline-block;
+  margin-right: 6px;
+}
+.inputField {
+  background: rgba(0,0,0,0.15);
+  color: rgba(0,0,0,0.35);
+  font-weight: bold;
+  border: none;
+  height: 34px;
+  width: 50px;
+  text-align: center;
 }
 input:focus,
 select:focus {
