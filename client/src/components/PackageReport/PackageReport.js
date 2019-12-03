@@ -195,6 +195,8 @@ class PackageReport extends React.Component {
     } else if(item.type === "hoodie") {
       apparelImg = hoodie;
     }
+    var sizes  = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
+    var sizes2  = ["S", "M", "L", "XL", "2XL", "3XL", "4XL"];
 
     return(
       <div className="reportApparelCard">
@@ -203,7 +205,18 @@ class PackageReport extends React.Component {
           {item.allSizes.map((color) =>
             <div className="apparelInfo">
               <button className="btn btn-circle" style={{background : color.color}}></button>
-              <p className="apparelCount">{color.formCount}</p>
+
+              <p className="apparelCount">
+              {color.formCount}
+              {color.sizes.map((value, index) =>
+                <p className="sizes">{
+                  item.type == "longsleeve" ?
+                  value > 0  ? sizes2[index] + value : "" :
+                  value > 0  ? sizes[index] + value : ""
+                }
+              </p>
+              )}</p>
+
             </div>
           )}
         </div>
@@ -279,7 +292,7 @@ class PackageReport extends React.Component {
         image1: imageLink1,
         image2: imageLink2,
       }
-      emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+      //emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
     })
     .catch(function (err) {
         console.error(err.message);
