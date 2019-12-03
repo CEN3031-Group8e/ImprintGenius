@@ -50,6 +50,8 @@
 
 .upBtn {
   color: white;
+  outline: none !important;
+
 }
 
 .uploadBox {
@@ -59,15 +61,4 @@
   height: 100%;
 }
 
-{/*image output*/}
-#output  {
-    width: 15%;
-    height: 15%;
-    background-size: 50%;
-    position: absolute;
-    top: 50;
-    bottom: 50;
-    left: 5;
-    right:10;
-    margin: auto;
-}
+
