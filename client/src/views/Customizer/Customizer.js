@@ -16,32 +16,11 @@ import DisplayApparelBar from '../../components/Customizer/ItemSidebar/DisplayAp
 import DisplayPackageBar from '../../components/Customizer/ItemSidebar/DisplayPackageBar.js';
 import {ColorPicker} from '../../components/Customizer/Sidebar/ColorPicker.js';
 import QuantitySelect from '../../components/Customizer/Sidebar/QuantitySelect.js';
-//Large images of package items
-import tshirt from '../../assets/large1.png';
-import longsleeve from '../../assets/large2.png';
-import hoodie from '../../assets/large3.png';
-//Promo item large images
-import bottle from '../../assets/bottle.jpg';
-import cable from '../../assets/cable.jpg';
-import notebook from '../../assets/notebook.jpg';
-import pen from '../../assets/pen.jpg';
-import sticker from '../../assets/sticker.jpg';
-import wallet from '../../assets/wallet.jpg';
+
+import {largePath, notebookPath, penPath, bottlePath, cablePath, walletPath} from './CustomizerImages.js';
+
 
 import {promoItemsData, apparelItemsData} from '../../data/itemsData.js'
-import { element } from 'prop-types';
-
-const largePath = { //Chooses which image to display based on current imageType state
-  tshirt: tshirt,
-  longsleeve: longsleeve,
-  hoodie: hoodie,
-  bottle: bottle,
-  cable: cable,
-  notebook: notebook,
-  pen: pen,
-  sticker: sticker,
-  wallet: wallet
-}
 
 class Customizer extends Component {
   constructor(props) {
@@ -49,23 +28,22 @@ class Customizer extends Component {
     this.state = {
       selectedPackage: this.props.location.state, //passed from Home page
 
-      imageType: 'tshirt',
+      imageType: 'tshirt', //initial state: display tshirt
       apparelMode: true,
       selectedFile: null,
       selectedImage: null, //selected image data URL (base64)
 
-      //test
       selectedFileTwo:null,
       selectedImageTwo:null,
 
-      //test
-      currentItemData: null,
-
+      //to send to customizer for color palette + 
+      //for force render checker of customizer/quantity
+      currentItemData: null, 
       //updated from ColorPicker (child)
       allApparelColorsChosen: this.initAllApparelColorsChosen(), //{type, colorsChosen[] (5 max)}
       allPromoColorsChosen: this.initAllPromoColorsChosen(),  //{type, colorsChosen (one)}
-      //allSizes: [], //{color, sizes[]}
       allApparelSizes: this.initAllApparelSizes(), //{type, allSizes[]}
+      
       sideBarOption: null //based on button id
     };
     this.updateType = this.updateType.bind(this);
@@ -174,6 +152,79 @@ updateSelectedImgDataURL(selectedImageNew){
     selectedImage: selectedImageNew
 })}
 
+
+//Show image by color chosen
+imagesPath(){
+  var allColorsChosen = this.state.allPromoColorsChosen;
+
+  if(this.state.imageType == 'notebook'){
+    var element1 = allColorsChosen.find(e => e.type === 'notebook');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'notebook';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    // console.log(str);
+    return (notebookPath[str]);
+  }
+
+  else if (this.state.imageType == 'pen'){
+    var element1 = allColorsChosen.find(e => e.type === 'pen');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'pen';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (penPath[str]);
+  }
+
+  else if (this.state.imageType == 'bottle'){
+    var element1 = allColorsChosen.find(e => e.type === 'bottle');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'bottle';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (bottlePath[str]);
+  }
+
+  else if (this.state.imageType == 'cable'){
+    var element1 = allColorsChosen.find(e => e.type === 'cable');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'cable';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (cablePath[str]);
+  }
+
+  else if (this.state.imageType == 'wallet'){
+    var element1 = allColorsChosen.find(e => e.type === 'wallet');
+    var colorsChosen = element1.colorsChosen;
+    var str = 'wallet';
+    str += colorsChosen[0];
+    str = str.replace('#', '');
+    return (walletPath[str]);
+  }
+
+  else {
+    return (largePath[this.state.imageType]);
+  }
+}
+
+  displayCustomizer(maxColorsChosen, colorsChosen){
+   return( <ColorPicker maxColorsChosen={maxColorsChosen}
+                        itemData ={this.state.currentItemData}
+                        updateColors={this.updateColors} //child to parent sending clicked colors
+                        colorsChosen={colorsChosen}
+                        apparelMode = {this.state.apparelMode}/>)
+  }
+  displayQuantity(sizeOptions,capacity,colorsChosen,allSizes){
+    return(<QuantitySelect sizeOptions ={sizeOptions}
+                          capacity={capacity }
+                          colorsChosen={colorsChosen} //send to child
+                          allSizes={allSizes}
+                          updateApparelAllSizes={this.updateApparelAllSizes}/>
+      
+    )
+  }
+
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
         return(
@@ -205,69 +256,52 @@ updateSelectedImgDataURL(selectedImageNew){
         this.setState(({
           currentItemData: itemData
         }),
-        () => { //only render until state is updated
-          return (<ColorPicker maxColorsChosen={maxColorsChosen}
-                               itemData ={this.state.currentItemData}
-                               updateColors={this.updateColors} //child to parent sending clicked colors
-                               colorsChosen={colorsChosen}
-                               apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
+        () => { //force rerender/reload of props so the just clicked item's color picker gets displayed
+          return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
         })
       }
       else{ //render unupdated
-        return (<ColorPicker maxColorsChosen={maxColorsChosen}
-                             itemData ={this.state.currentItemData}
-                             updateColors={this.updateColors} //child to parent sending clicked colors
-                             colorsChosen={colorsChosen}
-                             apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
+        return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
       }
     }
     else if(this.state.sideBarOption === "quantity"){
       //because user may be in quantity option when switching to promo item
       //this prevents crash (quantity doesnt show up for promo)
-      if(!this.state.apparelMode) 
+      if(!this.state.apparelMode)
         return;
-     //{type, colorsChosen[]}
-        var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
-        var colorsChosen = apparelColors.colorsChosen;
+        //{type, colorsChosen[]}
+      var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
+      var colorsChosen = apparelColors.colorsChosen;
 
-        // allSizes: {color,sizes[],sum}/element
-        var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
-        var allSizes = sizesOfApparelItem.allSizes;
+      // allSizes: {color,sizes[],sum}/element
+      var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
+      var allSizes = sizesOfApparelItem.allSizes;
 
+      var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
+      var sizeOptions = apparelItem.sizeOptions;
+      var capacity = apparelItem.capacity;
 
-        var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
-        var sizeOptions = apparelItem.sizeOptions;
-       var capacity = apparelItem.capacity;
-
-        if(colorsChosen.length !== 0){
-
-          return (
-
-            <QuantitySelect
-            sizeOptions ={sizeOptions}
-                capacity={capacity }
-                colorsChosen={colorsChosen} //send to child
-                allSizes={allSizes}
-                updateApparelAllSizes={this.updateApparelAllSizes}/> //update parent
-        )}
-        else{
-          return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
-        }
+      if(colorsChosen.length !== 0){
+        var itemDataSelected = apparelItemsData.find(e => e.type === this.state.imageType); //
+          if(itemDataSelected !== this.state.currentItemData){ //avoid infinite loop crash, only update on change
+            this.setState(({
+              currentItemData: itemDataSelected
+            }),
+            () => { //force rerender because different item clicked, force prop update
+              return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
+            })
+          }
+          else{ //load same render (props unchanged)
+            return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
+          }
+      }
+      else{
+        return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
+      }
     }
   }
-  updatePalette(data)
-  {
-    if(data !== this.state.currentItemData){
-      this.setState({
-        currentItemData: data
-      })
-    }
-  }
-
-
-
   isSizesfilled()
-  {   
+  {
 
     let array1 = this.state.allApparelSizes[0].allSizes;
     var sum1 = 0;
@@ -291,13 +325,13 @@ updateSelectedImgDataURL(selectedImageNew){
     if(sum1 == 60 && sum2 == 10 && sum3 == 5)
     return true
     else
-    return false  
-   
+    return false
+
   }
 
   isPromoColorsChosen()
   {
-    
+
     var temp = this.state.allPromoColorsChosen.filter(e => e.colorsChosen.length == 1)
     console.log(temp);
 
@@ -317,7 +351,7 @@ updateSelectedImgDataURL(selectedImageNew){
     if( !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null)
     {
       alert("Please fill all details before submitting");
-      
+
     }
 
     else
@@ -325,8 +359,8 @@ updateSelectedImgDataURL(selectedImageNew){
       this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
       this.props.history.push('/Report')
     }
-    
-    
+
+
   }
 
 
@@ -404,7 +438,7 @@ updateSelectedImgDataURL(selectedImageNew){
       );
     }
     else {
-      return <h3 className="apparelSidebar">Out of Apparel Mode</h3>;
+
     }
   }
 
@@ -442,13 +476,27 @@ updateSelectedImgDataURL(selectedImageNew){
                 <p className='greenLink'>View Unfinished</p>
               </div>
             </Col>
+
+
+
+
+
+
+
             <Col md={5}>
               <div className="mainImage">
-                <img className="apparelImg" src = {largePath[this.state.imageType]} />
+                <img className="apparelImg" src = {this.imagesPath()} />
                     {/* //<img className="selectedImg" src = {this.state.selectedImage} />}//*/}
                     {this.renderlogo()}
               </div>
-            
+
+
+
+
+
+
+
+
 
             </Col>
             <Col md={5}>
@@ -470,11 +518,11 @@ updateSelectedImgDataURL(selectedImageNew){
               <button type="button" xlassName = "submitBtn" onClick={ () => {
                           this.handleSubmit(); //update app.js
                           }}>Submit Order</button>
-               </Row>           
-              
-            </Col>            
+               </Row>
+
+            </Col>
           </Row>
-        </Container>       
+        </Container>
       </div>
     );
   }
