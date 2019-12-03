@@ -109,7 +109,7 @@
   top: 25%;
   left: 36%;
 }
-.selectedImgTwo {
+.penImg {
   position: absolute;
   z-index: 50;
   height: auto;
@@ -118,4 +118,40 @@
   right: 36%;
 }
 
+.cableImg{
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: 19%;
+  top: 23%;
+  right: 42%;
+}
 
+.bottleImg{
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: 23%;
+  top: 50%;
+  right: 38%;
+}
+
+.walletImg{
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: 25%;
+  top: 50%;
+  right: 36%;
+
+}
+
+.notebookImg{
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: 25%;
+  top: 50%;
+  right: 42%;
+
+}

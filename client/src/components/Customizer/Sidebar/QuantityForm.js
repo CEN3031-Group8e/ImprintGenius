@@ -26,12 +26,13 @@ class QuantityForm extends React.Component
             return sizes;
         }
     }
-    handleChange(e){
-        if(isNaN(e.target.value))
-            return;
 
+    handleChange(e){
         let newSizes = [...this.state.sizes];
-        newSizes[e.target.id] = e.target.value;
+        if(isNaN(e.target.value))
+            newSizes[e.target.id] = ''; //do not allow user to enter improper input
+        else
+            newSizes[e.target.id] = e.target.value;
         var sum = 0;
         newSizes.map(size => {
             size = parseInt(size,10);
@@ -51,34 +52,28 @@ class QuantityForm extends React.Component
     }
     render() {
 		return(
-            
         <div>
           <div className="">
-            
             <form id="sizeForm" onSubmit={this.handleSubmit}>
-            {this.state.sizeOptions.map(element => (
+            {this.state.sizeOptions.map(sizeElement => (
                 <div>
-                    {element.name}
+                    {sizeElement.name}
                     <input
                         type="text" //text box
                         pattern="[0-9]*"
                        // name={element.name}
-                        id={element.id}
+                        id={sizeElement.id}
                         onChange={this.handleChange.bind(this)}
-                        value={this.state.sizes[element.id]}
+                        value={this.state.sizes[sizeElement.id]}
                         placeholder="0"
                     />
                 </div>
             ))}
-               
-
             </form>
-
           </div>
         </div>
         );
     }
 }
-
 
 export default QuantityForm;
