@@ -21,8 +21,6 @@ import {largePath, notebookPath, penPath, bottlePath, cablePath, walletPath} fro
 
 
 import {promoItemsData, apparelItemsData} from '../../data/itemsData.js'
-import { element } from 'prop-types';
-
 
 class Customizer extends Component {
   constructor(props) {
@@ -30,23 +28,22 @@ class Customizer extends Component {
     this.state = {
       selectedPackage: this.props.location.state, //passed from Home page
 
-      imageType: 'tshirt',
+      imageType: 'tshirt', //initial state: display tshirt
       apparelMode: true,
       selectedFile: null,
       selectedImage: null, //selected image data URL (base64)
 
-      //test
       selectedFileTwo:null,
       selectedImageTwo:null,
 
-      //test
-      currentItemData: null,
-
+      //to send to customizer for color palette + 
+      //for force render checker of customizer/quantity
+      currentItemData: null, 
       //updated from ColorPicker (child)
       allApparelColorsChosen: this.initAllApparelColorsChosen(), //{type, colorsChosen[] (5 max)}
       allPromoColorsChosen: this.initAllPromoColorsChosen(),  //{type, colorsChosen (one)}
-      //allSizes: [], //{color, sizes[]}
       allApparelSizes: this.initAllApparelSizes(), //{type, allSizes[]}
+      
       sideBarOption: null //based on button id
     };
     this.updateType = this.updateType.bind(this);
@@ -211,7 +208,22 @@ imagesPath(){
   }
 }
 
-
+  displayCustomizer(maxColorsChosen, colorsChosen){
+   return( <ColorPicker maxColorsChosen={maxColorsChosen}
+                        itemData ={this.state.currentItemData}
+                        updateColors={this.updateColors} //child to parent sending clicked colors
+                        colorsChosen={colorsChosen}
+                        apparelMode = {this.state.apparelMode}/>)
+  }
+  displayQuantity(sizeOptions,capacity,colorsChosen,allSizes){
+    return(<QuantitySelect sizeOptions ={sizeOptions}
+                          capacity={capacity }
+                          colorsChosen={colorsChosen} //send to child
+                          allSizes={allSizes}
+                          updateApparelAllSizes={this.updateApparelAllSizes}/>
+      
+    )
+  }
 
   checkBtns(){
     if(this.state.sideBarOption === "upload"){
@@ -244,20 +256,12 @@ imagesPath(){
         this.setState(({
           currentItemData: itemData
         }),
-        () => { //only render until state is updated
-          return (<ColorPicker maxColorsChosen={maxColorsChosen}
-                               itemData ={this.state.currentItemData}
-                               updateColors={this.updateColors} //child to parent sending clicked colors
-                               colorsChosen={colorsChosen}
-                               apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
+        () => { //force rerender/reload of props so the just clicked item's color picker gets displayed
+          return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
         })
       }
       else{ //render unupdated
-        return (<ColorPicker maxColorsChosen={maxColorsChosen}
-                             itemData ={this.state.currentItemData}
-                             updateColors={this.updateColors} //child to parent sending clicked colors
-                             colorsChosen={colorsChosen}
-                             apparelMode = {this.state.apparelMode}/>); //send to child to show saved state
+        return (this.displayCustomizer(maxColorsChosen,colorsChosen)); 
       }
     }
     else if(this.state.sideBarOption === "quantity"){
@@ -265,46 +269,37 @@ imagesPath(){
       //this prevents crash (quantity doesnt show up for promo)
       if(!this.state.apparelMode)
         return;
-     //{type, colorsChosen[]}
-        var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
-        var colorsChosen = apparelColors.colorsChosen;
+        //{type, colorsChosen[]}
+      var apparelColors = this.state.allApparelColorsChosen.find(e => e.type === this.state.imageType);
+      var colorsChosen = apparelColors.colorsChosen;
 
-        // allSizes: {color,sizes[],sum}/element
-        var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
-        var allSizes = sizesOfApparelItem.allSizes;
+      // allSizes: {color,sizes[],sum}/element
+      var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
+      var allSizes = sizesOfApparelItem.allSizes;
 
+      var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
+      var sizeOptions = apparelItem.sizeOptions;
+      var capacity = apparelItem.capacity;
 
-        var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
-        var sizeOptions = apparelItem.sizeOptions;
-       var capacity = apparelItem.capacity;
-
-        if(colorsChosen.length !== 0){
-
-          return (
-
-            <QuantitySelect
-            sizeOptions ={sizeOptions}
-                capacity={capacity }
-                colorsChosen={colorsChosen} //send to child
-                allSizes={allSizes}
-                updateApparelAllSizes={this.updateApparelAllSizes}/> //update parent
-        )}
-        else{
-          return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
-        }
+      if(colorsChosen.length !== 0){
+        var itemDataSelected = apparelItemsData.find(e => e.type === this.state.imageType); //
+          if(itemDataSelected !== this.state.currentItemData){ //avoid infinite loop crash, only update on change
+            this.setState(({
+              currentItemData: itemDataSelected
+            }),
+            () => { //force rerender because different item clicked, force prop update
+              return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
+            })
+          }
+          else{ //load same render (props unchanged)
+            return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
+          }
+      }
+      else{
+        return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
+      }
     }
   }
-  updatePalette(data)
-  {
-    if(data !== this.state.currentItemData){
-      this.setState({
-        currentItemData: data
-      })
-    }
-  }
-
-
-
   isSizesfilled()
   {
 
