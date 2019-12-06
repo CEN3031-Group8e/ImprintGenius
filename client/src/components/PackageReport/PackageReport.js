@@ -293,10 +293,14 @@ class PackageReport extends React.Component {
         image2: imageLink2,
       }
       emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+      alert("Your report has been sent!");
+      this.props.history.push('/Home');
+
     })
     .catch(function (err) {
         console.error(err.message);
     });
+
   }
 
 }
