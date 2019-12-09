@@ -207,12 +207,12 @@ class PackageReport extends React.Component {
               <button className="btn btn-circle" style={{background : color.color}}></button>
 
               <p className="apparelCount">
- 
+              {color.formCount}
               {color.sizes.map((value, index) =>
                 <p className="sizes">{
                   item.type == "longsleeve" ?
-                  value > 0 ? value + " " + sizes2[index] : "" :
-                  value > 0 ? value + " " + sizes[index] : ""
+                  value > 0  ? sizes2[index] + value : "" :
+                  value > 0  ? sizes[index] + value : ""
                 }
               </p>
               )}</p>
@@ -270,7 +270,6 @@ class PackageReport extends React.Component {
     //(async () => {
     //  data = await client.Image.upload(image, { type: 'base64'});
     //})();
-    let me = this;
     client.Image.upload(image, { type: 'base64'}).then(function (json) {
         //console.log(json.data.link)
         //console.log(json.data.link);
