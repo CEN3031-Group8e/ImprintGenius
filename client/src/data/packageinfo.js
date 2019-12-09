@@ -40,7 +40,7 @@ const packageItems = [
 
 export default [
     {
-      name: "Name of Package",
+      name: "Package A",
       cost: 1980,
       savings: 1197.5,
       description: "This promo package makes it easy for businesses to reach their target demographic.",
