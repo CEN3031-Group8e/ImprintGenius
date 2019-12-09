@@ -275,28 +275,33 @@ class PackageReport extends React.Component {
         //console.log(json.data.link)
         //console.log(json.data.link);
         imageLink1 = json.data.link;
-        client.Image.upload(image2, { type: 'base64'}).then(function (json) {
-          //console.log(json.data.link);
-          imageLink2 = json.data.link;
-          var templateParams = {
-          message_html: message,
-          name: me.state.name,
-          number: me.state.number,
-          zip: me.state.zipcode,
-          email: me.state.email,
-          info: me.state.info,
-          image1: imageLink1,
-          image2: imageLink2,
-        }
-        emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
-      })
-      .catch(function (err) {
-          console.error(err.message);
-      });
     })
     .catch(function (err) {
         console.error(err.message);
     });
+    let me = this;
+    client.Image.upload(image2, { type: 'base64'}).then(function (json) {
+        //console.log(json.data.link);
+        imageLink2 = json.data.link;
+        var templateParams = {
+        message_html: message,
+        name: me.state.name,
+        number: me.state.number,
+        zip: me.state.zipcode,
+        email: me.state.email,
+        info: me.state.info,
+        image1: imageLink1,
+        image2: imageLink2,
+      }
+      emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+      alert("Your report has been sent!");
+      this.props.history.push('/Home');
+
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+
   }
 
 }
