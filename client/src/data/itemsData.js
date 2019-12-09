@@ -1,3 +1,16 @@
+/*
+promoItemsData and apparelItemsData arrays are static, 
+meant to be used to gather information about the items, 
+specifically colors used in ColorPicker (color selector)
+
+capacity used in quantity form and quantity select to know
+if missing input for number of shirt sizes
+
+colorRoute matches a name to a hex color to be used in the 
+report page as a look up table. so that the client can know what
+hex code was selected and they can match it to the site's 
+name for the specific color (since names vary across sites)
+*/
 const promoItemsData = [
     {   type: "bottle",
     name: "16 OZ. KALI SWIGGY STAINLESS STEEL BOTTLE",

@@ -87,7 +87,7 @@ class Customizer extends Component {
   return tempAllChosen;
 
 }
-  //all update functions below are from child component to parent (page2)
+  //all update functions below are from child component to parent (customizer)
   updateColors(clrs){
     if(this.state.apparelMode === true)
     {
@@ -209,6 +209,7 @@ imagesPath(){
 }
 
   displayCustomizer(maxColorsChosen, colorsChosen){
+    //because color picker is coded twice in check btns, to avoid repeated code
    return( <ColorPicker maxColorsChosen={maxColorsChosen}
                         itemData ={this.state.currentItemData}
                         updateColors={this.updateColors} //child to parent sending clicked colors
@@ -277,6 +278,7 @@ imagesPath(){
       var sizesOfApparelItem = this.state.allApparelSizes.find(e => e.type === this.state.imageType);
       var allSizes = sizesOfApparelItem.allSizes;
 
+      //get static item information such as max item capacity, e.g. colors and types of sizes e.g. XS-XXL or M-4XL
       var apparelItem = apparelItemsData.find(e => e.type === this.state.imageType);
       var sizeOptions = apparelItem.sizeOptions;
       var capacity = apparelItem.capacity;
@@ -291,93 +293,76 @@ imagesPath(){
               return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
             })
           }
-          else{ //load same render (props unchanged)
+          else //load same render (props unchanged)
             return (this.displayQuantity(sizeOptions, capacity, colorsChosen, allSizes));
-          }
       }
-      else{
+      else
         return <div className="innerBoxCustomizer"><h1>Choose Quantities</h1><p>Must choose colors first!</p></div>
-      }
+      
     }
-    else if(this.state.sideBarOption == "help")
-    {
+    else if(this.state.sideBarOption == "help"){
       return(
        <div className="innerBoxCustomizer">
          <h1>Get Help</h1>
          <p><b>Phone:</b> 352-554-8254</p>
          <p><b>Email:</b> sales@imprintgenius.com</p>
        </div>)
-
     }
   }
-  isSizesfilled()
-  {
-
+  isSizesfilled(){
     let array1 = this.state.allApparelSizes[0].allSizes;
-    var sum1 = 0;
+    var checkTshirts = 0;
     array1.map(e => {
-        sum1 += e.formCount;
+      checkTshirts += e.formCount;
     });
-
     let array2 = this.state.allApparelSizes[1].allSizes;
-    var sum2 = 0;
+    var checkLongSleeves = 0;
     array2.map(e => {
-        sum2 += e.formCount;
+      checkLongSleeves += e.formCount;
     });
-
     let array3 = this.state.allApparelSizes[2].allSizes;
-    var sum3 = 0;
+    var checkHoodies = 0;
     array3.map(e => {
-        sum3 += e.formCount;
+      checkHoodies += e.formCount;
     });
-
-
-    if(sum1 == 60 && sum2 == 10 && sum3 == 5)
-    return true
+    if(checkTshirts == apparelItemsData[0].capacity && 
+      checkLongSleeves == apparelItemsData[1].capacity && 
+      checkHoodies == apparelItemsData[2].capacity)
+      return true
     else
-    return false
-
+      return false
   }
 
-  isPromoColorsChosen()
-  {
-
+  isPromoColorsChosen(){
+    //a color for each promo item should have been chosen
     var temp = this.state.allPromoColorsChosen.filter(e => e.colorsChosen.length == 1)
     console.log(temp);
 
     if(temp.length == 6)
-    return true;
-
+      return true;
     else
-    return false;
-
+      return false;
   }
 
 
   //send data to app.js once required data is saved and all details are filled
-  handleSubmit()
-  {
-  
-    if( !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null)
-    {
-      alert("Please fill all details before submitting");
-
-    }
-
-    else
-    {
+  handleSubmit(){
+    if( !this.isSizesfilled())
+      alert("Incomplete apparel item quantities specifications.\nPlease fill all details before submitting");
+    else if( !this.isPromoColorsChosen() )
+      alert("Incomplete promotional item colors specifications.\nPlease fill all details before submitting");
+    else if(this.state.selectedImage == null)
+      alert("Missing apparel items logo upload.\nPlease fill all details before submitting");
+    else if(this.state.selectedImageTwo == null)
+      alert("Missing promotional items logo upload.\nPlease fill all details before submitting");      
+    else{
       this.props.updateData(this.state.selectedImage, this.state.selectedImageTwo, this.state.allApparelColorsChosen, this.state.allPromoColorsChosen, this.state.allApparelSizes);
       this.props.history.push('/Report', {data: this.props.data})
     }
-
-
   }
 
-
   //render upload/colors/quantity/help buttons based on whether item is selected or apparel
-  renderBtns()
-  {
-
+  renderBtns(){
     if(this.state.apparelMode === true)
         return(
         <div className='buttonContainer'>
@@ -410,7 +395,6 @@ imagesPath(){
           </button>
       </div>
     )
-
     else
     return(
         <div className='buttonContainer'>
@@ -437,9 +421,7 @@ imagesPath(){
             Help
           </button>
       </div>
-
     )
-
   }
 
   //Checks if user is editing apparel or an accessory (e.g. popsocket)
