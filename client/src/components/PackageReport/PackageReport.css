@@ -118,13 +118,13 @@ ul li {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#99e9cd",endColorstr="#75d8b2",GradientType=1);
 }
 .apparelInfo {
-  display: inline-block;
+  height: auto;
 }
 .apparelCount {
+  width: 100%;
   margin-top: 6px;
   text-align: center;
   font-weight: bold;
-  width: 40px;
 }
 .apparelImgReport {
   width: 25%;

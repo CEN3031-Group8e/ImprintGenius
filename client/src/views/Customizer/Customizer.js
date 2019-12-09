@@ -357,7 +357,7 @@ imagesPath(){
   //send data to app.js once required data is saved and all details are filled
   handleSubmit()
   {
-   // if(this.state.selectedImage == null || this.state.selectedImageTwo == null || )
+  
     if( !this.isSizesfilled() || !this.isPromoColorsChosen() || this.state.selectedImage == null || this.state.selectedImageTwo == null)
     {
       alert("Please fill all details before submitting");

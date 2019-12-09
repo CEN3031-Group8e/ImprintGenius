@@ -207,12 +207,12 @@ class PackageReport extends React.Component {
               <button className="btn btn-circle" style={{background : color.color}}></button>
 
               <p className="apparelCount">
-              {color.formCount}
+ 
               {color.sizes.map((value, index) =>
                 <p className="sizes">{
                   item.type == "longsleeve" ?
-                  value > 0  ? sizes2[index] + value : "" :
-                  value > 0  ? sizes[index] + value : ""
+                  value > 0 ? value + " " + sizes2[index] : "" :
+                  value > 0 ? value + " " + sizes[index] : ""
                 }
               </p>
               )}</p>
@@ -270,29 +270,29 @@ class PackageReport extends React.Component {
     //(async () => {
     //  data = await client.Image.upload(image, { type: 'base64'});
     //})();
+    let me = this;
     client.Image.upload(image, { type: 'base64'}).then(function (json) {
         //console.log(json.data.link)
         //console.log(json.data.link);
         imageLink1 = json.data.link;
-    })
-    .catch(function (err) {
-        console.error(err.message);
-    });
-    let me = this;
-    client.Image.upload(image2, { type: 'base64'}).then(function (json) {
-        //console.log(json.data.link);
-        imageLink2 = json.data.link;
-        var templateParams = {
-        message_html: message,
-        name: me.state.name,
-        number: me.state.number,
-        zip: me.state.zipcode,
-        email: me.state.email,
-        info: me.state.info,
-        image1: imageLink1,
-        image2: imageLink2,
-      }
-      emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+        client.Image.upload(image2, { type: 'base64'}).then(function (json) {
+          //console.log(json.data.link);
+          imageLink2 = json.data.link;
+          var templateParams = {
+          message_html: message,
+          name: me.state.name,
+          number: me.state.number,
+          zip: me.state.zipcode,
+          email: me.state.email,
+          info: me.state.info,
+          image1: imageLink1,
+          image2: imageLink2,
+        }
+        emailjs.send(config.email.serviceid, config.email.templateid, templateParams, config.email.userid);
+      })
+      .catch(function (err) {
+          console.error(err.message);
+      });
     })
     .catch(function (err) {
         console.error(err.message);

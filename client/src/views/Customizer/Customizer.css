@@ -122,9 +122,9 @@
   position: absolute;
   z-index: 10;
   height: auto;
-  width: 19%;
+  width: 15%;
   top: 23%;
-  right: 42%;
+  right: 44%;
 }
 
 .bottleImg{
@@ -151,7 +151,7 @@
   z-index: 10;
   height: auto;
   width: 25%;
-  top: 50%;
+  top: 40%;
   right: 42%;
 }
 

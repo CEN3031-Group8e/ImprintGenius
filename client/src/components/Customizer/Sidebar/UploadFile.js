@@ -149,7 +149,7 @@ class UploadFile extends React.Component
             <form className="uploadForm" method="post" action="#" id="#">
                 <div className="form-group files">
                   <input type="file"   key = {this.state.selectedImage} className="form-control"
-                         accept = "image/*"
+                         accept = "image/jpeg, image/jpg, image/png"
                          onChange={this.onChangeHandler}/>
                 </div>
             </form>
@@ -168,7 +168,7 @@ class UploadFile extends React.Component
             <form className="uploadForm" method="post" action="#" id="#2">
                 <div className="form-group files ">
                   <input type="file" key = {this.state.selectedImageTwo} className="form-control"
-                         accept = "image/*"
+                         accept = "image/jpeg, image/jpg, image/png"
                          onChange={this.onChangeHandlerTwo}/>
                 </div>
             </form>
