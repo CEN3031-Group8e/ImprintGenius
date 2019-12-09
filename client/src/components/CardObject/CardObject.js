@@ -21,7 +21,9 @@ export default class CardObject extends React.Component {
                 <div className="cardCon">
                   <div className="title">{data.name}</div>
                   <img className="image" src={require("../../assets/" + data.file)} width="100"></img>
-                  <div className="des">{itemdescription[itemdescription.findIndex(x => x.name === name)].description}</div>
+                  {//to be used for when descriptions on items are added by client
+                  //<div className="des">{itemdescription[itemdescription.findIndex(x => x.name === name)].description}</div>
+                  }
                 </div>
               </CardText>
             </Card>
