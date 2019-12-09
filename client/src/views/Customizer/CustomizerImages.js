@@ -15,14 +15,14 @@ import notebook0000ff from '../../assets/notebookBlue.jpg';
 //Pen
 import pen0000ff from '../../assets/penBlue.jpg';
 import pen008000 from '../../assets/penGreen.jpg';
-import pen2a3439 from '../../assets/penGrey.jpg';
+import pen8e8379 from '../../assets/penGrey.jpg';
 import penff0000 from '../../assets/penRed.jpg';
 //Bottle
 import bottle000000 from '../../assets/bottleBlack.jpg';
 import bottle0000ff from '../../assets/bottleBlue.jpg';
 import bottlec8a2c8 from '../../assets/bottleLilac.jpg';
 import bottle32CD32 from '../../assets/bottleGreen.jpg';
-import bottle000080 from '../../assets/bottleNavy.jpg';
+import bottle222953 from '../../assets/bottleNavy.jpg';
 import bottleff0000 from '../../assets/bottleRed.jpg';
 //Cable
 import cable000000 from '../../assets/cableBlack.jpg';
@@ -38,7 +38,7 @@ import wallet808080 from '../../assets/walletGray.jpg';
 import wallet32cd32 from '../../assets/walletGreen.jpg';
 import walletffa500 from '../../assets/walletOrange.jpg';
 import walletffc0cb from '../../assets/walletPink.jpg';
-import wallet800080 from '../../assets/walletPurple.jpg';
+import wallet6a0dad from '../../assets/walletPurple.jpg';
 import walletff0000 from '../../assets/walletRed.jpg';
 import walletffff00 from '../../assets/walletYellow.jpg';
 
@@ -68,7 +68,7 @@ const penPath = {
   pen000000: pen,
   pen0000ff: pen0000ff,
   pen008000: pen008000,
-  pen2a3439: pen2a3439,
+  pen8e8379: pen8e8379,
   penff0000: penff0000
 };
 
@@ -78,7 +78,7 @@ const bottlePath = {
   bottle0000ff: bottle0000ff,
   bottlec8a2c8: bottlec8a2c8,
   bottle32CD32: bottle32CD32,
-  bottle000080: bottle000080,
+  bottle222953: bottle222953,
   bottleff0000: bottleff0000,
   bottleffffff: bottle
 };
@@ -103,7 +103,7 @@ const walletPath = {
   wallet32cd32: wallet32cd32,
   walletffa500: walletffa500,
   walletffc0cb: walletffc0cb,
-  wallet800080: wallet800080,
+  wallet6a0dad: wallet6a0dad,
   walletff0000: walletff0000,
   walletffff00: walletffff00
 };

@@ -39,7 +39,7 @@ const promoItemsData = [
         name: "DEJA VU LIGHT UP PEN",
         colorsAvailable: [
             //Black, Blue, Red, Gunmetal, Green
-            "#000000", "#0000ff", "#ff0000","#2a3439", "#008000"
+            "#000000", "#0000ff", "#ff0000","#8e8379", "#008000"
         ],
         capacity: 150,
         unitPrice: 2.2,
@@ -59,9 +59,10 @@ const promoItemsData = [
     {   type: "wallet",
         name: "DUAL POCKET SILICONE PHONE WALLET",
         colorsAvailable: [
-            //Black, Blue, Gray, Lime Green, Orange, Pink, Purple, Red, White, Yellow
-            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", "#800080",
-            "#ff0000", "#ffffff", "#ffff00"
+            //Black, Blue, Gray, Lime Green, Orange, Pink, 
+            "#000000", "#0000ff", "#808080", "#32cd32", "#ffa500", "#ffc0cb", 
+            //Purple,Red, White, Yellow
+            "#6a0dad","#ff0000", "#ffffff", "#ffff00"
         ],
         capacity: 250,
         unitPrice: 1.65,
@@ -75,11 +76,13 @@ const apparelItemsData = [
         name: "CVC CREW T-SHIRT",
         colorsAvailable: [
             //Black, Bondi blue, dark heather gray, charcoal, espresso, ice blue,
-           // indigo, kelly green, midnight navy, mint, orange, purple rush, red,
-            //sand, stone gray, storm blue, tahiti blue, turquouise, warm gray, white
-            "#000000", "#0095b6", "#46220b", "#36454f",  "#4e312d", "#d6ecef",
-            "#4b0082", "#4cbb17", "#02075d", "#98ff98", "#ffa500","#6A4481", "#FF0000",
-            "#c2b280", "#888c8d", "#747880", "#1c87b7", "#40e0d0", "#8c7d70", "#ffffff"
+            "#000000", "#0095b6", "#A9A9A9", "#333333",  "#4e312d", "#d6ecef",
+            //kelly green, midnight navy, mint, orange, purple rush, red,
+            "#02b263", "#001144", "#ffa500","#d8f5ed","#6A4481", "#FF0000",
+            //sand, stone gray, tahiti blue, turquouise, warm gray, white
+            "#f9e4b7", "#998e8f", "#00cdfe", "#4169e1", "#8c7d70", "#ffffff",
+            //"indigo" = orion blue hex, "storm purple" = purple hex
+            "#3e4f5c","#4b0082"
         ],
         capacity: 60,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
@@ -94,10 +97,10 @@ const apparelItemsData = [
     {   type: "longsleeve",
         name: "MENS COTTON LONGSLEEVE CREW",
         colorsAvailable: [
-            //Black, white, cardinal, cool blue, heather gray, heavy metal, indigo,
-            // midnight navy, military green, red, royal
-            "#000000", "##ffffff", "#c41e3a","#2F66A9", "#9aa297", "#46473e",
-            "#4b0082", "#02075d", "#5a5e45", "#FF0000", "#4169e1"
+            //Black, white, cardinal, cool blue, heather gray, heavy metal,
+            "#000000", "#ffffff", "#8a0303","#003366", "#c3c3c3", "#43464b",
+            //indigo, midnight navy, military green, red, royal blue
+            "#3e4f5c", "#001144", "#5a5e45", "#FF0000", "#4169e1"
         ],
         capacity: 10,
         sizeOptions: [ {id:0, name:"S"},{id:1, name:"M"},{id:2, name:"L"},
@@ -111,20 +114,10 @@ const apparelItemsData = [
     {   type: "hoodie",
         name: "BELLA + CANVAS SPONGE FLEECE PULLOVER HOODED SWEATSHIRT",
         colorsAvailable: [
-            /*
-            True Royal,Navy,Lilac,Team Purple ,Peach, ,Mauve ,Heather Red,
-            Red,Heather Maroon ,Gold ,Heather Mustard ,Heathr Sand Dune,Tan ,Lt Grey Marble ,
-            Athletic Heather,Dark Grey ,Dk Gray Heather, Dk Gry Marb Flc, Drk Gry Htr/Blk ,Deep Heather ,
-           Dtg Dark Grey,Black ,Black Heather ,Dtg Black ,Teal ,Forest ,Military Green,
-            Ash ,Dtg White ,Vintage White ,White ,Heather Forest ,Heather Navy,
-            Heather Slate ,Heather Tru Royl ,Hthr Deep Teal ,Maroon ,Storm Purple
-             */
-            "#0061a5", "#222953", "#efcfe7", "#48267a", "#f6c2ac", "#b96c64", "#e43441",
-            "#d43134", "#733a40", "#f8b327", "#dd9526","#e7c5a0", "#bfa284", "#bab7b5",
-            "#999999", "#474246", "#6c6f70", "#494B48","#363539","#858785",
-            "#373538", "#000000", "#1e1e1e", "#141414","#58aa93","#1f3832","#5a5e45",
-            "#f3f3f5","#faf9fe", "#ece5df","#FFFFFF", "#67807f", "#556a87","#4C6F82",
-            "#285FA2", "#55787a","#5b2a2e","#a39396"
+            /*black, heather slate, white, black heather, heather forest */
+            "#000000","#67807f","#FFFFFF","#2e2e2e","#4C6F82",
+            //red,heather deep teal, navy, team purple, true royal/royal blue
+            "#ff0000","#55787a", "#222953","#6a0dad","#0061a5"
         ],
         capacity: 5,
         sizeOptions: [ {id:0, name:"XS"},{id:1, name:"S"},{id:2, name:"M"},
@@ -144,72 +137,42 @@ const colorRoute =[
     {name: "Purple", color: "#6a0dad"},
     {name: "Red", color: "#ff0000"},
     {name: "White", color: "#ffffff"},
-    {name: "Gunmetal", color: "#2a3439"},
+    {name: "Gunmetal", color: "#8e8379"},
     {name: "Green", color: "#008000"},
     {name: "Navy", color: "#222953"},
-
-    {name: "Lilac", color: "#efcfe7"},
-    {name: "Gray", color: "#000000"},
-    {name: "Pink", color: "#000000"},
-    {name: "Yellow", color: "#800080"},
+    {name: "Lilac", color: "#c8a2c8"},
+    {name: "Gray", color: "#808080"},
+    {name: "Pink", color: "#ffc0cb"},
+    {name: "Yellow", color: "#ffff00"},
 
     {name: "True Royal", color: "#0061a5"},
-    {name: "Peach", color: "#f6c2ac"},
-    {name: "Mauve", color: "#b96c64"},
-    {name: "Heather Red", color: "#e43441"},
-    {name: "Heather Maroon", color: "#733a40"},
-    {name: "Gold", color: "#f8b327"},
-    {name: "Heather Mustard", color: "#dd9526"},
-    {name: "Heather Sand Dune", color: "#e7c5a0"},
-    {name: "Tan", color: "#bfa284"},
-    {name: "Light Grey Marble", color: "#bab7b5"},
-    {name: "Athletic Heather", color: "#999999"},
-    {name: "Dark Gray", color: "#474246"},
-    {name: "Dark Gray Heather", color: "#6c6f70"},
-    {name: "Dark Gray Marble Flc", color: "#494B48"},
-    {name: "Dark Gray Heather/Black", color: "#363539"},
-    {name: "Deep Heather", color: "#858785"},
-    {name: "Dtg Dark Gray", color: "#373538"},
-
-    {name: "Black Heather", color: "#1e1e1e"},
-    {name: "Dtg Black", color: "#141414"},
-    {name: "Teal", color: "#58aa93"},
-    {name: "Forest", color: "#1f3832"},
-    {name: "Military Green", color: "#5a5e45"},
-    {name: "Ash", color: "#f3f3f5"},
-    {name: "Dtg White", color: "#faf9fe"},
-    {name: "Vintage White", color: "#ece5df"},
-    {name: "Heather Forest", color: "#67807f"},
-    {name: "Heather Navy", color: "#556a87"},
-    {name: "Heather Slate", color: "#4C6F82"},
-    {name: "Heather True Royal", color: "#285FA2"},
+    {name: "Black Heather", color: "#2e2e2e"},
     {name: "Heather Deep Teal", color: "#55787a"},
-    {name: "Maroon", color: "#5b2a2e"},
-    {name: "Storm Purple", color: "#a39396"},
-
-    {name: "Royal Blue", color: "#4169e1"},
-    {name: "Midnight Navy", color: "#02075d"},
-    {name: "Indigo", color: "#4b0082"},
-    {name: "Heavy Metal", color: "#46473e"},
-    {name: "Heather Gray", color: "#9aa297"},
-    {name: "Cardinal", color: "#c41e3a"},
-    {name: "Cool Blue", color: "#2F66A9"},
+    {name: "Heather Forest", color: "#67807f"},
+    {name: "Heather Slate", color: "#4C6F82"},
+    
+    {name: "Military Green", color: "#5a5e45"},
+    {name: "Heavy Metal", color: "#43464b"},
+    {name: "Heather Gray", color: "#c3c3c3"},
+    {name: "Cardinal", color: "#8a0303"},
+    {name: "Cool Blue", color: "#003366"},
 
     {name: "Bondi Blue", color: "#0095b6"},
-    {name: "Dark Heather Gray", color: "#46220b"},
-    {name: "Charcoal", color: "#36454f"},
+    {name: "Dark Heather Gray", color: "#A9A9A9"},
+    {name: "Charcoal", color: "#333333"},
     {name: "Espresso", color: "#4e312d"},
     {name: "Ice Blue", color: "#d6ecef"},
-    {name: "Kelly Green", color: "#4cbb17"},
-    {name: "Mint", color: "#98ff98"},
+    {name: "Indigo", color: "#3e4f5c"},
+    {name: "Kelly Green", color: "#02b263"},
+    {name: "Midnight Navy", color: "#001144"},
+    {name: "Royal Blue", color: "#4169e1"},
+    {name: "Mint", color: "#d8f5ed"},
     {name: "Purple Rush", color: "#6A4481"},
-
-    {name: "Sand", color: "#c2b280"},
-    {name: "Stone Gray", color: "#888c8d"},
-    {name: "Storm Blue", color: "#747880"},
-    {name: "Tahiti Blue", color: "#1c87b7"},
-    {name: "Turquouise", color: "#40e0d0"},
-    {name: "Warm Gray", color: "#8c7d70"}
-    
+    {name: "Sand", color: "#f9e4b7"},
+    {name: "Stone Gray", color: "#998e8f"},
+    {name: "Storm Purple", color: "#4b0082"},
+    {name: "Tahiti Blue", color: "#00cdfe"},
+    {name: "Turquouise", color: "#4169e1"},
+    {name: "Warm Gray", color: "#8c7d70"}  
 ]
 export {promoItemsData, apparelItemsData, colorRoute}
