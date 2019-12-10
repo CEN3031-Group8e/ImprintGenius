@@ -1,4 +1,43 @@
 
+## Overview
+
+This website was built for Imprint Genius for customized package ordering.
+
+Jennifer Bernal: Scrum master, developer, @jenber23
+Sneha Patel: Developer
+Paula Martins: Developer
+Pablo Garces: Project manager, developer
+Evan Bourque: Developer
+Imprint Genius: Owner of project, provided image assets for apparel and promotional items 
+
+
+## Link to deployed website
+https://imprint-genius.herokuapp.com
+
+## How to run the project locally
+
+To run the project locally, clone the repository to your local machine.
+Use npm install to install package dependencies.
+Run ### `npm run-script client`
+
+## Heroku instructions
+
+Connecting to Heroku Dashboard
+1.	https://id.heroku.com/login
+    a.	Log in with same username and password as gmail
+2.	https://dashboard.heroku.com/apps
+    a.	Select “imprint-genius” as your app on the Heroku homepage
+3.	https://dashboard.heroku.com/apps/imprint-genius
+    a.	Choose Deployment tab on top header
+4.	https://dashboard.heroku.com/apps/imprint-genius/deploy/github
+    a.	App connected to GitHub: Ensure app connected to Github is   CEN3031-Group8e/ImprintGenius through the imprintgenius git user account
+    b.	Automatic deploys: Enable automatic deployments; leave this on so the website can be continuously updated.
+    c.	Manual deploy: Force deployment on command
+5.	At the top header, select “Open app” to view deployed site
+6.	Viewable on https://imprint-genius.herokuapp.com/
+
+
+
 ## Features Implemented
 
 In the home page, package page, see more pop up gives an over view of the package
@@ -22,11 +61,36 @@ Customer can review order and place order. On placing order, customer is notifie
 Client recieves order details in the email.
 ![email](email.png)
 
+## Additional feature details
+
+Separate logos can be uploaded for apparel and promo items
+The quantity indicates missing quantity and excess quantity based on package details given by the client.
+Submit button on customizer is enabled only when all package details are filled in by the customer.
+
+## Packages and code sources used
+
+Email.js 
+Bootstrap 
+Bootsnipp - https://bootsnipp.com/snippets/DOXy4
+
+## Identified bugs
+
+When trying to access the customizer page directly through the url as a developer, without going through the homepage, it crashes since customizer page relies on the data from the package page.
+
+## Future features
+
+Add custom logo positioning
+Add descriptions for each individual item
+Change apparel colors when selecting
+Enable customer to go pack to the customizer page once report is filled and keep the original data instead of refreshing
 
 
 
 
 
+#### README to EXPAND project in the future to include back-end
+
+This is the original readme of the project that we built upon. This can be used to add back-end to the web-app.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This project contains an example project board meant to showcase how one can be used. The issues posted to it are not real issues.
