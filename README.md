@@ -1,4 +1,29 @@
+
+## Features Implemented
+
+In the home page, package page, see more pop up gives an over view of the package
+![seemore](seemore.png)
+
+Build pack takes customer to the customizer where you can upload logo for apparel
+![upload](uploadLogo.png)
+
+Quantity allows customer to choose different sizes for apparel
+![sizes](sizes.png)
+
+Colors allows customer to choose different colors
+![colors](colors.png)
+
+Once all details are filled, submit button is enabled and takes customer to a form for customer details
+![details](details.png)
+
+Customer can review order and place order. On placing order, customer is notified that the report is sent.
 ![report](report.png)
+
+Client recieves order details in the email.
+![email](email.png)
+
+
+
 
 
 
