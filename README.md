@@ -1,19 +1,20 @@
 
 ## Overview
 
-This website was built for Imprint Genius for customized package ordering.
+This website was built for the company, Imprint Genius, for customized package ordering.
+View of development team:
 
-Jennifer Bernal: Scrum master, developer, @jenber23
+Jennifer Bernal, @jenber23: Scrum master, developer
 
-Sneha Patel: Developer
+Pablo Garces, @pablogarces16: Project manager, developer
 
-Paula Martins: Developer
+Sneha Patel, @SnehaP17: Developer
 
-Pablo Garces: Project manager, developer
+Paula Martins, @pmartins1ufl: Developer
 
-Evan Bourque: Developer
+Evan Bourque, @devanevan/@bourqueeh: Developer
 
-Imprint Genius: Owner of project, provided image assets for apparel and promotional items 
+Imprint Genius, @imprintgenius: Visionary, project inheritor and product owner
 
 
 ## Link to deployed website
@@ -86,9 +87,10 @@ Bootsnipp - https://bootsnipp.com/snippets/DOXy4
 
 ## Identified bugs
 
-When trying to access the customizer page directly through the url as a developer, without going through the homepage, it crashes since customizer page relies on the data from the package page.
+When trying to access the Customizer or Report page through the url search bar (e.g. .../Customizer), the pages crash because they rely on the data from the previous page to render (i.e. Customizer relies on Homepage and Report relies on Customizer).
 
-Data is not saved when customizer or report page is reloaded which can cause a crash.
+No error capture could be done to handle those crashes; it needs to be fixed by handling how pages are routed if the data is empty.
+
 
 ## Future features
 
