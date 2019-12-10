@@ -4,10 +4,15 @@
 This website was built for Imprint Genius for customized package ordering.
 
 Jennifer Bernal: Scrum master, developer, @jenber23
+
 Sneha Patel: Developer
+
 Paula Martins: Developer
+
 Pablo Garces: Project manager, developer
+
 Evan Bourque: Developer
+
 Imprint Genius: Owner of project, provided image assets for apparel and promotional items 
 
 
@@ -82,6 +87,8 @@ Bootsnipp - https://bootsnipp.com/snippets/DOXy4
 ## Identified bugs
 
 When trying to access the customizer page directly through the url as a developer, without going through the homepage, it crashes since customizer page relies on the data from the package page.
+
+Data is not saved when customizer or report page is reloaded which can cause a crash.
 
 ## Future features
 
