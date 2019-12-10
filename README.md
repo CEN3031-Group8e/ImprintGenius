@@ -18,7 +18,7 @@ https://imprint-genius.herokuapp.com
 
 To run the project locally, clone the repository to your local machine.
 Use npm install to install package dependencies.
-Run ### `npm run-script client`
+Run #### `npm run-script client`
 
 ## Heroku instructions
 
@@ -39,20 +39,22 @@ Connecting to Heroku Dashboard
 
 
 ## Features Implemented
+Homepage
+![homepage](homepage.png)
 
-In the home page, package page, see more pop up gives an over view of the package
+In the home page  (package page) see more pop up gives an over view of the package.
 ![seemore](seemore.png)
 
-Build pack takes customer to the customizer where you can upload logo for apparel
+Build pack takes customer to the customizer where you can upload logo for apparel.
 ![upload](uploadLogo.png)
 
-Quantity allows customer to choose different sizes for apparel
+Quantity allows customer to choose different sizes for apparel.
 ![sizes](sizes.png)
 
-Colors allows customer to choose different colors
+Colors allows customer to choose different colors.
 ![colors](colors.png)
 
-Once all details are filled, submit button is enabled and takes customer to a form for customer details
+Once all details are filled, submit button is enabled and takes customer to a form for customer details.
 ![details](details.png)
 
 Customer can review order and place order. On placing order, customer is notified that the report is sent.
@@ -63,14 +65,18 @@ Client recieves order details in the email.
 
 ## Additional feature details
 
-Separate logos can be uploaded for apparel and promo items
+Separate logos can be uploaded for apparel and promo items.
+
 The quantity indicates missing quantity and excess quantity based on package details given by the client.
+
 Submit button on customizer is enabled only when all package details are filled in by the customer.
 
 ## Packages and code sources used
 
 Email.js 
+
 Bootstrap 
+
 Bootsnipp - https://bootsnipp.com/snippets/DOXy4
 
 ## Identified bugs
@@ -79,10 +85,10 @@ When trying to access the customizer page directly through the url as a develope
 
 ## Future features
 
-Add custom logo positioning
-Add descriptions for each individual item
-Change apparel colors when selecting
-Enable customer to go pack to the customizer page once report is filled and keep the original data instead of refreshing
+- Add custom logo positioning
+- Add descriptions for each individual item
+- Change apparel colors when selecting
+- Enable customer to go pack to the customizer page once report is filled and keep the original data instead of refreshing
 
 
 
