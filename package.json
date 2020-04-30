@@ -28,7 +28,7 @@
     "emailjs-com": "^2.4.1",
     "express": "^4.17.1",
     "imgur": "^0.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
